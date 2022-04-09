@@ -1,7 +1,3 @@
-#Will remove the import in the future
-import pandas as pd
-import datetime
-
 def inspect(date_to_find, securities, query_stat):
     # authors: Miles, Nguyen
 
