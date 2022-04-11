@@ -16,6 +16,6 @@ python3 main.py --sector_ROI
 - Output Signature: The calculated return on investment (float data format), from a specified sector.  
 
 - This command line does not require any terminal argument.
-- Only the "sector" argument requires manual input. Other aruguments are specified internally by the main.py function.
+- Only the "sector" argument requires manual input. Other arguments are specified internally by the main.py function.
 - Upon execution, the Python program will scan the dataset and return a list of all available market sectors and their numeric identifier.
 - The user would then use a number that corresponds with a sector. This is to minimize input error.

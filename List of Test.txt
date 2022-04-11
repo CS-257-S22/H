@@ -1,0 +1,8 @@
+FOR inspect.py
+-> Infinite-ish number of unit test. Take in a securitiest code, a date, and a metric in question, then compare the return with the result of that actual metric.
+
+FOR sector_ROI.py
+-> Each sector of the market will have a test unit.
+-> Dummy data located in "Data/Dummy Data for Testing"
+-> Manually calculate the sector ROI from the dummy data for your specific sector. (You can code this too?)
+-> Compare the result of the function with the "manually" calculated data.
