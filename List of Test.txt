@@ -6,3 +6,9 @@ FOR sector_ROI.py
 -> Dummy data located in "Data/Dummy Data for Testing"
 -> Manually calculate the sector ROI from the dummy data for your specific sector. (You can code this too?)
 -> Compare the result of the function with the "manually" calculated data.
+
+* WARNING: IN OUR DATA, EVERY SECTOR'S NAME IS FOLLOWED BY A BLANK SPACE"
+-> Jack: "AUTOMOBILES & TRANSPORTATION EQUIPMENT ", "BANKS ", "COMMERCIAL & WHOLESALE TRADE ", "CONSTRUCTION & MATERIALS " sectors
+-> Geoffrey: The next 4 sectors in the column "GeneralSectorName"
+-> Miles: The next 4 sectors in the column "GeneralSectorName"
+-> Nguyen: The last 4 sectors in the column "GeneralSectorName"
