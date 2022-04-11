@@ -3,6 +3,10 @@ def terminal_input_for_sector_ROI():
 
     # write your code here
 
+    # call terminal_input_for_sector_ROI
+    # build a prompt that pops up to
+
+
     return sector # dataformat: string
 
 def sector_ROI(sector, prices_df, list_df):
