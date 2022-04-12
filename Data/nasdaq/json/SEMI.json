@@ -1,0 +1,104 @@
+{
+    "chart": {
+        "result": [
+            {
+                "meta": {
+                    "currency": "USD",
+                    "symbol": "SEMI",
+                    "exchangeName": "PCX",
+                    "instrumentType": "ETF",
+                    "firstTradeDate": 1648647000,
+                    "regularMarketTime": 1649079491,
+                    "gmtoffset": -14400,
+                    "timezone": "EDT",
+                    "exchangeTimezoneName": "America/New_York",
+                    "regularMarketPrice": 19.5,
+                    "chartPreviousClose": 19.9951,
+                    "priceHint": 2,
+                    "currentTradingPeriod": {
+                        "pre": {
+                            "timezone": "EDT",
+                            "start": 1649059200,
+                            "end": 1649079000,
+                            "gmtoffset": -14400
+                        },
+                        "regular": {
+                            "timezone": "EDT",
+                            "start": 1649079000,
+                            "end": 1649102400,
+                            "gmtoffset": -14400
+                        },
+                        "post": {
+                            "timezone": "EDT",
+                            "start": 1649102400,
+                            "end": 1649116800,
+                            "gmtoffset": -14400
+                        }
+                    },
+                    "dataGranularity": "1d",
+                    "range": "",
+                    "validRanges": [
+                        "1d",
+                        "5d",
+                        "1mo",
+                        "ytd",
+                        "max"
+                    ]
+                },
+                "timestamp": [
+                    1648647000,
+                    1648733400,
+                    1648819800,
+                    1649079491
+                ],
+                "indicators": {
+                    "quote": [
+                        {
+                            "open": [
+                                20.540000915527344,
+                                19.989999771118164,
+                                19.88990020751953,
+                                19.5
+                            ],
+                            "close": [
+                                19.995100021362305,
+                                19.777000427246094,
+                                19.344900131225586,
+                                19.5
+                            ],
+                            "high": [
+                                20.549999237060547,
+                                20.10449981689453,
+                                19.88990020751953,
+                                19.5
+                            ],
+                            "volume": [
+                                8987,
+                                4688,
+                                3349,
+                                538
+                            ],
+                            "low": [
+                                19.995100021362305,
+                                19.777000427246094,
+                                19.139999389648438,
+                                19.5
+                            ]
+                        }
+                    ],
+                    "adjclose": [
+                        {
+                            "adjclose": [
+                                19.995100021362305,
+                                19.777000427246094,
+                                19.344900131225586,
+                                19.5
+                            ]
+                        }
+                    ]
+                }
+            }
+        ],
+        "error": null
+    }
+}
