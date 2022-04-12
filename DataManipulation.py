@@ -3,4 +3,4 @@ import glob
 
 path = "./Data/nasdaq/*.csv"
 for fileName in glob.glob(path):
-    
+    print("Insert code here")
