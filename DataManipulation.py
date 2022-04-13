@@ -19,9 +19,9 @@ with open(combinedFile, 'w', encoding = "UTF-8", newline = '') as wFile:
             print("Reading file: " + fileName)
             next(spamreader)
             for item in spamreader:
-                trueFileName = fileName.split()
-                for item in trueFileName:
-                    print(item)
-                # input = item, truestFileName
-                # writer.writerow(input)
+                # trueFileName = fileName.split("testfiles")
+                # print(trueFileName[1])
+                truefileName = fileName[17:-4]
+                input = item, truefileName
+                writer.writerow(input)
 
