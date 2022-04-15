@@ -10,12 +10,10 @@ python3 main.py --inspect
 ----------------------------
 
 FEATURE 2:
-python3 main.py --sector_ROI
+python3 main.py --stock_ROI
 
-- Input Signature: sector (string), prices_df (Pandas dataframe), list_df (Pandas dataframe)
-- Output Signature: The calculated return on investment (float data format), from a specified sector.  
+- Input Signature: ticker symbol of a stock (string), nasdaq_df (Pandas dataframe)
+- Output Signature: The calculated return on investment (float data format), for the specified stock.
 
 - This command line does not require any terminal argument.
-- Only the "sector" argument requires manual input. Other arguments are specified internally by the main.py function.
-- Upon execution, the Python program will scan the dataset and return a list of all available market sectors and their numeric identifier.
-- The user would then use a number that corresponds with a sector. This is to minimize input error.
+- Only the "ticker symbol" argument requires manual input. Other arguments are specified internally by the main.py function.
