@@ -21,14 +21,18 @@ def find_query():
     if not check_ticker(ticker):
         print("Ticker not found in dataset")
         return
+
+    if not check_date(ticker, year, month):
+        print("Invalid Date")
+        return
     
-    if not check_year(year):
-        print("Year not in dataset")
-        return
+    # if not check_year(year):
+    #     print("Year not in dataset")
+    #     return
         
-    if not check_month(month):
-        print("Invalid month")
-        return
+    # if not check_month(month):
+    #     print("Invalid month")
+    #     return
 
     actual_ticker, actual_date, actual_query = inspect_input(num_of_args, ticker, year, month, query)
     output = inspect(actual_ticker, actual_date, actual_query, nasdaq_df)
