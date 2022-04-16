@@ -17,6 +17,8 @@ Output Signature
 FEATURE 2:
 python3 main.py --basic_stock_stat
 
+Find the earliest and latest record dates of a stock.
+
 Input Signature:
     1. ticker symbol (string)
 
