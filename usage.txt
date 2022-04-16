@@ -1,10 +1,15 @@
 FEATURE 1:
 python3 main.py --inspect
 
-- Input Signatures: date_to_find (datetime object), securities (int), query_stat (string)
-- Output Signature: The relevant metric (query_stat) of a stock (securities) at a certain point in time (date_to_find).
+Input Signatures:
+    1. ticker symbol (string)
+    2. year of investment (int64)
+    3. month of investment (int64)
+    4. query_stat (string, "Open", "Close", "Adjusted Close", "Low", "High")
 
-- This command line does not require any terminal argument.
+Output Signature
+    1. The relevant metric (query_stat) of a stock (ticker symbol) at a certain point in time (month and year of investment)
+
 - Upon execution, the Python program will prompt argument on its own to prevent any formatting error. Given the complexity of the required input.
 
 ----------------------------
@@ -12,8 +17,14 @@ python3 main.py --inspect
 FEATURE 2:
 python3 main.py --stock_ROI
 
-- Input Signature: ticker symbol of a stock (string), nasdaq_df (Pandas dataframe)
-- Output Signature: The calculated return on investment (float data format), for the specified stock.
+Input Signature:
+    1. ticker symbol (string)
+    2. year of investment (int64); default = earliest date in the dataset
+    3. month of investment (int64); default = earliest date in the dataset
+    4. buying price (string, "Open", "Close", "Adjusted Close", "Low", "High"); default = "Open"
+    5. selling price (string, "Open", "Close", "Adjusted Close", "Low", "High"); default = "Close"
 
-- This command line does not require any terminal argument.
-- Only the "ticker symbol" argument requires manual input. Other arguments are specified internally by the main.py function.
+Output Signature:
+    1. The calculated return on investment in percentage (float data format), for the specified stock.
+
+- Upon execution, the Python program will prompt argument on its own to prevent any formatting error. Given the complexity of the required input.
