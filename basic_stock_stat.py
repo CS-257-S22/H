@@ -1,4 +1,6 @@
-def terminal_input_for_basic_stock_stat():
+from inspect import *
+
+def basic_stock_stat_input():
     """
     Author:
         1. Geoffrey
@@ -13,6 +15,7 @@ def terminal_input_for_basic_stock_stat():
     Output Signature:
         1. ticker (string) 
     """
+
 
     return ticker # dataformat: string
 

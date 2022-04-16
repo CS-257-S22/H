@@ -24,4 +24,5 @@ with open(combinedFile, 'w', encoding = "UTF-8", newline = '') as wFile:
                 truefileName = fileName[17:-4]
                 input = item, truefileName
                 writer.writerow(input)
+        f.close
 
