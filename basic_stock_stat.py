@@ -1,4 +1,14 @@
-def terminal_input_for_basic_stock_stat():
+import sys
+from inspect import *
+
+def get_dates(dataframe):
+    ticker = sys.argv[]
+    if not check_ticker(ticker):
+        print("Ticker not found in dataset")
+        return
+
+
+def basic_stock_stat_input():
     """
     Author:
         1. Geoffrey
@@ -13,6 +23,7 @@ def terminal_input_for_basic_stock_stat():
     Output Signature:
         1. ticker (string) 
     """
+
 
     return ticker # dataformat: string
 
