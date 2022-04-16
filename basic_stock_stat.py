@@ -39,7 +39,7 @@ def basic_stock_stat(ticker, dataframe):
     # find the latest dates
     latest_date = find_earliest_or_latest_record(ticker, method = "latest", dataframe = dataframe)
 
-    return earliest_date, latest_dateg
+    return earliest_date, latest_date
 
 # ----------------------------
 
@@ -68,7 +68,7 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
 
         # find the latest month
         latest_month = dataframe.loc[(dataframe["Ticker Symbol"] == ticker) &\
-            (dataframe["Year"] == earliest_year)]\
+            (dataframe["Year"] == latest_year)]\
             ["Month"].max()
 
         return [latest_year, latest_month]
