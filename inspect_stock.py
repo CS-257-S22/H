@@ -90,7 +90,7 @@ def check_date(ticker, year, month):
         spamreader = csv.reader(rFile, delimiter=',')
         next(spamreader)
         for row in spamreader:
-            if row[10] == ticker and row[3] == year and row[2] == month:
+            if row[10] == ticker and row[3] == str(year) and row[2] == str(month):
                 f.close
                 return True
     f.close
