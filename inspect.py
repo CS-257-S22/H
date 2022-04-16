@@ -2,7 +2,7 @@ import sys
 import csv
 from winreg import QueryInfoKey
 
-def find_query():
+def find_query(dataframe):
     num_of_args = len(sys.argv)
     ticker = sys.argv[0]
     year = sys.argv[1]
@@ -25,7 +25,7 @@ def find_query():
         return
 
     actual_ticker, actual_date, actual_query = inspect_input(num_of_args, ticker, year, month, query)
-    inspect(actual_ticker, actual_date, actual_query, nasdaq_df)
+    inspect(actual_ticker, actual_date, actual_query, dataframe)
 
 def inspect_input(num_of_args, ticker, year, month, query):
     """
@@ -45,7 +45,7 @@ def inspect_input(num_of_args, ticker, year, month, query):
         3. query_stat (string, "Open", "Close", "High", etc.)
     """
 
-    return str(ticker), [str(sys.argv[1]), str(sys.argv[2])], str(sys.argv[3])
+    return str(ticker), [int(sys.argv[1]), int(sys.argv[2])], str(sys.argv[3])
 
     #inspect.py --find_query tickersymbol year month query
     
