@@ -1,4 +1,12 @@
+import sys
 from inspect import *
+
+def get_dates(dataframe):
+    ticker = sys.argv[]
+    if not check_ticker(ticker):
+        print("Ticker not found in dataset")
+        return
+
 
 def basic_stock_stat_input():
     """

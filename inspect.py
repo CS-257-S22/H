@@ -69,13 +69,13 @@ def check_ticker(ticker):
     f.close
     return False 
     
-    
 def check_year(year):
     if (2010 <= year <= 2022):
         return True
     return False
 
-def check_month(month):
+def check_month(year, month):
+    if year
     if (1 <= month <= 12):
         return True
     return False
