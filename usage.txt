@@ -1,7 +1,7 @@
 FEATURE 1:
 python3 main.py --inspect
 
-Input Signatures:
+Input Signature:
     1. ticker symbol (string)
     2. year of investment (int64)
     3. month of investment (int64)
@@ -15,6 +15,20 @@ Output Signature
 ----------------------------
 
 FEATURE 2:
+python3 main.py --basic_stock_stat
+
+Input Signature:
+    1. ticker symbol (string)
+
+Output Signature:
+    1. earliest year recorded in the dataset
+    2. earliest month recorded in the dataset
+    3. latest year recorded in the dataset
+    4. latest month recorded in the dataset
+
+----------------------------
+
+FEATURE 3:
 python3 main.py --stock_ROI
 
 Input Signature:
