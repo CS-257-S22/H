@@ -87,7 +87,7 @@ def check_query(query):
     return False
 
 def inspect(ticker, date, query_stat, dataframe):
-     """
+    """
     Author:
         1. Miles
         2. Nguyen
