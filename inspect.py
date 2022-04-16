@@ -21,9 +21,23 @@ def terminal_input_for_basic_stock_stat():
 
     return ticker, [date_year, date_month], query_stat # dataformat: string
 
-def inspect(date_to_find, securities, query_stat, prices_df):
-    '''NEED TO BE REWRITTEN DUE TO NEW DATA'''
+def inspect(ticker, date, query_stat, dataframe):
+     """
+    Author:
+        1. Miles
+        2. Nguyen
 
-    prices_df = pd.read_excel("Data/stock_prices.xlsx") # require import pandas as pd in the main program
+    Objective:
+        1. Return the requested inquery stat of a stock for a specific date
+
+    Input Signature:
+        1. ticker symbol (string)
+        2. year of investment (int64)
+        3. month of investment (int64)
+        4. query_stat (string, "Open", "Close", "Adjusted Close", "Low", "High")
+
+    Output Signature
+        1. The relevant metric (query_stat) of a stock (ticker symbol) at a certain point in time (month and year of investment)
+    """
     
-    return prices_df.loc[(prices_df['Date'] == date_to_find) & (prices_df['SecuritiesCode'] == securities), query_stat]
+    dataframe.loc[(dataframe['Ticker Symbol'] == ticker) & (dataframe['Year'] == date[0]) & (dataframe['Month'] == date[1]), query_stat]
