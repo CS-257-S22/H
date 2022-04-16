@@ -13,7 +13,9 @@ def get_dates():
         print("Ticker not found in dataset")
         return
    
-    return basic_stock_stat(ticker, nasdaq_df)
+    output = basic_stock_stat(ticker, nasdaq_df)
+    print(output)
+    return output
 
     
 def check_ticker(ticker):
