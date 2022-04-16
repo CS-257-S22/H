@@ -21,8 +21,10 @@ Input Signature:
     1. ticker symbol (string)
     2. year of investment (int64); default = earliest date in the dataset
     3. month of investment (int64); default = earliest date in the dataset
-    4. buying price (string, "Open", "Close", "Adjusted Close", "Low", "High"); default = "Open"
-    5. selling price (string, "Open", "Close", "Adjusted Close", "Low", "High"); default = "Close"
+    4. year of divestment (int64); default = latest date in the dataset
+    5. month of divestment (int64); default = latest date in the dataset
+    6. buying price (string, "Open", "Close", "Adjusted Close", "Low", "High"); default = "Open"
+    7. selling price (string, "Open", "Close", "Adjusted Close", "Low", "High"); default = "Close"
 
 Output Signature:
     1. The calculated return on investment in percentage (float data format), for the specified stock.
