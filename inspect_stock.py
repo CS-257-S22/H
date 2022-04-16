@@ -78,16 +78,29 @@ def check_ticker(ticker):
     f.close
     return False 
     
-    
-def check_year(year):
-    if (2010 <= year <= 2022):
-        return True
-    return False
 
-def check_month(month):
-    if (1 <= month <= 12):
-        return True
-    return False
+def check_date(ticker, year, month):
+    fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    f = open(fileName, 'r', encoding = "UTF-8")
+    with f as rFile:
+        spamreader = csv.reader(rFile, delimiter=',')
+        next(spamreader)
+        for row in spamreader:
+            if row[10] == ticker and row[3] == year and row[2] == month:
+                f.close
+                return True
+    f.close
+    return False 
+    
+# def check_year(year):
+#     if (2010 <= year <= 2022):
+#         return True
+#     return False
+
+# def check_month(month):
+#     if (1 <= month <= 12):
+#         return True
+#     return False
     
 def check_query(query):
     list = ["Low", "Open", "Volume", "High", "Close", "AdjustedClose"]
