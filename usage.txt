@@ -23,10 +23,8 @@ Input Signature:
     1. ticker symbol (string)
 
 Output Signature:
-    1. earliest year recorded in the dataset
-    2. earliest month recorded in the dataset
-    3. latest year recorded in the dataset
-    4. latest month recorded in the dataset
+    1. list [earliest year in record, earliest month in record]
+    2. list [latest year in record, latest month in record]
 
 ----------------------------
 
