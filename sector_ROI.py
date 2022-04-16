@@ -1,3 +1,7 @@
+'''
+DISCOUNTINUED FUNCTION DUE TO A CHANGE IN DATA
+'''
+
 def terminal_input_for_sector_ROI():
     # authors: Geoffrey, Jack
 

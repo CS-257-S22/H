@@ -1,11 +1,18 @@
 def terminal_input_for_basic_stock_stat():
-    # authors: Geoffrey, Jack
+    """
+    Author:
+        1. Geoffrey
+        2. Jack
 
-    # write your code here
+    Objective:
+        1. Obtain user input from terminal
 
-    # call terminal_input_for_basic_stock_stat
-    # build a prompt that pops up to
+    Input Signature:
+        1. None (pop-up prompt for user instead)
 
+    Output Signature:
+        1. ticker (string) 
+    """
 
     return ticker # dataformat: string
 
@@ -13,7 +20,10 @@ def terminal_input_for_basic_stock_stat():
 
 def basic_stock_stat(ticker, dataframe):
     """
-    Find the earliest and latest record dates of a stock.
+    Author: Nguyen Tran
+
+    Objective:
+        1. Find the earliest and latest record dates of a stock.
 
     Input Signature:
         1. ticker symbol (string)
