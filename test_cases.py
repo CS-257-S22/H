@@ -1,5 +1,5 @@
 import unittest
-# import basic_stock_stat
+import basic_stock_stat
 
 class Tests(unittest.TestCase):
 
