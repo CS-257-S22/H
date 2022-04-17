@@ -8,7 +8,7 @@ def get_dates():
     nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
     nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
-    ticker = str(sys.argv[2])
+    ticker = str(sys.argv[1])
     if not check_ticker(ticker):
         print("Ticker not found in dataset")
         return
