@@ -2,11 +2,18 @@ import sys
 import csv
 import pandas as pd
 import datetime
+from helper import check_ticker
 
 def find_query():
     """
     This function is the main function for feature 1 of our command line interface, inspect stock. 
-    This 
+    This function takes in command line arguments, 4 specifically listed below:
+
+    ticker: this is the ticker symbol for the stock, ex. AAPL
+    year: this is the specified year of the stock that the user wants to find, ex. 2021
+    month: this is the specified month of the stock that the user wants to find, ex. 3
+    query: This is the type of the 
+
     """
 
     nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
@@ -19,7 +26,7 @@ def find_query():
     query = str(sys.argv[4])
 
     if not check_num_args(num_of_args):
-        print("There need to be 4 arguments; TickerSymbol, Year, Month, Query")
+        print("There needs to be 4 arguments; TickerSymbol, Year, Month, Query")
         return
 
     if not check_ticker(ticker):
@@ -29,68 +36,22 @@ def find_query():
     if not check_date(ticker, year, month):
         print("Invalid Date")
         return
-    
-    # if not check_year(year):
-    #     print("Year not in dataset")
-    #     return
         
-    # if not check_month(month):
-    #     print("Invalid month")
-    #     return
-
-    actual_ticker, actual_date, actual_query = inspect_input(num_of_args, ticker, year, month, query)
-    output = inspect(actual_ticker, actual_date, actual_query, nasdaq_df)
+    date = [year, month]
+    output = inspect(ticker, date, query, nasdaq_df)
     # print(actual_ticker, actual_date, actual_query)
     print(output)
     return output
 
-def inspect_input(num_of_args, ticker, year, month, query):
-    """
-    Author:
-        1. Jack
-        2. Geoffrey
-
-    Objective:
-        1. Obtain user input from terminal
-
-    Input Signature:
-        1. None (pop-up prompt for user instead)
-
-    Output Signature:
-        1. ticker (string)
-        2. list of [year of interested date (int64), month of interested date (int64)
-        3. query_stat (string, "Open", "Close", "High", etc.)
-    """
-
-    return str(ticker), [year, month], str(query)
-
-    #inspect.py --find_query tickersymbol year month query
-    
-    # return ticker, [date_year, date_month], query_stat # dataformat: string
-
 def check_num_args(num_of_args):
-    """This method insures there is the proper number of command line arugments"""
+    """This method insures there is the proper number of command line arugments". Returns true if there are 5 command line arugments and false if there is not exactly 5."""
     if num_of_args != 5:
         return False
     return True
-
-def check_ticker(ticker):
-    """This method ensures that the ticker parameter is located within our dataset and is thus a valid ticker symbol"""
-    fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
-    f = open(fileName, 'r', encoding = "UTF-8")
-    with f as rFile:
-        spamreader = csv.reader(rFile, delimiter=',')
-        next(spamreader)
-        for row in spamreader:
-            if row[10] == ticker:
-                f.close
-                return True
-    f.close
-    return False 
     
 
 def check_date(ticker, year, month):
-    """This method checks to make sure that the specified date (year and month) is located within the dataset for """
+    """This method checks to make sure that the specified date (year and month) is located within the dataset for the specified ticker symbol. Returns true if it is found and false if it is not."""
     fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     f = open(fileName, 'r', encoding = "UTF-8")
     with f as rFile:
@@ -101,7 +62,7 @@ def check_date(ticker, year, month):
                 f.close
                 return True
     f.close
-    return False 
+    return False
     
 # def check_year(year):
 #     if (2010 <= year <= 2022):
@@ -114,6 +75,7 @@ def check_date(ticker, year, month):
 #     return False
     
 def check_query(query):
+    """This method checks whether the parameter query is valid and contained in our dataset. Returns true if valid and false if invalid."""
     list = ["Low", "Open", "Volume", "High", "Close", "AdjustedClose"]
     if query in list:
         return True

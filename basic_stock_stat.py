@@ -1,7 +1,7 @@
 import sys
 import csv
 import pandas as pd
-# from inspect_stock import check_ticker
+from helper import check_ticker
 
 def get_dates():
 
@@ -18,18 +18,18 @@ def get_dates():
     return output
 
     
-def check_ticker(ticker):
-    fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
-    f = open(fileName, 'r', encoding = "UTF-8")
-    with f as rFile:
-        spamreader = csv.reader(rFile, delimiter=',')
-        next(spamreader)
-        for row in spamreader:
-            if row[10] == ticker:
-                f.close
-                return True
-    f.close
-    return False 
+# def check_ticker(ticker):
+#     fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+#     f = open(fileName, 'r', encoding = "UTF-8")
+#     with f as rFile:
+#         spamreader = csv.reader(rFile, delimiter=',')
+#         next(spamreader)
+#         for row in spamreader:
+#             if row[10] == ticker:
+#                 f.close
+#                 return True
+#     f.close
+#     return False 
 
         
 
