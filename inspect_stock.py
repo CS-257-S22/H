@@ -4,15 +4,19 @@ import pandas as pd
 import datetime
 
 def find_query():
+    """
+    This function is the main function for feature 1 of our command line interface, inspect stock. 
+    This 
+    """
 
     nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
     nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
     num_of_args = len(sys.argv)
-    ticker = str(sys.argv[2])
-    year = int(sys.argv[3])
-    month = int(sys.argv[4])
-    query = str(sys.argv[5])
+    ticker = str(sys.argv[1])
+    year = int(sys.argv[2])
+    month = int(sys.argv[3])
+    query = str(sys.argv[4])
 
     if not check_num_args(num_of_args):
         print("There need to be 4 arguments; TickerSymbol, Year, Month, Query")
@@ -65,11 +69,13 @@ def inspect_input(num_of_args, ticker, year, month, query):
     # return ticker, [date_year, date_month], query_stat # dataformat: string
 
 def check_num_args(num_of_args):
-    if num_of_args != 6:
+    """This method insures there is the proper number of command line arugments"""
+    if num_of_args != 5:
         return False
     return True
 
 def check_ticker(ticker):
+    """This method ensures that the ticker parameter is located within our dataset and is thus a valid ticker symbol"""
     fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     f = open(fileName, 'r', encoding = "UTF-8")
     with f as rFile:
@@ -84,6 +90,7 @@ def check_ticker(ticker):
     
 
 def check_date(ticker, year, month):
+    """This method checks to make sure that the specified date (year and month) is located within the dataset for """
     fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     f = open(fileName, 'r', encoding = "UTF-8")
     with f as rFile:
