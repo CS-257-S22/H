@@ -1,21 +1,47 @@
-FEATURE 1:
-python3 main.py --inspect
+PREREQUISITE FOR EXECUTION:
+    1. Pandas library has to be installed.
+
+FEATURE 1: inspect_stock.py
+
+Description:
+    This feature allows you to inspect one of the six relevant statistics of a stock at any given time that is within our data.
+    The six statistics of a stock are:
+        1. Low
+        2. Open
+        3. Volume
+        4. High
+        5. Close
+        6. Adjusted Close
+
+Command Line Structure:
+    python3 inspect_stock.py <Ticker Symbol of Stock> <Year> <Month> <Statistic of Interest>
+
+E.g:
+    python3 inspect_stock.py MSFT 2014 9 High
+    (The example above looks for the High price of Microsoft's stock at September 2014)
 
 Input Signature:
     1. ticker symbol (string)
-    2. year of investment (int64)
-    3. month of investment (int64)
-    4. query_stat (string, "Open", "Close", "Adjusted Close", "Low", "High")
+    2. year of interest (int64)
+    3. month of interest (int64)
+    4. query_stat (string, "Open", "Close", "Adjusted Close", "Low", "High", Volume)
 
 Output Signature
     1. The relevant metric (query_stat) of a stock (ticker symbol) at a certain point in time (month and year of investment)
 
-- Upon execution, the Python program will prompt argument on its own to prevent any formatting error. Given the complexity of the required input.
-
 ----------------------------
 
-FEATURE 2:
-python3 main.py --basic_stock_stat
+FEATURE 2: basic_stock_stat.py
+
+Description:
+    This feature allows the user to input a ticker symbol of the stock of interest and find out what are the earliest and latest dates recorded of said stock in our data.
+
+Command Line Structure:
+    python3 basic_stock_stat.py <Ticker Symbol of Stock>
+
+E.g:
+    python3 basic_stock_stat.py AAPL
+    (The example above looks for the earliest and latest dates recorded in our data of about Apple's stock)
 
 Find the earliest and latest record dates of a stock.
 
@@ -28,7 +54,7 @@ Output Signature:
 
 ----------------------------
 
-FEATURE 3:
+FEATURE 3: PLANNING, NOT YET IMPLEMENTED
 python3 main.py --stock_ROI
 
 Input Signature:
