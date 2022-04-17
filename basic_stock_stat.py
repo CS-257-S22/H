@@ -1,31 +1,57 @@
 import sys
-from inspect import *
+import csv
+import pandas as pd
+# from inspect_stock import check_ticker
 
-def get_dates(dataframe):
-    ticker = sys.argv[]
+def get_dates():
+
+    nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+    nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
+
+    ticker = str(sys.argv[2])
     if not check_ticker(ticker):
         print("Ticker not found in dataset")
         return
+   
+    output = basic_stock_stat(ticker, nasdaq_df)
+    print(output)
+    return output
+
+    
+def check_ticker(ticker):
+    fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    f = open(fileName, 'r', encoding = "UTF-8")
+    with f as rFile:
+        spamreader = csv.reader(rFile, delimiter=',')
+        next(spamreader)
+        for row in spamreader:
+            if row[10] == ticker:
+                f.close
+                return True
+    f.close
+    return False 
+
+        
 
 
-def basic_stock_stat_input():
-    """
-    Author:
-        1. Geoffrey
-        2. Jack
+# def basic_stock_stat_input():
+#     """
+#     Author:
+#         1. Geoffrey
+#         2. Jack
 
-    Objective:
-        1. Obtain user input from terminal
+#     Objective:
+#         1. Obtain user input from terminal
 
-    Input Signature:
-        1. None (pop-up prompt for user instead)
+#     Input Signature:
+#         1. None (pop-up prompt for user instead)
 
-    Output Signature:
-        1. ticker (string) 
-    """
+#     Output Signature:
+#         1. ticker (string) 
+#     """
 
 
-    return ticker # dataformat: string
+#     return ticker # dataformat: string
 
 # ----------------------------
 
@@ -83,3 +109,6 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
             ["Month"].max()
 
         return [latest_year, latest_month]
+
+
+get_dates()
