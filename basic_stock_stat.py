@@ -4,6 +4,18 @@ import pandas as pd
 from helper import check_ticker
 
 def get_dates_input():
+    """
+    Objective: 
+    Main function for feature 2: basic stock stat. Takes in command line argument and calls helper 
+    method get_dates() to retrieve correct output.
+
+    Input Signature: 
+    ticker: command line argument specifying ticker symbol of stock
+
+    Output:
+    A list of two 
+
+    """
     ticker = str(sys.argv[1])
     fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     get_dates(ticker, fileName)
@@ -38,7 +50,8 @@ def get_dates(ticker, fileName):
 def stock_extreme_dates(ticker, dataframe):
     """
     Objective:
-        1. Find the earliest and latest record dates of a stock.
+    Find the earliest and latest record dates of a stock. Calls on a helper method 
+    find_earliest_or_latest_record() to do this to avoid abstraction.
 
     Input Signature:
         1. ticker symbol (string)
@@ -59,6 +72,13 @@ def stock_extreme_dates(ticker, dataframe):
 # ----------------------------
 
 def find_earliest_or_latest_record(ticker, method, dataframe):
+    """
+    Objective:
+    Helper method to avoid any layers of abstraction. Takes in a parameter method that specifies
+    earliest or latest dates. 
+
+
+    """
 
 
     if method == "earliest":
@@ -91,6 +111,7 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
 if __name__ == '__main__':
     get_dates_input()
 
+<<<<<<< HEAD
 
 #     # find the earliest dates
 #     earliest_date = find_earliest_or_latest_record(ticker, method = "earliest", dataframe = dataframe)
@@ -104,4 +125,6 @@ if __name__ == '__main__':
 
 # def find_earliest_and_latest_record(ticker, dataframe):
 
+=======
+>>>>>>> 65acde87e84b91bd61b025db8b2a1b1f5f018cc0
     
