@@ -1,6 +1,5 @@
 import pandas as pd
 import argparse
-import time
 
 from inspect_stock import check_query
 
