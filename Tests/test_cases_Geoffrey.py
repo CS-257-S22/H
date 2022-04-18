@@ -1,6 +1,8 @@
 import unittest
 from inspect_stock import check_date, check_num_args, find_query
 import pandas as pd
+import sys
+sys.path.append('../')
 
 class Tests(unittest.TestCase):
 
