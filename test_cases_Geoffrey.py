@@ -6,20 +6,23 @@ import pandas as pd
 
 class Tests(unittest.TestCase):
 
-    # def test_find_query(self):
-    #     """
-    #     This is an integration test that tests the find_query method. It uses parameters 
-    #     to substitute for the command line arguments, and uses the dummy dataset for testing
-    #     the function. It is an integration test since it integrates functions that the find_query
-    #     function calls, including inspect() and check_query() among others.
-    #     """
-    #     nasdaq_df = pd.read_csv("Tests/DataForTesting/test_data_sample.csv")
-    #     nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
-    #     self.assertEquals(find_query(5, "GENE", 2017, 11, "Open", "Tests/DataForTesting/test_data_sample.csv", nasdaq_df), 3.200000047683716)
+    def test_find_query(self):
+        """
+        This is an integration test that tests the find_query method. It uses parameters 
+        to substitute for the command line arguments, and uses the dummy dataset for testing
+        the function. It is an integration test since it integrates functions that the find_query
+        function calls, including inspect() and check_query() among others.
+        """
+        nasdaq_df = pd.read_csv("Tests/DataForTesting/test_data_sample.csv")
+        nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
+        self.assertEquals(find_query(5, "GENE", 2017, 11, "Open", "Tests/DataForTesting/test_data_sample.csv", nasdaq_df), 3.200000047683716)
     
 
     def test_check_num_args(self):
         self.assertEquals(check_num_args(5), True)
+
+    # def test_check_data(self):
+
 
 
     # def test_early_date(self):
