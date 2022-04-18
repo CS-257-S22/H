@@ -1,10 +1,8 @@
 import unittest
-import sys
-sys.path.append('../')
 import pandas as pd
-from H.basic_stock_stat import get_dates
-from H.helper import check_ticker
-from H.inspect_stock import inspect
+from basic_stock_stat import get_dates
+from helper import check_ticker
+from inspect_stock import inspect
 
 class Tests(unittest.TestCase):
 
