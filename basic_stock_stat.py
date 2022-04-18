@@ -137,5 +137,3 @@ def get_dataframe(fileName):
 
 if __name__ == '__main__':
     get_dates_input()
-
-    
