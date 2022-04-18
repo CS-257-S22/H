@@ -61,22 +61,9 @@ def trigger_stock_ROI(data_file = "Data/Polished/NO_NULL_nasdaq_2010_mid_separat
         # find the ROI of the stock if all inputs are appropriate
         ROI = backbone_stock_ROI(nasdaq_df, ticker, date_invest, date_divest, buying_price, selling_price)
 
-        # manufacturing human-friendly output
-        output = "\n\nThe return of investment for " + ticker +\
-            "\nif bought at " + buying_price + \
-            " on date " + str(date_invest[0]) + "-" + str(date_invest[1]) +\
-            "\nthen sold at " + selling_price + \
-            " on date " + str(date_divest[0]) + "-" + str(date_divest[1]) +\
-            "\nis ***drumroll please***: \n"
-        print(output)
-
-        time.sleep(1)
-        print(str(ROI) + " %\n\n")
-
         return ROI
 
     else:
-        print("\n\nA PRINT CALL: ", validity, "\n\n") # print out the error message
         return(validity) # return the error message
 
 
@@ -92,33 +79,33 @@ def all_input_is_valid_stock_ROI(dataframe, ticker, date_invest, date_divest, bu
     # check ticker
     if not in_dateframe(ticker, "Ticker Symbol", dataframe):
         errors += 1
-        return "Invalid ticker symbol. Please choose one that exists within our data instead."
+        return "INPUT ERROR: Invalid ticker symbol. Please choose one that exists within our data instead."
 
     # check invest date
     if not in_dateframe(date_invest[0], "Year", dataframe):
         errors += 1
-        return "Invalid year for investment date."
+        return "INPUT ERROR: Invalid year for investment date."
     else: # check month if year is valid
         if not in_dateframe(date_invest[1], "Month", dataframe.loc[dataframe["Year"] == date_invest[0]]):
             errors += 1
-            return "Invalid investment date. The given month is not in our data."
+            return "INPUT ERROR: Invalid investment date. The given month is not in our data."
     
     # check divest date
     if not in_dateframe(date_divest[0], "Year", dataframe):
         errors += 1
-        return "Invalid year for divestment date."
+        return "INPUT ERROR: Invalid year for divestment date."
     else: # check month if year is valid
         if not in_dateframe(date_divest[1], "Month", dataframe.loc[dataframe["Year"] == date_divest[0]]):
             errors += 1
-            return "Invalid divestment date. The given month is not in our data."
+            return "INPUT ERROR: Invalid divestment date. The given month is not in our data."
 
     # check the queries in question
     if not check_query(buying_price):
         errors += 1
-        return "Invalid buying price. Choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close' only."
+        return "INPUT ERROR: Invalid buying price. Choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close' only."
     if not check_query(selling_price):
         errors += 1
-        return "Invalid selling price. Choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close' only."
+        return "INPUT ERROR: Invalid selling price. Choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close' only."
 
     if errors == 0:
         return True
@@ -186,4 +173,6 @@ def percentage_difference(initial, final):
 #------------------------------
 
 if __name__ == '__main__':
-    trigger_stock_ROI()
+
+    # print out the value or error message
+    print("\n\nThe return of investment (%) is:\n", trigger_stock_ROI(), "\n\n")
