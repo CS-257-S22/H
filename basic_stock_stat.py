@@ -31,11 +31,11 @@ def get_dates(ticker, fileName):
         print("Ticker not found in dataset")
         return
    
-    output = basic_stock_stat(ticker, nasdaq_df)
+    output = stock_extreme_dates(ticker, nasdaq_df)
     print(output)
     return output
 
-def basic_stock_stat(ticker, dataframe):
+def stock_extreme_dates(ticker, dataframe):
     """
     Objective:
         1. Find the earliest and latest record dates of a stock.

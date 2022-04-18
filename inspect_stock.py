@@ -42,7 +42,7 @@ def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
     if not check_num_args(num_of_args):
         return "There needs to be 4 arguments; TickerSymbol, Year, Month, Query"
 
-    if not check_ticker(ticker):
+    if not check_ticker(ticker, fileName):
         return "Ticker not found in dataset"
 
     if not check_date(ticker, year, month, "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
@@ -75,7 +75,7 @@ def check_date(ticker, year, month, fileName):
 
 def check_query(query):
     """This method checks whether the parameter query is valid and contained in our dataset. Returns true if valid and false if invalid."""
-    list = ["Low", "Open", "Volume", "High", "Close", "AdjustedClose"]
+    list = ["Low", "Open", "Volume", "High", "Close", "Adjusted Close"]
     if query in list:
         return True
     return False
