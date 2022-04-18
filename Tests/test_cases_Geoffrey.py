@@ -1,6 +1,8 @@
 import unittest
 from inspect_stock import check_date, check_num_args, find_query
 import pandas as pd
+import sys
+sys.path.append('../')
 
 class Tests(unittest.TestCase):
 
@@ -49,14 +51,14 @@ class Tests(unittest.TestCase):
         self.assertTrue(check_date("RGS", 2011, 6, "Tests/DataForTesting/test_data_sample.csv"))
 
 
-    # def test_check_date_wrong_input(self):
-    #     """  
-    #     This is another unit test for the check_date function, and it checks for the case
-    #     where the year and the month of the stock is inputted in the wrong order in the command 
-    #     line arguments. This unit test checks if the function returns False when there is an
-    #     inputting error where the year and month parameters are switched on the command line.
-    #     """
-    #     self.assertFalse(check_date("AMD", 3, 2017, "Tests/DataForTesting/test_data_sample.csv"))
+    def test_check_date_wrong_input(self):
+        """  
+        This is another unit test for the check_date function, and it checks for the case
+        where the year and the month of the stock is inputted in the wrong order in the command 
+        line arguments. This unit test checks if the function returns False when there is an
+        inputting error where the year and month parameters are switched on the command line.
+        """
+        self.assertFalse(check_date("AMD", 3, 2017, "Tests/DataForTesting/test_data_sample.csv"))
 
 
     def get_file(self):
