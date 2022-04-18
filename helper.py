@@ -1,8 +1,8 @@
 import csv
 
-def check_ticker(ticker):
+def check_ticker(ticker, fileName):
     """This method ensures that the ticker parameter is located within our dataset and is thus a valid ticker symbol. Returns true if valid and false if invalid"""
-    fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    # fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     f = open(fileName, 'r', encoding = "UTF-8")
     with f as rFile:
         spamreader = csv.reader(rFile, delimiter=',')
