@@ -88,7 +88,6 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
 
         return [latest_year, latest_month]
 
-
 if __name__ == '__main__':
     get_dates_input()
 

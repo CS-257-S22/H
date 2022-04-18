@@ -14,16 +14,6 @@ class Tests(unittest.TestCase):
         nasdaq_df = self.get_file()
         self.assertEquals(find_query(5, "GENE", 2017, 11, "Open", "Tests/DataForTesting/test_data_sample.csv", nasdaq_df), 3.200000047683716)
 
-    def test_find_query(self):
-        """
-        This is an integration test that tests the find_query method. It uses parameters 
-        to substitute for the command line arguments, and uses the dummy dataset for testing
-        the function. It is an integration test since it integrates functions that the find_query
-        function calls, including inspect() and check_query() among others.
-        """
-        nasdaq_df = self.get_file()
-        self.assertEquals(find_query(5, "GENE", 2017, 11, "Open", "Tests/DataForTesting/test_data_sample.csv", nasdaq_df), 3.200000047683716) 
-
     def test_check_num_args_true(self):
         """
         This is a unit test for the check_num_args function, which is responsible for 
@@ -52,12 +42,22 @@ class Tests(unittest.TestCase):
 
     def test_check_date_edge(self):
         """
-        This is another unit test for the check_date function, and it checks for the edge case
-        where the year and the month of the stock is inputted in the wrong order in the command 
-        line arguments. This unit test checks if the function returns False when there is an
-        inputting error where the year and month parameters are switched on the command line.
+        This is a unit test for the check_date function, and is an edge test case. It checks 
+        the earliest date in the dataset and checks if the functino will still include that as a 
+        valid date. 
         """
-        self.assertFalse(check_date("AAA", 3, 2017, "Tests/DataForTesting/test_data_sample.csv"))
+        self.assertTrue(check_date("RGS", 2011, 6, "Tests/DataForTesting/test_data_sample.csv"))
+
+
+    # def test_check_date_wrong_input(self):
+    #     """  
+    #     This is another unit test for the check_date function, and it checks for the case
+    #     where the year and the month of the stock is inputted in the wrong order in the command 
+    #     line arguments. This unit test checks if the function returns False when there is an
+    #     inputting error where the year and month parameters are switched on the command line.
+    #     """
+    #     self.assertFalse(check_date("AMD", 3, 2017, "Tests/DataForTesting/test_data_sample.csv"))
+
 
     def get_file(self):
         """
