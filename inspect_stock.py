@@ -84,7 +84,7 @@ def check_query(query):
     This method checks whether the parameter query is valid and contained in our dataset. 
     Returns true if valid and false if invalid.
     """
-    list = ["Low", "Open", "Volume", "High", "Close", "Adjustedclose"]
+    list = ["Low", "Open", "Volume", "High", "Close", "Adjusted Close"]
     if query in list:
         return True
     return False
@@ -99,7 +99,7 @@ def inspect(ticker, date, query_stat, dataframe):
         1. ticker symbol of stock (string)
         2. year of investment (int64)
         3. month of investment (int64)
-        4. query_stat (string, "Low", "Open", "Volume" "High", "Close", "Adjustedclose")
+        4. query_stat (string, "Low", "Open", "Volume" "High", "Close", "Adjusted Close")
 
     Output Signature
         1. The relevant metric (query_stat) of a stock (ticker symbol) at a certain point in time (month and year of investment)
