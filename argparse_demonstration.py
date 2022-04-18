@@ -4,6 +4,7 @@ Description:
 
 Command Line Structure:
     python3 argparse_demonstration.py <first number> <second number>
+    python3 argparse_demonstration.py <first number> <second number> --optional_third_number <third number>
 
 Command Line Example:
     python3 argparse_demonstration.py 3 4
@@ -17,6 +18,7 @@ parser = argparse.ArgumentParser(description = "Demonstrating Argparse Library")
 # each line add AN argument to our terminal inout
 parser.add_argument("first_number", type = int, help = "enter the first integer")
 parser.add_argument("second_number", type = int, help = "enter the second integer")
+parser.add_argument("--optional_third_number", type = int, help = "enter the optional third integer")
 
 # this line parse all created arguments into a variable, so we can then call this variable to access the values of
 # each argument within our args object
@@ -26,8 +28,11 @@ args = parser.parse_args()
 first = args.first_number
 second = args.second_number
 
-# find the sum (random basic operation)
-sum = first + second
+# if the third number is entered
+if args.optional_third_number:
+    third = args.optional_third_number
+    print("The sum of", first, ",", second, ", and", third, "is",\
+        first + second + third)
 
-# print out the sum
-print("The sum of", first, "and", second, "is", sum, "and no less.")
+else:
+    print("The sum of", first, "and", second, "is", first + second)
