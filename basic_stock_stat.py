@@ -1,3 +1,4 @@
+from fileinput import filename
 import sys
 import csv
 import pandas as pd
@@ -36,13 +37,16 @@ def get_dates(ticker, fileName):
         recorded date of a stock
 
     """
-    nasdaq_df = pd.read_csv(fileName)
-    nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
+    # sets variable to dataframe by calling helper function to avoid layer of abstraction
+    nasdaq_df = get_dataframe(fileName)
+
+    # calls helper function to check if ticker is in dataset
     if not check_ticker(ticker, fileName):
         print("Ticker not found in dataset")
         return
    
+    # outputs the list of earliest and latest dates and prints and returns it
     output = stock_extreme_dates(ticker, nasdaq_df)
     print(output)
     return output
@@ -77,9 +81,18 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
     Helper method to avoid any layers of abstraction. Takes in a parameter method that specifies
     earliest or latest dates. 
 
+    Input Signature:
+    ticker: ticker symbol of specified stock
+    method: specifies if finding the earliest or latest dates of a stock
+    dataframe: dataset of stocks
+
+    Output:
+    list [earliest year in record, earliest month in record]
+    OR
+    list [latest year in record, latest month in record]
+    depending on 'method' parameter
 
     """
-
 
     if method == "earliest":
 
@@ -108,23 +121,21 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
 
         return [latest_year, latest_month]
 
+
+def get_dataframe(fileName):
+    """
+    Objective:
+    Helper function for reading the dataset to avoid multiple layers of abstraction
+
+    Output: 
+    Dataset ready for use in command line functions
+
+    """
+    nasdaq_df = pd.read_csv(fileName)
+    nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
+    return nasdaq_df
+
 if __name__ == '__main__':
     get_dates_input()
 
-<<<<<<< HEAD
-
-#     # find the earliest dates
-#     earliest_date = find_earliest_or_latest_record(ticker, method = "earliest", dataframe = dataframe)
-
-#     # find the latest dates
-#     latest_date = find_earliest_or_latest_record(ticker, method = "latest", dataframe = dataframe)
-
-#     return earliest_date, latest_date
-
-# # ----------------------------
-
-# def find_earliest_and_latest_record(ticker, dataframe):
-
-=======
->>>>>>> 65acde87e84b91bd61b025db8b2a1b1f5f018cc0
     
