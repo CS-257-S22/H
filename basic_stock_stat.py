@@ -85,6 +85,7 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
 
 get_dates()
 
+
 #     # find the earliest dates
 #     earliest_date = find_earliest_or_latest_record(ticker, method = "earliest", dataframe = dataframe)
 
