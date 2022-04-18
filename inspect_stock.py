@@ -53,14 +53,20 @@ def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
     return output
 
 def check_num_args(num_of_args):
-    """This method insures there is the proper number of command line arugments". Returns true if there are 5 command line arugments and false if there is not exactly 5."""
+    """
+    This method insures there is the proper number of command line arugments". Returns true if there are 
+    5 command line arugments and false if there is not exactly 5.
+    """
     if num_of_args != 5:
         return False
     return True
     
 
 def check_date(ticker, year, month, fileName):
-    """This method checks to make sure that the specified date (year and month) is located within the dataset for the specified ticker symbol. Returns true if it is found and false if it is not."""
+    """
+    This method checks to make sure that the specified date (year and month) is located within the dataset 
+    for the specified ticker symbol. Returns true if it is found and false if it is not.
+    """
     # fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     f = open(fileName, 'r', encoding = "UTF-8")
     with f as rFile:
@@ -74,8 +80,11 @@ def check_date(ticker, year, month, fileName):
     return False
 
 def check_query(query):
-    """This method checks whether the parameter query is valid and contained in our dataset. Returns true if valid and false if invalid."""
-    list = ["Low", "Open", "Volume", "High", "Close", "AdjustedClose"]
+    """
+    This method checks whether the parameter query is valid and contained in our dataset. 
+    Returns true if valid and false if invalid.
+    """
+    list = ["Low", "Open", "Volume", "High", "Close", "Adjusted Close"]
     if query in list:
         return True
     return False
