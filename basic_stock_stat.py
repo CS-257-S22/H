@@ -3,12 +3,30 @@ import csv
 import pandas as pd
 from helper import check_ticker
 
-def get_dates():
+def get_dates_input():
+    ticker = str(sys.argv[1])
+    fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    get_dates(ticker, fileName)
 
-    nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+
+def get_dates(ticker, fileName):
+    """
+    Objective:
+        1. To read through our data file and find the earliest and latest 
+        recorded dates of a particular stock by calling basic_stock_stat 
+        helper method. 
+
+    Input Signature:
+        1. Takes in the ticker symbol and fileName
+
+    Output Signature:
+        1. Returns the earliest recorded date and latest
+        recorded date of a stock
+
+    """
+    nasdaq_df = pd.read_csv(fileName)
     nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
-    ticker = str(sys.argv[1])
     if not check_ticker(ticker):
         print("Ticker not found in dataset")
         return
@@ -17,48 +35,8 @@ def get_dates():
     print(output)
     return output
 
-    
-# def check_ticker(ticker):
-#     fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
-#     f = open(fileName, 'r', encoding = "UTF-8")
-#     with f as rFile:
-#         spamreader = csv.reader(rFile, delimiter=',')
-#         next(spamreader)
-#         for row in spamreader:
-#             if row[10] == ticker:
-#                 f.close
-#                 return True
-#     f.close
-#     return False 
-
-        
-
-
-# def basic_stock_stat_input():
-#     """
-#     Author:
-#         1. Geoffrey
-#         2. Jack
-
-#     Objective:
-#         1. Obtain user input from terminal
-
-#     Input Signature:
-#         1. None (pop-up prompt for user instead)
-
-#     Output Signature:
-#         1. ticker (string) 
-#     """
-
-
-#     return ticker # dataformat: string
-
-# ----------------------------
-
 def basic_stock_stat(ticker, dataframe):
     """
-    Author: Nguyen Tran
-
     Objective:
         1. Find the earliest and latest record dates of a stock.
 
@@ -111,4 +89,19 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
         return [latest_year, latest_month]
 
 
-get_dates()
+if __name__ == '__main__':
+    get_dates_input()
+
+#     # find the earliest dates
+#     earliest_date = find_earliest_or_latest_record(ticker, method = "earliest", dataframe = dataframe)
+
+#     # find the latest dates
+#     latest_date = find_earliest_or_latest_record(ticker, method = "latest", dataframe = dataframe)
+
+#     return earliest_date, latest_date
+
+# # ----------------------------
+
+# def find_earliest_and_latest_record(ticker, dataframe):
+
+    

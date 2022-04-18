@@ -1,21 +1,26 @@
+from fileinput import filename
 import sys
 import csv
 import pandas as pd
 import datetime
 from helper import check_ticker
 
-def find_query():
+def find_query_input():
     """
+    Objective:
     This function is the main function for feature 1 of our command line interface, inspect stock. 
-    This function takes in command line arguments, 4 specifically listed below:
 
+    Input Signature:
     ticker: this is the ticker symbol for the stock, ex. AAPL
     year: this is the specified year of the stock that the user wants to find, ex. 2021
     month: this is the specified month of the stock that the user wants to find, ex. 3
-    query: This is the type of the 
+    query: This is the type of statistic that the user wants, ex.  Open
+
+    Output:
+    The relevant metric (query_stat) of a stock (ticker symbol) at a certain point in time (month and year of investment)
+
 
     """
-
     nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
     nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
@@ -25,22 +30,26 @@ def find_query():
     month = int(sys.argv[3])
     query = str(sys.argv[4])
 
+
+    output = find_query(num_of_args, ticker, year, month, query, "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
+    print(output)
+    return output
+
+def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
+
+
+
     if not check_num_args(num_of_args):
-        print("There needs to be 4 arguments; TickerSymbol, Year, Month, Query")
-        return
+        return "There needs to be 4 arguments; TickerSymbol, Year, Month, Query"
 
     if not check_ticker(ticker):
-        print("Ticker not found in dataset")
-        return
+        return "Ticker not found in dataset"
 
-    if not check_date(ticker, year, month):
-        print("Invalid Date")
-        return
+    if not check_date(ticker, year, month, "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+        return "Invalid Date"
         
     date = [year, month]
-    output = inspect(ticker, date, query, nasdaq_df)
-    # print(actual_ticker, actual_date, actual_query)
-    print(output)
+    output = inspect(ticker, date, query, dataframe)
     return output
 
 def check_num_args(num_of_args):
@@ -50,9 +59,9 @@ def check_num_args(num_of_args):
     return True
     
 
-def check_date(ticker, year, month):
+def check_date(ticker, year, month, fileName):
     """This method checks to make sure that the specified date (year and month) is located within the dataset for the specified ticker symbol. Returns true if it is found and false if it is not."""
-    fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    # fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     f = open(fileName, 'r', encoding = "UTF-8")
     with f as rFile:
         spamreader = csv.reader(rFile, delimiter=',')
@@ -63,17 +72,7 @@ def check_date(ticker, year, month):
                 return True
     f.close
     return False
-    
-# def check_year(year):
-#     if (2010 <= year <= 2022):
-#         return True
-#     return False
 
-# def check_month(month):
-#     if (1 <= month <= 12):
-#         return True
-#     return False
-    
 def check_query(query):
     """This method checks whether the parameter query is valid and contained in our dataset. Returns true if valid and false if invalid."""
     list = ["Low", "Open", "Volume", "High", "Close", "AdjustedClose"]
@@ -83,18 +82,15 @@ def check_query(query):
 
 def inspect(ticker, date, query_stat, dataframe):
     """
-    Author:
-        1. Miles
-        2. Nguyen
-
     Objective:
-        1. Return the requested inquery stat of a stock for a specific date
+        1. Return the requested query statistic of a stock for a specific date from the 
+        dataset
 
     Input Signature:
-        1. ticker symbol (string)
+        1. ticker symbol of stock (string)
         2. year of investment (int64)
         3. month of investment (int64)
-        4. query_stat (string, "Open", "Close", "Adjusted Close", "Low", "High")
+        4. query_stat (string, "Low", "Open", "Volume" "High", "Close", "Adjusted Close")
 
     Output Signature
         1. The relevant metric (query_stat) of a stock (ticker symbol) at a certain point in time (month and year of investment)
@@ -104,4 +100,5 @@ def inspect(ticker, date, query_stat, dataframe):
 
     return row_of_interst.iloc[0][query_stat]
 
-find_query()
+if __name__ == '__main__':
+    find_query_input()
