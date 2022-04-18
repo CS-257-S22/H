@@ -1,7 +1,7 @@
 import unittest
 from basic_stock_stat import basic_stock_stat
 # from inspect_stock import check_date, check_query, find_query; check_date
-from inspect_stock import *
+from inspect_stock import find_query
 import pandas as pd
 
 class Tests(unittest.TestCase):
@@ -11,8 +11,8 @@ class Tests(unittest.TestCase):
         nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
         self.assertEquals(find_query(5, "GENE", 2017, 11, "Open", "Tests/DataForTesting/test_data_sample.csv", nasdaq_df), 3.200000047683716)
 
-    def test_check_num_args(self):
-        self.assertEquals()
+    # def test_check_num_args(self):
+    #     self.assertEquals()
 
     # def test_early_date(self):
     #     # consider splitting into two tests if need to reach 16
