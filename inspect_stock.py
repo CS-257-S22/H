@@ -139,10 +139,10 @@ def inspect(ticker, date, query_stat, dataframe):
         1. The relevant metric (query_stat) of a stock (ticker symbol) at a certain point in time (month and year of investment)
     """
 
-    # 
+    # locate the row that has the correct ticker and date value within our data
     row_of_interst = dataframe.loc[(dataframe['Ticker Symbol'] == ticker) & (dataframe['Year'] == date[0]) & (dataframe['Month'] == date[1])]
 
-    # returns statistic that is found
+    # return the value at the column that is the requested query stat
     return row_of_interst.iloc[0][query_stat]
 
 # main function to run find_query_input()
