@@ -1,7 +1,8 @@
 import unittest
-from basic_stock_stat import basic_stock_stat
-from inspect_stock import check_date, check_query, inspect; check_date
+import pandas as pd
+from basic_stock_stat import get_dates
 from helper import check_ticker
+from inspect_stock import inspect
 
 class Tests(unittest.TestCase):
 
@@ -14,10 +15,20 @@ class Tests(unittest.TestCase):
         self.assertEquals(value, False)
 
     def test_get_dates(self):
-
-        self.assertEquals()
+        values = get_dates("AMZN", "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+        trueValues = ([2010, 1], [2022, 3])
+        self.assertEquals(values, trueValues)
+    
+    def testWrong_get_dates(self):
+        values = get_dates("AMZN", "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+        trueValues = ([2009, 2], [2021, 5])
+        self.assertEquals(values, trueValues)
 
     def test_inspect(self):
+        nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+        nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
+
+        value = inspect()
 
         self.assertEquals()
 

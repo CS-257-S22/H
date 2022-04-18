@@ -6,7 +6,7 @@ from basic_stock_stat import find_earliest_or_latest_record
 class TestInspectCase(unittest.TestCase):
     def test_case_(self):
         """
-        Tests that right price is returned when inputted correct values 
+        Tests that right data is return for a specific valid ticker
         """
         nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
         actual = [2010, 1]

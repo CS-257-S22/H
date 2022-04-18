@@ -42,7 +42,7 @@ def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
     if not check_num_args(num_of_args):
         return "There needs to be 4 arguments; TickerSymbol, Year, Month, Query"
 
-    if not check_ticker(ticker):
+    if not check_ticker(ticker, fileName):
         return "Ticker not found in dataset"
 
     if not check_date(ticker, year, month, "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
@@ -100,4 +100,5 @@ def inspect(ticker, date, query_stat, dataframe):
 
     return row_of_interst.iloc[0][query_stat]
 
-find_query_input()
+if __name__ == '__main__':
+    find_query_input()
