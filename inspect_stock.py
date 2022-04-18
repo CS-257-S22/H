@@ -100,4 +100,5 @@ def inspect(ticker, date, query_stat, dataframe):
 
     return row_of_interst.iloc[0][query_stat]
 
-find_query_input()
+if __name__ == '__main__':
+    find_query_input()
