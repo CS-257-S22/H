@@ -75,7 +75,7 @@ def check_date(ticker, year, month, fileName):
 
 def check_query(query):
     """This method checks whether the parameter query is valid and contained in our dataset. Returns true if valid and false if invalid."""
-    list = ["Low", "Open", "Volume", "High", "Close", "AdjustedClose"]
+    list = ["Low", "Open", "Volume", "High", "Close", "Adjusted Close"]
     if query in list:
         return True
     return False

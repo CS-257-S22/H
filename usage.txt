@@ -57,6 +57,9 @@ Output Signature:
 FEATURE 3: PLANNING, NOT YET IMPLEMENTED
 python3 main.py --stock_ROI
 
+Description:
+    This feature allows the user to choose a stock together with an investment and a divestment time to find a return of investment.
+
 Input Signature:
     1. ticker symbol (string)
     2. year of investment (int64); default = earliest date in the dataset
@@ -68,5 +71,3 @@ Input Signature:
 
 Output Signature:
     1. The calculated return on investment in percentage (float data format), for the specified stock.
-
-- Upon execution, the Python program will prompt argument on its own to prevent any formatting error. Given the complexity of the required input.
