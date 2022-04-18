@@ -24,14 +24,26 @@ class Tests(unittest.TestCase):
     #     trueValues = ([2009, 2], [2021, 5])
     #     self.assertEquals(values, trueValues)
 
-    def test_inspect(self):
+    # def test_inspect(self):
+    #     testData = pd.read_csv("Tests/DataForTesting/test_data_sample.csv")
+    #     # testData = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+    #     testData["Date"] = pd.to_datetime(testData["Date"])
+
+    #     value = inspect("ROST", [2020, 10], "Low", testData)
+    #     trueValue = 94.87999725341795
+
+    #     self.assertEqual(value, trueValue)
+    
+    def testWrong_inspect(self):
+        """This test should fail as the requested date is not within the dataset"""
         testData = pd.read_csv("Tests/DataForTesting/test_data_sample.csv")
+        # testData = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
         testData["Date"] = pd.to_datetime(testData["Date"])
 
-        value = inspect("ROST", [2010, 10], "Low", testData)
+        value = inspect("ROST", [2020, 10], "Low", testData)
         trueValue = 94.87999725341795
 
-        self.assertEquals(value, trueValue)
+        self.assertEqual(value, trueValue)
 
 
 if __name__ == '__main__':
