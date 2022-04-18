@@ -27,7 +27,7 @@ def get_dates(ticker, fileName):
     nasdaq_df = pd.read_csv(fileName)
     nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
-    if not check_ticker(ticker):
+    if not check_ticker(ticker, fileName):
         print("Ticker not found in dataset")
         return
    
