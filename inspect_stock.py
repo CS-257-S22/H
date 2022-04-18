@@ -4,9 +4,9 @@ import pandas as pd
 import datetime
 from helper import check_ticker
 
-def find_query():
+def find_query_input():
     """
-    Objective: 
+    Objective:
     This function is the main function for feature 1 of our command line interface, inspect stock. 
 
     Input Signature:
@@ -20,32 +20,39 @@ def find_query():
 
 
     """
-
-    nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
-    nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
-
     num_of_args = len(sys.argv)
     ticker = str(sys.argv[1])
     year = int(sys.argv[2])
     month = int(sys.argv[3])
     query = str(sys.argv[4])
 
+
+    output = find_query(num_of_args, ticker, year, month, query)
+    print(output)
+    return output
+
+def find_query(num_of_args, ticker, year, month, query):
+
+    nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+    nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
+
+
     if not check_num_args(num_of_args):
-        print("There needs to be 4 arguments; TickerSymbol, Year, Month, Query")
-        return
+        # print("There needs to be 4 arguments; TickerSymbol, Year, Month, Query")
+        return "There needs to be 4 arguments; TickerSymbol, Year, Month, Query"
 
     if not check_ticker(ticker):
-        print("Ticker not found in dataset")
-        return
+        # print("Ticker not found in dataset")
+        return "Ticker not found in dataset"
 
-    if not check_date(ticker, year, month):
-        print("Invalid Date")
-        return
+    if not check_date(ticker, year, month, "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+        # print("Invalid Date")
+        return "Invalid Date"
         
     date = [year, month]
     output = inspect(ticker, date, query, nasdaq_df)
     # print(actual_ticker, actual_date, actual_query)
-    print(output)
+    # print(output)
     return output
 
 def check_num_args(num_of_args):
@@ -55,9 +62,9 @@ def check_num_args(num_of_args):
     return True
     
 
-def check_date(ticker, year, month):
+def check_date(ticker, year, month, fileName):
     """This method checks to make sure that the specified date (year and month) is located within the dataset for the specified ticker symbol. Returns true if it is found and false if it is not."""
-    fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    # fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     f = open(fileName, 'r', encoding = "UTF-8")
     with f as rFile:
         spamreader = csv.reader(rFile, delimiter=',')
@@ -96,4 +103,4 @@ def inspect(ticker, date, query_stat, dataframe):
 
     return row_of_interst.iloc[0][query_stat]
 
-find_query()
+find_query_input()

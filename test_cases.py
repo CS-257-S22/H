@@ -1,5 +1,6 @@
 import unittest
-import basic_stock_stat
+from basic_stock_stat import basic_stock_stat
+from inspect_stock import check_query; check_date
 
 class Tests(unittest.TestCase):
 
@@ -15,11 +16,22 @@ class Tests(unittest.TestCase):
 
 
     def test_late_date(self):
-        date_latest = basic_stock_stat("AAPL")[1]
+        date_latest = basic_stock_stats("AAPL")[1]
         actual_latest = [2022, 3]
         self.assertEquals(date_latest, actual_latest)
+
+    def test_check_query(self):
+        
+        self.assertEquals(check_query("High"), True)
+        self.assertEquals(check_query("AdjustedLow"), False)
+
+    def test_check_date(self):
+
+        self.assertEquals()
+
+    
+    
 
 
 if __name__ == '__main__':
     unittest.main()
-
