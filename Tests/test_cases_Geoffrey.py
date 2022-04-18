@@ -1,8 +1,8 @@
 import unittest
-from inspect_stock import check_date, check_num_args, find_query
 import pandas as pd
 import sys
-sys.path.append('../')
+sys.path.append('../H')
+from inspect_stock import check_date, check_num_args, find_query
 
 class Tests(unittest.TestCase):
 
@@ -14,7 +14,7 @@ class Tests(unittest.TestCase):
         function calls, including inspect() and check_query() among others.
         """
         nasdaq_df = self.get_file()
-        self.assertEquals(find_query(5, "GENE", 2017, 11, "Open", "Tests/DataForTesting/test_data_sample.csv", nasdaq_df), 3.200000047683716)
+        self.assertEqual(find_query(5, "GENE", 2017, 11, "Open", "Tests/DataForTesting/test_data_sample.csv", nasdaq_df), 3.200000047683716)
 
     def test_check_num_args_true(self):
         """
