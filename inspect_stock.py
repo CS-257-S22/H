@@ -1,3 +1,4 @@
+from fileinput import filename
 import sys
 import csv
 import pandas as pd
@@ -20,6 +21,9 @@ def find_query_input():
 
 
     """
+    nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+    nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
+
     num_of_args = len(sys.argv)
     ticker = str(sys.argv[1])
     year = int(sys.argv[2])
@@ -27,32 +31,25 @@ def find_query_input():
     query = str(sys.argv[4])
 
 
-    output = find_query(num_of_args, ticker, year, month, query)
+    output = find_query(num_of_args, ticker, year, month, query, "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
     print(output)
     return output
 
-def find_query(num_of_args, ticker, year, month, query):
+def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
 
-    nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
-    nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
 
     if not check_num_args(num_of_args):
-        # print("There needs to be 4 arguments; TickerSymbol, Year, Month, Query")
         return "There needs to be 4 arguments; TickerSymbol, Year, Month, Query"
 
     if not check_ticker(ticker):
-        # print("Ticker not found in dataset")
         return "Ticker not found in dataset"
 
     if not check_date(ticker, year, month, "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
-        # print("Invalid Date")
         return "Invalid Date"
         
     date = [year, month]
-    output = inspect(ticker, date, query, nasdaq_df)
-    # print(actual_ticker, actual_date, actual_query)
-    # print(output)
+    output = inspect(ticker, date, query, dataframe)
     return output
 
 def check_num_args(num_of_args):

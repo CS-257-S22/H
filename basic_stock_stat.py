@@ -3,7 +3,13 @@ import csv
 import pandas as pd
 from helper import check_ticker
 
-def get_dates():
+def get_dates_input():
+    ticker = str(sys.argv[1])
+    fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    get_dates(ticker, fileName)
+
+
+def get_dates(ticker, fileName):
     """
     Objective:
         1. To read through our data file and find the earliest and latest 
@@ -11,17 +17,16 @@ def get_dates():
         helper method. 
 
     Input Signature:
-        1. Takes in the ticker symbol through the command line
+        1. Takes in the ticker symbol and fileName
 
     Output Signature:
         1. Returns the earliest recorded date and latest
         recorded date of a stock
 
     """
-    nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+    nasdaq_df = pd.read_csv(fileName)
     nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
-    ticker = str(sys.argv[1])
     if not check_ticker(ticker):
         print("Ticker not found in dataset")
         return
@@ -83,7 +88,8 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
 
         return [latest_year, latest_month]
 
-get_dates()
+if __name__ == '__main__':
+    get_dates_input()
 
 
 #     # find the earliest dates
