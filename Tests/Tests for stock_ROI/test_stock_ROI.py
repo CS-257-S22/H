@@ -49,6 +49,8 @@ class test_stock_ROI(unittest.TestCase):
                 given[i][0], given[i][1], given[i][2], given[i][3], given[i][4], data_file), ndigits = 3),\
                 expected[i], places = 3)
 
+    #------------------------------
+
     def test_all_input_is_valid_stock_ROI(self):
         """
         UNIT TEST for method all_input_is_valid_stock_ROI()
@@ -74,7 +76,37 @@ class test_stock_ROI(unittest.TestCase):
         for i in range(len(given)):
             self.assertEqual(all_input_is_valid_stock_ROI(dummy_df,\
                 given[i][0], given[i][1], given[i][2], given[i][3], given[i][4]),\
-                expected[i])      
+                expected[i])     
+
+    #------------------------------
+
+    def test_in_dataframe(self):
+        """
+        UNIT TEST for method in_data_frame()
+        """
+
+        # read in dummy data
+        dummy_df = pd.read_csv(data_file)
+
+        # list of inputs
+        given = [[1434200, "Volume"],\
+            ["sfbhvsg", "Ticker Symbol"],\
+            [15, "Day"],\
+            [999, "Open"],\
+            [155, "Adjusted Close"]]
+
+        # list of corresponding expected output
+        expected = [True,\
+            False,\
+            True,\
+            False,\
+            True]
+
+        # loop through the list of given and expected outcome and compare multiple cases
+        for i in range(len(given)):
+            self.assertEqual(in_dateframe(given[i][0], given[i][1], dummy_df),\
+            expected[i])
+
 
 
 if __name__ == '__main__':
