@@ -1,15 +1,13 @@
-from tkinter.tix import Tree
 import pandas as pd
 import argparse
-import time
 
 from inspect_stock import check_query
 
 #------------------------------
 
-def terminal_input_stock_ROI():
+def terminal_call_stock_ROI():
     """
-    This functions trigger the terminal input interface for feature stock_ROI and record all inputed values
+    This functions trigger the terminal input interface for feature stock_ROI
     """
 
     # using argparse to get terminal input
@@ -36,19 +34,16 @@ def terminal_input_stock_ROI():
     buying_price = args.buying_price
     selling_price = args.selling_price
 
-    return ticker, date_invest, date_divest, buying_price, selling_price
+    return main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price)
 
 #------------------------------
 
-def trigger_stock_ROI(data_file = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+def main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price, data_file = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
     """
-    1. This function is the trigger call for the stock_ROI feature. Consider this the main() function of this feature.
-    2. It will prompt a terminal input and check the validity of the input by calling input_is_valid()
+    1. Consider this the main() function of the feature stock_ROI
+    2. It will check the validity of the input by calling input_is_valid()
     3. Then it will calculate the ROI of the stock by calling the backbone method.
     """
-
-    # get terminal input
-    ticker, date_invest, date_divest, buying_price, selling_price = terminal_input_stock_ROI()
 
     # read in the data
     nasdaq_df = pd.read_csv(data_file)
@@ -175,4 +170,4 @@ def percentage_difference(initial, final):
 if __name__ == '__main__':
 
     # print out the value or error message
-    print("\n\nThe return of investment (%) is:\n", trigger_stock_ROI(), "\n\n")
+    print("\n\nThe return of investment (%) is:\n", terminal_call_stock_ROI(), "\n\n")
