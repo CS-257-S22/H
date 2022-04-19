@@ -136,6 +136,22 @@ class test_stock_ROI(unittest.TestCase):
                 given[i][0], given[i][1], given[i][2], given[i][3], given[i][4]), ndigits=3),\
                 expected[i], places = 3)
 
+    #------------------------------
+
+    def test_percentage_difference(self):
+        """
+        UNIT TEST for method percentage_difference()
+        """
+
+        # list of input
+        given = [[30, 5], [145.416, 466156], [-145, 415]]
+
+        # list of corresponding expected output
+        expected = [-83.333, 320467.200, -386.207]
+
+        for i in range(len(given)):
+            self.assertAlmostEqual(round(percentage_difference(given[i][0], given[i][1]), ndigits = 3), \
+            expected[i], places = 3)
 
 
 if __name__ == '__main__':
