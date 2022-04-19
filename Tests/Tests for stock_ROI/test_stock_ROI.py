@@ -6,7 +6,6 @@ import pandas as pd
 import path
 import sys
 
-from pip import main
 # current directory
 directory = path.Path(__file__).abspath()
   
@@ -106,6 +105,36 @@ class test_stock_ROI(unittest.TestCase):
         for i in range(len(given)):
             self.assertEqual(in_dateframe(given[i][0], given[i][1], dummy_df),\
             expected[i])
+
+    #------------------------------
+
+    def test_backbone_stock_ROI(self):
+        """
+        UNIT TEST for method test_backbone_stock_ROI()
+        """
+
+        # read in dummy data
+        dummy_df = pd.read_csv(data_file)
+
+        # list of inputs
+        given = [["AMD", [2017, 3] , [2030, 7], "Low", "High"],\
+            ["RIBT", [2010, 3], [2030, 3], "Open", "High"],\
+            ["GENE", [2017, 11], [2030, 6], "Open", "Close"],\
+            ["HWBK", [2012, 2], [2030, 8], "Adjusted Close", "Open"],\
+            ["SAFM", [2017, 9], [2030, 3], "Close", "Low"]]
+
+        # list of corresponding expected output
+        expected = [5292.308,\
+            1577.778,\
+            1133.333,\
+            9999916.667,\
+            -92.2581]
+        
+        # loop through the list of given and expected outcome and compare multiple cases
+        for i in range(len(given)):
+            self.assertAlmostEqual(round(backbone_stock_ROI(dummy_df,\
+                given[i][0], given[i][1], given[i][2], given[i][3], given[i][4]), ndigits=3),\
+                expected[i], places = 3)
 
 
 
