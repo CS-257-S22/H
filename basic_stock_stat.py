@@ -1,3 +1,7 @@
+# Pycache are evil, don't produce them
+import sys
+sys.dont_write_bytecode = True
+
 from fileinput import filename
 import sys
 import csv

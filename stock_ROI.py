@@ -1,7 +1,15 @@
+# Pycache are evil, don't produce them
+import sys
+sys.dont_write_bytecode = True
+
 import pandas as pd
 import argparse
 
 from inspect_stock import check_query
+
+# Pycache are evil, don't produce them
+import sys
+sys.dont_write_bytecode = True
 
 #------------------------------
 

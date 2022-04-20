@@ -1,3 +1,7 @@
+# Pycache are evil, don't produce them
+import sys
+sys.dont_write_bytecode = True
+
 import unittest
 
 import argparse
@@ -17,7 +21,7 @@ from stock_ROI import *
 from inspect_stock import check_query
 
 # specifying path to test data
-data_file = "Tests/test_data_fabricated.csv"
+data_file = "Tests/DataForTesting/test_data_fabricated.csv"
 
 class test_stock_ROI(unittest.TestCase):
 
