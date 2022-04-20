@@ -1,5 +1,11 @@
 # import all libraries
 import pandas as pd
+import unittest
+import argparse
+import pandas as pd
+import path
+import sys
+import csv
 
 # import all sub-functions from other .py files
 from inspect_stock import *
