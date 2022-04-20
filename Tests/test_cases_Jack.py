@@ -8,12 +8,12 @@ from inspect_stock import inspect
 
 class Tests(unittest.TestCase):
 
-    def testStd_check_ticker(self):
+    def test_check_ticker(self):
         """Tests whether the check_ticker method properly recognizes that a ticker is in the dataset"""
         value = check_ticker("ROST", "Tests/DataForTesting/test_data_sample.csv")
         self.assertEqual(value, True)
 
-    def testWrong_check_ticker(self):
+    def test_wrong_check_ticker(self):
         """Tests wheter the check_tciker method properly recognizes that a ticker is NOT in the dataset"""
         value = check_ticker("AMOR", "Tests/DataForTesting/test_data_sample.csv")
         self.assertEqual(value, False)
@@ -24,7 +24,7 @@ class Tests(unittest.TestCase):
         trueValues = ([2010, 1], [2022, 3])
         self.assertEqual(values, trueValues)
     
-    def testWrong_get_dates(self):
+    def test_wrong_get_dates(self):
         """Tests whether or not an incorrect date value is recognized as being so"""
         values = get_dates("AMZN", "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
         trueValues = ([2009,2], [2021,5])
@@ -41,7 +41,7 @@ class Tests(unittest.TestCase):
         trueValue = 94.87999725341795
         self.assertEqual(value, trueValue)
     
-    def testWrong_inspect(self):
+    def test_wrong_inspect(self):
         """This tests if when an incorrect value is inputted whether it is recognized as being incorrect or not"""
         testData = pd.read_csv("Tests/DataForTesting/test_data_sample.csv")
         # testData = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
