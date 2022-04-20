@@ -26,6 +26,10 @@ def find_query_input():
     nasdaq_df = get_fileName()
 
     # assigns command line arguments to variables with correct types by casting
+    if not check_num_args(num_of_args):
+        print("There needs to be 4 arguments; TickerSymbol, Year, Month, Query")
+        return 
+
     num_of_args = len(sys.argv)
     ticker = str(sys.argv[1])
     year = int(sys.argv[2])
