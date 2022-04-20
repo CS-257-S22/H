@@ -1,7 +1,12 @@
 PREREQUISITE FOR EXECUTION:
-    1. Pandas library has to be installed.
-    2. How to? Run the simple command: "pip install pandas"
-    3. Still having trouble? Check out this article: https://www.pythoncentral.io/how-to-install-pandas-in-python/
+    import pandas as pd
+    import unittest
+    import argparse
+    import pandas as pd
+    import path
+    import sys
+    import csv
+    -> use pip to install these libraries before loading them
 
 FEATURE 1: inspect_stock.py
 
