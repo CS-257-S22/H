@@ -1,4 +1,5 @@
 import sys
+sys.path.append('../H')
 import pandas as pd
 import unittest
 from inspect_stock import *

@@ -1,14 +1,14 @@
 import unittest
+import sys
+sys.path.append('../H')
 from basic_stock_stat import *
 import pandas as pd
 
 class TestInspectCase(unittest.TestCase):
     def test_case_(self):
         """
-        Tests that right price is returned when inputted correct values
-
-        Uses dummy data in Tests/DataForTesting/test_data_sample.csv to check function
-        using 10 dummy stock entries from the main data set.
+        Tests that the output of the get_dates function is consistant with the output of
+        find_earlist_or_latest_record
         """
 
         test_dates_sample_df = pd.read_csv("Tests/DataForTesting/test_date_data_sample.csv")

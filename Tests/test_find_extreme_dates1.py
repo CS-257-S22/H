@@ -1,4 +1,5 @@
 import sys
+sys.path.append('../H')
 import pandas as pd
 import unittest
 from basic_stock_stat import find_earliest_or_latest_record
