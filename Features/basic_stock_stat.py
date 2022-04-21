@@ -2,6 +2,12 @@
 import sys
 sys.dont_write_bytecode = True
 
+import path
+# current directory
+directory = path.Path(__file__).abspath()
+# setting path to the directory with the feature
+sys.path.append(directory.parent.parent)
+
 from fileinput import filename
 import sys
 import csv
@@ -22,7 +28,7 @@ def get_dates_input():
 
     """
     ticker = str(sys.argv[1])
-    fileName = "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    fileName = "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     get_dates(ticker, fileName)
 
 

@@ -2,6 +2,12 @@
 import sys
 sys.dont_write_bytecode = True
 
+import path
+# current directory
+directory = path.Path(__file__).abspath()
+# setting path to the directory with the feature
+sys.path.append(directory.parent.parent)
+
 from fileinput import filename
 import sys
 import csv
@@ -42,7 +48,7 @@ def find_query_input():
         return 
 
     # calls find_query function to get the actual statistic and print and return the result
-    output = find_query(num_of_args, ticker, year, month, query, "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
+    output = find_query(num_of_args, ticker, year, month, query, "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
     print(output)
     return output
 
@@ -55,7 +61,7 @@ def get_fileName():
     Dataset ready for use in command line functions
 
     """
-    nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+    nasdaq_df = pd.read_csv("../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
     nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
     return nasdaq_df
 
@@ -85,7 +91,7 @@ def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
         return "Ticker not found in dataset"
 
     # checks if the inputted date is in dataset and returns error statement if not found
-    if not check_date(ticker, year, month, "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+    if not check_date(ticker, year, month, fileName):
         return "Invalid Date"
         
     # structures year and month into a list
