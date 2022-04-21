@@ -8,13 +8,11 @@ import argparse
 import pandas as pd
 
 import path
-import sys
-
 # current directory
 directory = path.Path(__file__).abspath()
-  
 # setting path to the directory with the feature
 sys.path.append(directory.parent.parent)
+sys.path.append("Features")
 
 # importing the functions we are testing
 from stock_ROI import *
