@@ -3,7 +3,7 @@ import sys
 sys.dont_write_bytecode = True
 
 import sys
-sys.path.append('../H')
+sys.path.append('../H/Features')
 import pandas as pd
 import unittest
 from basic_stock_stat import find_earliest_or_latest_record
