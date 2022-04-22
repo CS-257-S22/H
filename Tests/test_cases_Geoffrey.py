@@ -5,7 +5,13 @@ sys.dont_write_bytecode = True
 import unittest
 import pandas as pd
 import sys
-sys.path.append('../H')
+# sys.path.append('../Features')
+import path
+# current directory
+directory = path.Path(__file__).abspath()
+# setting path to the directory with the feature
+sys.path.append(directory.parent.parent)
+sys.path.append("Features")
 from inspect_stock import check_date, check_num_args, find_query
 
 class Tests(unittest.TestCase):
