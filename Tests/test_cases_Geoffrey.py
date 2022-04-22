@@ -5,7 +5,7 @@ sys.dont_write_bytecode = True
 import unittest
 import pandas as pd
 import sys
-sys.path.append('../H')
+sys.path.append('../H/Features')
 from inspect_stock import check_date, check_num_args, find_query
 
 class Tests(unittest.TestCase):

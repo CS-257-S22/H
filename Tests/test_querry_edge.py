@@ -3,7 +3,7 @@ import sys
 sys.dont_write_bytecode = True
 
 import sys
-sys.path.append('../H')
+sys.path.append('../H/Features')
 import pandas as pd
 import unittest
 from inspect_stock import *

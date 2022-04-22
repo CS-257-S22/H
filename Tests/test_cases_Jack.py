@@ -5,7 +5,7 @@ sys.dont_write_bytecode = True
 import unittest
 import pandas as pd
 import sys
-sys.path.append('../H')
+sys.path.append('../H/Features')
 from basic_stock_stat import get_dates
 from helper import check_ticker
 from inspect_stock import inspect

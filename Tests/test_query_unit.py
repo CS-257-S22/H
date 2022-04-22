@@ -5,7 +5,7 @@ sys.dont_write_bytecode = True
 import pandas as pd
 import unittest
 import sys
-sys.path.append('../H')
+sys.path.append('../H/Features')
 from inspect_stock import *
 
 class TestInspectCaseVolume(unittest.TestCase):
