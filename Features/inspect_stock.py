@@ -48,7 +48,7 @@ def find_query_input():
     query = str(sys.argv[4])
 
     # calls find_query function to get the actual statistic and print and return the result
-    output = find_query(num_of_args, ticker, year, month, query, "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
+    output = find_query(num_of_args, ticker, year, month, query, "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
     print(output)
     return output
 
@@ -61,7 +61,7 @@ def get_fileName():
     Dataset ready for use in command line functions
 
     """
-    nasdaq_df = pd.read_csv("../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+    nasdaq_df = pd.read_csv("./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
     nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
     return nasdaq_df
 
