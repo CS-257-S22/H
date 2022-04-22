@@ -2,12 +2,6 @@
 import sys
 sys.dont_write_bytecode = True
 
-import path
-# current directory
-directory = path.Path(__file__).abspath()
-# setting path to the directory with the feature
-sys.path.append(directory.parent.parent)
-
 import pandas as pd
 import argparse
 
@@ -48,7 +42,7 @@ def terminal_call_stock_ROI():
 
 #------------------------------
 
-def main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price, data_file = "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+def main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price, data_file = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
     """
     1. Consider this the main() function of the feature stock_ROI
     2. It will check the validity of the input by calling input_is_valid()
