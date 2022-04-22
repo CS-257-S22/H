@@ -37,15 +37,15 @@ def find_query_input():
 
 
     num_of_args = len(sys.argv)
-    ticker = str(sys.argv[1])
-    year = int(sys.argv[2])
-    month = int(sys.argv[3])
-    query = str(sys.argv[4])
-
     # assigns command line arguments to variables with correct types by casting
     if not check_num_args(num_of_args):
         print("There needs to be 4 arguments; TickerSymbol, Year, Month, Query")
         return 
+
+    ticker = str(sys.argv[1])
+    year = int(sys.argv[2])
+    month = int(sys.argv[3])
+    query = str(sys.argv[4])
 
     # calls find_query function to get the actual statistic and print and return the result
     output = find_query(num_of_args, ticker, year, month, query, "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
