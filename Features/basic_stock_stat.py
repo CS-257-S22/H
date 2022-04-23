@@ -29,7 +29,9 @@ def get_dates_input():
     """
     ticker = str(sys.argv[1])
     fileName = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
-    get_dates(ticker, fileName)
+    output = get_dates(ticker, fileName)
+    print(output)
+    return output
 
 
 def get_dates(ticker, fileName):
@@ -53,8 +55,7 @@ def get_dates(ticker, fileName):
 
     # calls helper function to check if ticker is in dataset
     if not check_ticker(ticker, fileName):
-        print("Ticker not found in dataset")
-        return
+        return "Ticker not found in dataset"
    
     # outputs the list of earliest and latest dates and prints and returns it
     output = stock_extreme_dates(ticker, nasdaq_df)
