@@ -93,6 +93,10 @@ def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
     # checks if the inputted date is in dataset and returns error statement if not found
     if not check_date(ticker, year, month, fileName):
         return "Invalid Date"
+
+    # checks if the inputted query is offered
+    if not check_query(query):
+        return "Invalid Query"
         
     # structures year and month into a list
     date = [year, month]

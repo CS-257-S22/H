@@ -21,10 +21,10 @@ Description:
         6. Adjusted Close
 
 Command Line Structure:
-    python3 inspect_stock.py <Ticker Symbol of Stock> <Year> <Month> <Statistic of Interest>
+    python3 Features/inspect_stock.py <Ticker Symbol of Stock> <Year> <Month> <Statistic of Interest>
 
 E.g:
-    python3 inspect_stock.py MSFT 2014 9 High
+    python3 Features/inspect_stock.py MSFT 2014 9 High
     (The example above looks for the High price of Microsoft's stock at September 2014)
 
 Input Signature:
@@ -44,10 +44,10 @@ Description:
     This feature allows the user to input a ticker symbol of the stock of interest and find out what are the earliest and latest dates recorded of said stock in our data.
 
 Command Line Structure:
-    python3 basic_stock_stat.py <Ticker Symbol of Stock>
+    python3 Features/basic_stock_stat.py <Ticker Symbol of Stock>
 
 E.g:
-    python3 basic_stock_stat.py AAPL
+    python3 Features/basic_stock_stat.py AAPL
     (The example above looks for the earliest and latest dates recorded in our data of about Apple's stock)
 
 Find the earliest and latest record dates of a stock.
@@ -61,8 +61,8 @@ Output Signature:
 
 ----------------------------
 
-FEATURE 3: PLANNING, NOT YET IMPLEMENTED
-python3 main.py --stock_ROI
+FEATURE 3: IN THE TESTING PHASE
+python3 Features/stock_ROI.py <Ticker Symbol of Stock> <Investment Year> <Investment Month> <Investment Price> <Divestment Year> <Divestment Month> <Divestment Price>
 
 Description:
     This feature allows the user to choose a stock together with an investment and a divestment time to find a return of investment.
