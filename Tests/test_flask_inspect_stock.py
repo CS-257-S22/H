@@ -2,7 +2,7 @@ import unittest
 from flask import Flask
 
 import sys
-sys.path.append('../Flask')
+sys.path.append('./Flask')
 from Flask_App_main import *
 
 class TestInspector(unittest.TestCase):
@@ -44,15 +44,15 @@ class TestInspector(unittest.TestCase):
         """
         self.app = app.test_client()
         response = self.app.get('/inspect_stock/AAL/2010/1/Low', follow_redirects=True)
-        self.assertEqual(b"AAL's Open on 1/2010: 5.429999828338623", response.data)
+        self.assertEqual(b"AAL's Low on 1/2010: 5.429999828338623", response.data)
     
     def test_route_edge_end(self):
         """
         Tests that correct output is returned by the inspect_specified_stock function for last stock in the data set
         """
         self.app = app.test_client()
-        response = self.app.get('/inspect_stock/AAPL/2011/3/Date', follow_redirects=True)
-        self.assertEqual(b"Invalid Query", response.data)
+        response = self.app.get('/inspect_stock/ZUMZ/2022/3/Close', follow_redirects=True)
+        self.assertEqual(b"ZUMZ's Close on 3/2022: 41.09000015258789", response.data)
 
 
 if __name__ == '__main__':
