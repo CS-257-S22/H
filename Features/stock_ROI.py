@@ -73,41 +73,32 @@ def all_input_is_valid_stock_ROI(dataframe, ticker, date_invest, date_divest, bu
     This function check if all inputed values are appropriate
     """
 
-    errors = 0
-
     # check ticker
     if not in_dateframe(ticker, "Ticker Symbol", dataframe):
-        errors += 1
         return "INPUT ERROR: Invalid ticker symbol. Please choose one that exists within our data instead."
 
     # check invest date
     if not in_dateframe(date_invest[0], "Year", dataframe):
-        errors += 1
         return "INPUT ERROR: Invalid year for investment date."
     else: # check month if year is valid
         if not in_dateframe(date_invest[1], "Month", dataframe.loc[dataframe["Year"] == date_invest[0]]):
-            errors += 1
             return "INPUT ERROR: Invalid investment date. The given month is not in our data."
     
     # check divest date
     if not in_dateframe(date_divest[0], "Year", dataframe):
-        errors += 1
         return "INPUT ERROR: Invalid year for divestment date."
     else: # check month if year is valid
         if not in_dateframe(date_divest[1], "Month", dataframe.loc[dataframe["Year"] == date_divest[0]]):
-            errors += 1
             return "INPUT ERROR: Invalid divestment date. The given month is not in our data."
 
     # check the queries in question
     if not check_query(buying_price):
-        errors += 1
         return "INPUT ERROR: Invalid buying price. Choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close' only."
     if not check_query(selling_price):
-        errors += 1
         return "INPUT ERROR: Invalid selling price. Choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close' only."
 
-    if errors == 0:
-        return True
+    # if no error is encountered, return True
+    return True
 
 #------------------------------
 
