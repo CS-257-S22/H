@@ -109,21 +109,6 @@ def get_dates_of_stock(ticker):
 
 #------------------------------
 
-@app.errorhandler(404)
-def page_not_found(e):
-    "A page to instruct the user for the continuous step if an invalid route is entered."
-
-    # the message to be displayed
-    message404 = "ERROR 404\n\nInvalid route.\nReturn to Home Page for more instruction. (i.e. You can use the Back button.)"
-
-    # convert the message to html-friendly format
-    message404 = message404.replace('\n', '<br>')
-
-    # return the message
-    return message404
-
-#------------------------------
-
 @app.route('/inspect_stock/<ticker>/<year>/<month>/<query_stat>', strict_slashes=False)
 def inspect_specifified_stock(ticker,year,month,query_stat):
     """Returns a stock statistic based on input stock information or returns an invalid input message for invalid inputs """
@@ -133,6 +118,30 @@ def inspect_specifified_stock(ticker,year,month,query_stat):
         #checks to see if output is not an invalid input message
         description = str(ticker) + "'s " + str(query_stat) + " on " + str(month) + "/" + str(year) + ": "
     return description + str(value)
+
+#------------------------------
+
+@app.errorhandler(404)
+def page_not_found(e):
+    "A page to instruct the user for the continuous step if an invalid route is entered."
+
+    # the message to be displayed
+    message404 = "ERROR 404\n\nInvalid Route.\
+        \nReturn to Home Page for more instruction. (i.e. You can use the Back button.)\n\n\
+        This might be due to some of the following reasons:\n\n\
+            1. You might have forgotten to specify the feature before you inputted the stock information.\n\n\
+            2. You might have made a typo typing out the URL.\n\n\
+            3. You might have not capitalized a query input or the ticker symbol.\n\n\
+            4. Refer to these examples of the possible features to double check your URL\n\
+            -----Feature Inspect Example: /inspect_stock/AAPL/2022/3/Open\n\
+            -----Feature Extreme Dates Example: /extreme_dates/MSFT\n\
+            -----Feature Stock ROI Example: stock_ROI/AMZN/2011/12/Low/2022/3/High"
+
+    # convert the message to html-friendly format
+    message404 = message404.replace('\n', '<br>')
+
+    # return the message
+    return message404
 
 #------------------------------
 
