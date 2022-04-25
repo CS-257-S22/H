@@ -14,7 +14,7 @@ from stock_ROI import *
 
 @app.route('/')
 def homepage():
-    """Returns a greeting to the user and information on how to use the inspect route"""
+    """Returns a greeting to the user and information on how to use the routes"""
     return "Welcome to our flask app!"
 
 @app.route('/inspect_stock/<ticker>/<year>/<month>/<query_stat>', strict_slashes=False)
