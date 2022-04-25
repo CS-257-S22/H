@@ -42,7 +42,7 @@ class Tests(unittest.TestCase):
         """
         self.app = app.test_client()
         response = self.app.get('/extreme_dates/TAAAA', follow_redirects=True)
-        self.assertEqual(b'Ticker symbol not found in dataset. Please try another ticker symbol.', response.data)
+        self.assertEqual(b'Ticker not found in dataset', response.data)
 
 
 if __name__ == '__main__':
