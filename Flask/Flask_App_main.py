@@ -38,7 +38,7 @@ def homepage():
             3. Find the ROI of any stock (in percentage)\n\
                 * Route: /stock_ROI/[ticker symbol]/[investment year]/[investment month]/[buying price]\
                     /[divestment year]/[divestment month]/[selling price]\n\
-                * Example: stock_ROI/AMZN/2011/12/Low/2022/3/High\n"
+                * Example: /stock_ROI/AMZN/2011/12/Low/2022/3/High\n"
 
     home2 = home.replace('\n', '<br>')
 
@@ -135,7 +135,7 @@ def page_not_found(e):
             4. Refer to these examples of the possible features to double check your URL\n\
             -----Feature Inspect Example: /inspect_stock/AAPL/2022/3/Open\n\
             -----Feature Extreme Dates Example: /extreme_dates/MSFT\n\
-            -----Feature Stock ROI Example: stock_ROI/AMZN/2011/12/Low/2022/3/High"
+            -----Feature Stock ROI Example: /stock_ROI/AMZN/2011/12/Low/2022/3/High"
 
     # convert the message to html-friendly format
     message404 = message404.replace('\n', '<br>')
