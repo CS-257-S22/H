@@ -1,4 +1,6 @@
 import unittest
+import sys
+sys.path.append('./Flask')
 from Flask_App_main import *
 
 class Tests(unittest.TestCase):
@@ -40,19 +42,7 @@ class Tests(unittest.TestCase):
         """
         self.app = app.test_client()
         response = self.app.get('/extreme_dates/TAAAA', follow_redirects=True)
-        string = self.display_error_message()
-        self.assertEqual(bytes(string, encoding='utf-8'), response.data)
-
-    def display_error_message(self):
-        """
-        """
-        # the message to be displayed
-        message404 = "ERROR 404\n\nInvalid route.\nReturn to Home Page for more instruction. (i.e. You can use the Back button.)"
-
-        # convert the message to html-friendly format
-        message404 = message404.replace('\n', '<br>')
-
-        return message404
+        self.assertEqual(b'Ticker symbol not found in dataset. Please try another ticker symbol.', response.data)
 
 
 if __name__ == '__main__':
