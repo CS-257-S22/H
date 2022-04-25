@@ -1,11 +1,11 @@
 from flask import *
 app = Flask(__name__)
 
-#Creates data frame based of off the stock data
+#Creates data frame based off of the stock data
 import pandas as pd
 nasdaq_df = pd.read_csv("./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
 
-#Creates file path to the Features director and imports all features
+#Creates file path to the Features directory and imports all features
 import sys
 sys.path.append('./Features')
 from inspect_stock import *
