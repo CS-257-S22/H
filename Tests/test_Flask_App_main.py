@@ -11,9 +11,9 @@ from Flask_App_main import *
 
 import unittest
 
-class test_Flask_stock_ROI(unittest.TestCase):
+class test_Flask_app(unittest.TestCase):
 
-    def test_route(self):
+    def test_stock_ROI(self):
         """
         Flask app for stock_ROI integration test
             This method does 5 tests for the ability of the Flask app for stock_ROI to integrate all of the underlying functions
@@ -62,7 +62,7 @@ class test_Flask_stock_ROI(unittest.TestCase):
 
     #------------------------------
 
-    def test_route_edge(self):
+    def test_stock_ROI_edge(self):
         """
         Flask app for stock_ROI's edge cases test
             This method does 2 tests at 2 ends of our data
@@ -139,7 +139,114 @@ class test_Flask_stock_ROI(unittest.TestCase):
             # comparing the output to the expected
             self.assertEqual(bytes(validity, encoding='utf-8'), response.data)
 
-#------------------------------
+    #------------------------------
+
+    def test_route_case(self):
+            """
+            Tests that correct output is returned by the inspect_specified_stock function
+            """
+            self.app = app.test_client()
+            response = self.app.get('/inspect_stock/NLST/2013/11/Volume', follow_redirects=True)
+            self.assertEqual(b"NLST's Volume on 11/2013: 376400.0", response.data)
+
+    #------------------------------
+        
+    def test_route_bad_ticker(self):
+        """
+        Tests that correct message is returned by the inspect_specified_stock function to inform the user that their ticker is invalid
+        """
+        self.app = app.test_client()
+        response = self.app.get('/inspect_stock/AKJD/2013/11/Volume', follow_redirects=True)
+        self.assertEqual(b"Ticker not found in dataset", response.data)
+
+    #------------------------------
+
+    def test_route_bad_date(self):
+        """
+        Tests that correct message is returned by the inspect_specified_stock function to inform the user that their date is invalid
+        """
+        self.app = app.test_client()
+        response = self.app.get('/inspect_stock/HBP/2023/11/Open', follow_redirects=True)
+        self.assertEqual(b"Invalid Date", response.data)
+
+    #------------------------------
+
+    def test_route_bad_query(self):
+        """
+        Tests that correct message is returned by the inspect_specified_stock function to inform the user that their input query stat is invalid
+        """
+        self.app = app.test_client()
+        response = self.app.get('/inspect_stock/AAPL/2011/3/Date', follow_redirects=True)
+        self.assertEqual(b"Invalid Query", response.data)
+
+    #------------------------------
+
+    def test_route_edge_beginning(self):
+        """
+        Tests that correct output is returned by the inspect_specified_stock function for first stock in the data set
+        """
+        self.app = app.test_client()
+        response = self.app.get('/inspect_stock/AAL/2010/1/Low', follow_redirects=True)
+        self.assertEqual(b"AAL's Low on 1/2010: 5.429999828338623", response.data)
+
+    #------------------------------
+
+    def test_route_edge_end(self):
+        """
+        Tests that correct output is returned by the inspect_specified_stock function for last stock in the data set
+        """
+        self.app = app.test_client()
+        response = self.app.get('/inspect_stock/ZUMZ/2022/3/Close', follow_redirects=True)
+        self.assertEqual(b"ZUMZ's Close on 3/2022: 41.09000015258789", response.data)
+
+    #------------------------------
+
+    def test_get_query(self):
+        """
+        This function is a route test for feature 2 of the flask app, which is basic_stock_stat. It specifies the 
+        ticker symbol and checks to see if the function returns the correct dates for the stock on the page. 
+        """
+        self.app = app.test_client()
+        response = self.app.get('/extreme_dates/FB', follow_redirects=True)
+        self.assertEqual(b'The dates for FB are ([2012, 6], [2022, 3])', response.data)
+
+    #------------------------------    
+
+    def test_get_query_edge_1(self):
+        """
+        This function is an edge route test for feature 2 of the flask app. It specifies the 
+        first ticker symbol of the dataset and checks to see if the function returns the correct 
+        dates for the stock on the page.
+        """
+        self.app = app.test_client()
+        response = self.app.get('/extreme_dates/AAL', follow_redirects=True)
+        self.assertEqual(b'The dates for AAL are ([2010, 1], [2022, 3])', response.data)
+
+    #------------------------------
+
+    def test_get_query_edge_2(self):
+        """
+        This function is an edge route test for feature 2 of the flask app. It specifies the 
+        last ticker symbol of the dataset and checks to see if the function returns the correct 
+        dates for the stock on the page. 
+        """
+        self.app = app.test_client()
+        response = self.app.get('/extreme_dates/ZUMZ', follow_redirects=True)
+        self.assertEqual(b'The dates for ZUMZ are ([2010, 1], [2022, 3])', response.data)
+
+    #------------------------------
+
+    def test_get_query_integration(self):
+        """
+        This function is an integration route test for feature 2 of the flask app. It specifies 
+        an incorrect ticker symbol of the dataset and checks to see if the function returns the correct 
+        error message for the stock on the page.
+        """
+        self.app = app.test_client()
+        response = self.app.get('/extreme_dates/TAAAA', follow_redirects=True)
+        self.assertEqual(b'Ticker not found in dataset', response.data)
+
+    #------------------------------
 
 def route_generator_stock_ROI(input_list):
     """
