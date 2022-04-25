@@ -3,7 +3,7 @@ from flask import Flask
 
 import sys
 sys.path.append('../Flask')
-from Flask_App_Inspect_Stock import *
+from Flask_App_main import *
 
 class TestInspector(unittest.TestCase):
     def test_route_case(self):
