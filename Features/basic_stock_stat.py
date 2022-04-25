@@ -33,6 +33,9 @@ def get_dates_input():
     print(output)
     return output
 
+def get_nasdaqDates(ticker):
+    fileName = "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    get_dates(ticker, fileName)
 
 def get_dates(ticker, fileName):
     """
