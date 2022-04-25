@@ -102,7 +102,7 @@ def get_dates_of_stock(ticker):
     function will return.
     """
     if not check_ticker(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
-        return "Ticker symbol not found in dataset. Please try another ticker symbol."
+        return str(get_dates(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"))
         # return page_not_found(not check_ticker(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"))"
     result = str(get_dates(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"))
     return "The dates for " + str(ticker) + " are " + result
