@@ -30,8 +30,8 @@ def homepage():
     header = "INVEST.ED BETA PLATFORM"
     home = "From here, you can navigate using the following routes to use the corresponding functions\n\n\
             1. Inspect a stock\n\
-                * Route: /inspect/[ticker symbol]/[year]/[month]/[statistic]\n\
-                * Example: /inspect/AAPL/2022/3/Open\n\n\
+                * Route: /inspect_stock/[ticker symbol]/[year]/[month]/[statistic]\n\
+                * Example: /inspect_stock/AAPL/2022/3/Open\n\n\
             2. Find the earliest and latest recorded dates of a stock in our database\n\
                 * Route: /extreme_dates/[ticker symbol]\n\
                 * Example: /extreme_dates/MSFT\n\n\
@@ -92,6 +92,23 @@ def flask_stock_ROI(ticker_symbol, investment_year, investment_month, buying_pri
 
 #------------------------------
 
+@app.route('/extreme_dates/<ticker>', strict_slashes=False)
+def get_dates_of_stock(ticker):
+    """
+    This function calls on the function in basic_stock_stat.py, which is our second feature that returns the earliest and 
+    latest dates of the stock specified by the ticker symbol parameter. The function takes in a ticker variable and 
+    returns the dates for the stock that the ticker symbol belongs to. It also calls a helper function to handle
+    the error of a ticker symbol not belonging in our dataset, and will return the error statement of what the helper
+    function will return.
+    """
+    if not check_ticker(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+        return "Ticker symbol not found in dataset. Please try another ticker symbol."
+        # return page_not_found(not check_ticker(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"))"
+    result = str(get_dates(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"))
+    return "The dates for " + str(ticker) + " are " + result
+
+#------------------------------
+
 @app.errorhandler(404)
 def page_not_found(e):
     "A page to instruct the user for the continuous step if an invalid route is entered."
@@ -104,6 +121,18 @@ def page_not_found(e):
 
     # return the message
     return message404
+
+#------------------------------
+
+@app.route('/inspect_stock/<ticker>/<year>/<month>/<query_stat>', strict_slashes=False)
+def inspect_specifified_stock(ticker,year,month,query_stat):
+    """Returns a stock statistic based on input stock information or returns an invalid input message for invalid inputs """
+    value = find_query(5, str(ticker), int(year), int(month), str(query_stat), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
+    description = ""
+    if not isinstance(value,str) :
+        #checks to see if output is not an invalid input message
+        description = str(ticker) + "'s " + str(query_stat) + " on " + str(month) + "/" + str(year) + ": "
+    return description + str(value)
 
 #------------------------------
 
