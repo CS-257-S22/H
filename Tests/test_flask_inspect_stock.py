@@ -37,6 +37,23 @@ class TestInspector(unittest.TestCase):
         self.app = app.test_client()
         response = self.app.get('/inspect_stock/AAPL/2011/3/Date', follow_redirects=True)
         self.assertEqual(b"Invalid Query", response.data)
+    
+    def test_route_edge_beginning(self):
+        """
+        Tests that correct output is returned by the inspect_specified_stock function for first stock in the data set
+        """
+        self.app = app.test_client()
+        response = self.app.get('/inspect_stock/AAL/2010/1/Low', follow_redirects=True)
+        self.assertEqual(b"AAL's Open on 1/2010: 5.429999828338623", response.data)
+    
+    def test_route_edge_end(self):
+        """
+        Tests that correct output is returned by the inspect_specified_stock function for last stock in the data set
+        """
+        self.app = app.test_client()
+        response = self.app.get('/inspect_stock/AAPL/2011/3/Date', follow_redirects=True)
+        self.assertEqual(b"Invalid Query", response.data)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -2,7 +2,7 @@ import flask
 import pandas as pd
 
 import sys
-sys.path.append('../Features')
+sys.path.append('./Features')
 from inspect_stock import *
 from basic_stock_stat import *
 from stock_ROI import *
@@ -12,7 +12,7 @@ app = flask.Flask(__name__)
 #------------------------------
 
 # read in pandas dataframe
-nasdaq_df = pd.read_csv("../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+nasdaq_df = pd.read_csv("./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
 nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
 #------------------------------
@@ -106,7 +106,7 @@ def page_not_found(e):
 @app.route('/inspect_stock/<ticker>/<year>/<month>/<query_stat>', strict_slashes=False)
 def inspect_specifified_stock(ticker,year,month,query_stat):
     """Returns a stock statistic based on input stock information or returns an invalid input message for invalid inputs """
-    value = find_query(5, str(ticker), int(year), int(month), str(query_stat), "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
+    value = find_query(5, str(ticker), int(year), int(month), str(query_stat), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
     description = ""
     if not isinstance(value,str) :
         #checks to see if output is not an invalid input message
