@@ -77,7 +77,7 @@ class test_stock_ROI(unittest.TestCase):
         for i in range(len(given)):
             self.assertEqual(all_input_is_valid_stock_ROI(dummy_df,\
                 given[i][0], given[i][1], given[i][2], given[i][3], given[i][4]),\
-                expected[i])     
+                expected[i])
 
     #------------------------------
 
