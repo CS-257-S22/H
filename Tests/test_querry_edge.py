@@ -15,7 +15,7 @@ class TestInspectCase(unittest.TestCase):
         the specified price of a stock from inputted ticker symbol, date, and query. 
         """
         nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
-        output = find_query(5, "AAPL", 2009, 9, "Volume", "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
+        output = find_query(6, "AAPL", 2009, 9, "Volume", "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
         error_message = "Invalid Date"
         self.assertEqual(output, error_message)
         print(output)
