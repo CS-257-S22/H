@@ -31,7 +31,6 @@ class TestInspectCaseLow(unittest.TestCase):
 
         output = find_query(6, "HWBK", 2012, 2, "Low", "Tests/DataForTesting/test_data_sample.csv", sample_df)
         actual = 6.57344388961792
-        print(type(output))
         self.assertEqual(float(output), actual)
 
 class TestInspectCaseHigh(unittest.TestCase):
@@ -71,19 +70,6 @@ class TestInspectCaseOpen(unittest.TestCase):
 
         output = find_query(6, "USLM", 2019, 3, "Open", "Tests/DataForTesting/test_data_sample.csv", sample_df)
         actual = 74.56999969482422
-        self.assertEqual(float(output), actual)
-
-class TestInspectCaseAdjustedClose(unittest.TestCase):
-    def test_case_(self):
-        """
-        Tests that right adjested close is returned when inputted correct values to find_query function
-
-        Uses dummy data in Tests/DataForTesting/test_data_sample.csv to check function
-        """
-        sample_df = pd.read_csv("Tests/DataForTesting/test_data_sample.csv")
-
-        output = find_query(6, "RGS", 2011, 6, "Adjusted Close", "Tests/DataForTesting/test_data_sample.csv", sample_df)
-        actual = 13.226439476013184
         self.assertEqual(float(output), actual)
 
 if __name__ == '__main__':
