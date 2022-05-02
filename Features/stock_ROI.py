@@ -5,7 +5,8 @@ sys.dont_write_bytecode = True
 import pandas as pd
 import argparse
 
-from inspect_stock import check_query
+#from inspect_stock import check_query
+from Features import inspect_stock
 
 #------------------------------
 
@@ -47,6 +48,8 @@ def main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price
     1. Consider this the main() function of the feature stock_ROI
     2. It will check the validity of the input by calling input_is_valid()
     3. Then it will calculate the ROI of the stock by calling the backbone method.
+
+    
     """
 
     # read in the data
@@ -71,6 +74,13 @@ def main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price
 def all_input_is_valid_stock_ROI(dataframe, ticker, date_invest, date_divest, buying_price, selling_price):
     """
     This function check if all inputed values are appropriate
+
+    Input: A series of values which will be checked as well as the ticker symbol for which the specified data is represntative of and the datafram which is
+    the location of the dataset said data is located within
+
+    Output: A boolean representing whether the parameters specified are appropriate
+
+    Note: Should we print out the error messages and return false instead of just returning the error message
     """
 
     # check ticker
@@ -105,6 +115,10 @@ def all_input_is_valid_stock_ROI(dataframe, ticker, date_invest, date_divest, bu
 def in_dateframe(value, column, dataframe):
     """
     Check if a value is within a column of a dataframe
+    
+    Input: A value we are looking for, the column it is located in and the location of the dataset we are checking within
+
+    Output: A boolean representing whether or not the specified datapoint is found within the specified dataset
     """
 
     if value in dataframe[column].values:
@@ -153,6 +167,10 @@ def backbone_stock_ROI(dateframe, ticker, date_invest, date_divest, buying_price
 def percentage_difference(initial, final):
     """
     This function finds the percentage difference between 2 numbers.
+
+    Input: Two numbers
+
+    Output: Calculated difference of the two numbers
     """
 
     difference = (final - initial) / initial

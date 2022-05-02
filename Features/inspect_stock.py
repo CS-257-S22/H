@@ -13,9 +13,10 @@ import sys
 import csv
 import pandas as pd
 import datetime
-from helper import check_ticker
+#from helper import check_ticker, get_dataframe
+from Features import helper
 
-def find_query_input():
+def find_query_input(ticker, year, month, query):
     """
     Objective:
     This function is the main function for feature 1 of our command line interface, inspect stock. 
@@ -33,7 +34,8 @@ def find_query_input():
     """
 
     # calls a helper method for reading file so ensures there is only 1 level of abstraction
-    nasdaq_df = get_fileName()
+    fileName = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    nasdaq_df = get_dataframe(fileName)
 
 
     num_of_args = len(sys.argv)
@@ -42,29 +44,10 @@ def find_query_input():
         print("There needs to be 4 arguments; TickerSymbol, Year, Month, Query")
         return 
 
-    ticker = str(sys.argv[1])
-    year = int(sys.argv[2])
-    month = int(sys.argv[3])
-    query = str(sys.argv[4])
-
     # calls find_query function to get the actual statistic and print and return the result
-    output = find_query(num_of_args, ticker, year, month, query, "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
+    output = find_query(num_of_args, ticker, year, month, query, fileName, nasdaq_df)
     print(output)
     return output
-
-def get_fileName():
-    """
-    Objective:
-    Helper function for reading the dataset to avoid multiple layers of abstraction
-
-    Output: 
-    Dataset ready for use in command line functions
-
-    """
-    nasdaq_df = pd.read_csv("./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
-    nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
-    return nasdaq_df
-
 
 def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
     """
@@ -78,7 +61,11 @@ def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
     month: this is the specified month of the stock that the user wants to find, ex. 3
     query: This is the type of statistic that the user wants, ex. Open
     fileName: path of dataset to read
-    dataframe: the dataset returned from get_fileName()
+    dataframe: the dataset returned from get_dataframe()
+
+    Output:
+    The statistic (specified by the query input argument) of a stock (specified by ticker symbol)
+    at a certain point in time (specified by month and year of investment).
 
     """
 
@@ -107,8 +94,11 @@ def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
 
 def check_num_args(num_of_args):
     """
-    This helper method insures there is the proper number of command line arugments". Returns true if there are 
-    5 command line arugments and false if there is not exactly 5.
+    This helper method insures there is the proper number of command line arugments
+
+    Input: Interger representing the number of arguments passed into the command line
+
+    Output: Boolean representing whether or not there is the proper amount of command line arguments passed in
     """
     if num_of_args != 5:
         return False
@@ -118,7 +108,13 @@ def check_num_args(num_of_args):
 def check_date(ticker, year, month, fileName):
     """
     This helper method checks to make sure that the specified date (year and month) is located within the dataset 
-    for the specified ticker symbol. Returns true if it is found and false if it is not.
+    for the specified ticker symbol.
+
+    Input: A requested ticker that we wish to check whether its date is in our data. Year which is the year we are looking for, month which is the
+    month we are looking for. fileName which is the location of the dataset that we are checking to see if the data point (specifiied by ticker, year and month)
+    is located within
+
+    Output: A boolean representing whether or not the particular data point (specifiied by ticker, year and month) is located within the requested dataset
     """
     f = open(fileName, 'r', encoding = "UTF-8")
     with f as rFile:
@@ -135,8 +131,14 @@ def check_query(query):
     """
     This helper method checks whether the parameter query is valid and contained in our dataset. 
     Returns true if valid and false if invalid.
+
+    Input:
+    A string representing a requested query category from the dataset
+
+    Output:
+    Boolean representing whether or not the input query is a valid request
     """
-    list = ["Low", "Open", "Volume", "High", "Close", "Adjusted Close"]
+    list = ["Low", "Open", "Volume", "High", "Close"]
     if query in list:
         return True
     return False

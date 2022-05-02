@@ -11,7 +11,7 @@ import pandas as pd
 class TestInspectCase(unittest.TestCase):
     def test_case_(self):
         """
-        Tests that the output of the get_dates function is consistant with the output of
+        Integration test that determines if the output of the get_dates function is consistant with the output of
         find_earlist_or_latest_record
         """
 
