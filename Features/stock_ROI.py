@@ -5,13 +5,30 @@ sys.dont_write_bytecode = True
 import pandas as pd
 import argparse
 
+#from inspect_stock import check_query
+sys.path.append('Features')
 from inspect_stock import check_query
 
 #------------------------------
 
 def terminal_call_stock_ROI():
     """
-    This functions trigger the terminal input interface for feature stock_ROI
+    Description:
+        This functions trigger the terminal input interface for feature stock_ROI
+
+    Input Signature:
+        1. Nothing. The sole purpose of this function is to facilitate the use within the terminal.
+        2. Within the terminal, however, the user needs to manually input:
+            - ticker symbol
+            - investment year
+            - investment month
+            - buying price
+            - divestment year
+            - divestment month
+            - selling price
+
+    Output Signature:
+        1. Call upon the main_stock_ROI method and return whatever the said method returns
     """
 
     # using argparse to get terminal input
@@ -44,9 +61,18 @@ def terminal_call_stock_ROI():
 
 def main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price, data_file = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
     """
-    1. Consider this the main() function of the feature stock_ROI
-    2. It will check the validity of the input by calling input_is_valid()
-    3. Then it will calculate the ROI of the stock by calling the backbone method.
+    Description
+        1. This is the main() function of this feature stock_ROI
+        2. It will check the validity of the input by calling input_is_valid()
+        3. Then it will calculate and return the ROI of the stock by calling the backbone_stock_ROI method
+
+    Input Signature:
+        1. ticker symbol (string)
+        2. date_invest (two-element list in the format [year, month])
+        3. date_divest (two-element list in the format [year, month])
+        4. buying price (a string, choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close')
+        5. selling price (a string, choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close')
+        6. data_file: the path to our .csv file
     """
 
     # read in the data
@@ -70,7 +96,19 @@ def main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price
 
 def all_input_is_valid_stock_ROI(dataframe, ticker, date_invest, date_divest, buying_price, selling_price):
     """
-    This function check if all inputed values are appropriate
+    Description:
+        1. This function check if all inputed values are appropriate
+
+    Input:
+        1. the Pandas dataframe object that is read from our .csv file
+        2. the ticker symbol
+        3. the date of investment (two-element list in the format [year, month])
+        4. the date of divestment (two-element list in the format [year, month])
+        5. the buying price of the stock (a string, choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close')
+        6. the selling price of the stock (a string, choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close')
+
+    Output:
+        1. A boolean representing whether the parameters specified are appropriate
     """
 
     # check ticker
@@ -104,7 +142,15 @@ def all_input_is_valid_stock_ROI(dataframe, ticker, date_invest, date_divest, bu
 
 def in_dateframe(value, column, dataframe):
     """
-    Check if a value is within a column of a dataframe
+    Description:
+        Check if a value is within a column of a dataframe
+    
+    Input:
+        1. the value we want to check
+        2. the column that we want to check within
+    
+    Output:
+        1. A boolean representing whether or not the specified datapoint is found within the specified column
     """
 
     if value in dataframe[column].values:
@@ -152,7 +198,14 @@ def backbone_stock_ROI(dateframe, ticker, date_invest, date_divest, buying_price
 
 def percentage_difference(initial, final):
     """
-    This function finds the percentage difference between 2 numbers.
+    Description:
+        This function finds the percentage difference between 2 numbers.
+
+    Input:
+        1. Two numbers (kinda obvious)
+
+    Output:
+        2. Calculated difference of the two numbers in percentage
     """
 
     difference = (final - initial) / initial
