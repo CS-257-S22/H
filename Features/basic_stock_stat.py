@@ -12,54 +12,63 @@ from fileinput import filename
 import sys
 import csv
 import pandas as pd
-#from helper import check_ticker, get_dataframe
+from helper import check_ticker, get_dataframe
 from Features import helper
 
 def get_dates_input():
     """
-    Objective: 
-    Main function for feature 2: basic stock stat. Takes in command line argument and calls helper 
-    method get_dates() to retrieve correct output.
+    Description:
+        Main function for feature 2: basic stock stat. Takes in command line argument and calls helper 
+        method get_dates() to retrieve the correct output.
 
     Input Signature: 
-    ticker: command line argument specifying ticker symbol of stock
+        1. ticker: command line argument specifying ticker symbol of stock
 
     Output:
-    A list of two 
-
+        1. A list of two elements:
+            - Ticker symbol
+            - Another list contains the earliest and the latest date of the stock
     """
-    ticker = str(sys.argv[1])
+    ticker = str(sys.argv[2])
     fileName = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     output = get_dates(ticker, fileName)
-    print(output)
     return output
 
+#------------------------------
+
 def get_nasdaqDates(ticker):
-    """Basic function which calls get_dates method with a preset fileName, which in this case is the NASDAQ dataset
+    """
+
+    PENDING DELETION PENDING DELETION PENDING DELETION PENDING DELETION
+
+    Desciption:
+        Basic function which calls get_dates method with a preset fileName, which in this case is the NASDAQ dataset
+
     Input Signture:
         1. Ticker symbol of the stock you want dates for
 
     Output Signature:
         1. Returns the result of calling get_dates(ticker, fileName) when by default fileName is the NASDAQ dataset,
         essentially used when you know you want to call get_dates on the nasdaq set and want to avoid inputting an extra parameter.
-
     """
     fileName = "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     get_dates(ticker, fileName)
 
+#------------------------------
+
 def get_dates(ticker, fileName):
     """
-    Objective:
-        1. To read through our data file and find the earliest and latest 
+    Description:
+        Read through our data file and find the earliest and latest 
         recorded dates of a particular stock by calling basic_stock_stat 
         helper method. 
 
     Input Signature:
-        1. Takes in the ticker symbol and fileName
+        1. Ticker symbol
+        2. fileName (the path to our the .csv file)
 
     Output Signature:
-        1. Returns the earliest recorded date and latest
-        recorded date of a stock
+        1. Returns the earliest and latest recorded date of a stock (in a two-element list)
 
     """
 
@@ -74,11 +83,13 @@ def get_dates(ticker, fileName):
     output = stock_extreme_dates(ticker, nasdaq_df)
     return output
 
+#------------------------------
+
 def stock_extreme_dates(ticker, dataframe):
     """
-    Objective:
-    Find the earliest and latest record dates of a stock. Calls on a helper method 
-    find_earliest_or_latest_record() to do this to avoid abstraction.
+    Description:
+        Find the earliest and latest record dates of a stock. Calls on a helper method 
+        find_earliest_or_latest_record() to do this to avoid abstraction.
 
     Input Signature:
         1. ticker symbol (string)
@@ -100,21 +111,20 @@ def stock_extreme_dates(ticker, dataframe):
 
 def find_earliest_or_latest_record(ticker, method, dataframe):
     """
-    Objective:
-    Helper method to avoid any layers of abstraction. Takes in a parameter method that specifies
-    earliest or latest dates. 
+    Description:
+        Helper method to avoid any layers of abstraction. Takes in a parameter method that specifies
+        earliest or latest dates. 
 
     Input Signature:
-    ticker: ticker symbol of specified stock
-    method: specifies if finding the earliest or latest dates of a stock
-    dataframe: dataset of stocks
+        ticker: ticker symbol of specified stock
+        method: specifies if finding the earliest or latest dates of a stock
+        dataframe: dataset of stocks
 
     Output:
-    list [earliest year in record, earliest month in record]
-    OR
-    list [latest year in record, latest month in record]
-    depending on 'method' parameter
-
+        1. list [earliest year in record, earliest month in record]
+        OR
+        2. list [latest year in record, latest month in record]
+        depending on 'method' parameter
     """
 
     if method == "earliest":
@@ -146,5 +156,3 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
 
 if __name__ == '__main__':
     get_dates_input()
-
-    
