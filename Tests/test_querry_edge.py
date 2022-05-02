@@ -11,7 +11,8 @@ from inspect_stock import *
 class TestInspectCase(unittest.TestCase):
     def test_case_(self):
         """
-        Tests that error message is output when an invalid  data is input 
+        Tests that error message is output when an invalid data is input, for the first feature inspect_stock that returns 
+        the specified price of a stock from inputted ticker symbol, date, and query. 
         """
         nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
         output = find_query(5, "AAPL", 2009, 9, "Volume", "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)

@@ -12,7 +12,8 @@ from fileinput import filename
 import sys
 import csv
 import pandas as pd
-from helper import check_ticker
+#from helper import check_ticker, get_dataframe
+from Features import helper
 
 def get_dates_input():
     """
@@ -34,6 +35,15 @@ def get_dates_input():
     return output
 
 def get_nasdaqDates(ticker):
+    """Basic function which calls get_dates method with a preset fileName, which in this case is the NASDAQ dataset
+    Input Signture:
+        1. Ticker symbol of the stock you want dates for
+
+    Output Signature:
+        1. Returns the result of calling get_dates(ticker, fileName) when by default fileName is the NASDAQ dataset,
+        essentially used when you know you want to call get_dates on the nasdaq set and want to avoid inputting an extra parameter.
+
+    """
     fileName = "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     get_dates(ticker, fileName)
 
@@ -62,7 +72,6 @@ def get_dates(ticker, fileName):
    
     # outputs the list of earliest and latest dates and prints and returns it
     output = stock_extreme_dates(ticker, nasdaq_df)
-    print(output)
     return output
 
 def stock_extreme_dates(ticker, dataframe):
@@ -134,20 +143,6 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
             ["Month"].max()
 
         return [latest_year, latest_month]
-
-
-def get_dataframe(fileName):
-    """
-    Objective:
-    Helper function for reading the dataset to avoid multiple layers of abstraction
-
-    Output: 
-    Dataset ready for use in command line functions
-
-    """
-    nasdaq_df = pd.read_csv(fileName)
-    nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
-    return nasdaq_df
 
 if __name__ == '__main__':
     get_dates_input()
