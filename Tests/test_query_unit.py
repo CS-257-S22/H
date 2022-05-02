@@ -31,7 +31,7 @@ class TestInspectCaseLow(unittest.TestCase):
 
         output = find_query(6, "HWBK", 2012, 2, "Low", "Tests/DataForTesting/test_data_sample.csv", sample_df)
         actual = 6.57344388961792
-        print("\n",output)
+        print(type(output))
         self.assertEqual(float(output), actual)
 
 class TestInspectCaseHigh(unittest.TestCase):
