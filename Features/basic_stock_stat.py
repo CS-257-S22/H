@@ -36,26 +36,6 @@ def get_dates_input():
 
 #------------------------------
 
-def get_nasdaqDates(ticker):
-    """
-
-    PENDING DELETION PENDING DELETION PENDING DELETION PENDING DELETION
-
-    Desciption:
-        Basic function which calls get_dates method with a preset fileName, which in this case is the NASDAQ dataset
-
-    Input Signture:
-        1. Ticker symbol of the stock you want dates for
-
-    Output Signature:
-        1. Returns the result of calling get_dates(ticker, fileName) when by default fileName is the NASDAQ dataset,
-        essentially used when you know you want to call get_dates on the nasdaq set and want to avoid inputting an extra parameter.
-    """
-    fileName = "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
-    get_dates(ticker, fileName)
-
-#------------------------------
-
 def get_dates(ticker, fileName):
     """
     Description:
