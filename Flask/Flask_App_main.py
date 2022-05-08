@@ -126,8 +126,8 @@ def page_not_found(e):
     "A page to instruct the user for the continuous step if an invalid route is entered."
 
     # the message to be displayed
+        # \nReturn to Home Page for more instruction. (i.e. You can use the Back button.)\n\n\
     message404 = "ERROR 404\n\nInvalid Route.\
-        \nReturn to Home Page for more instruction. (i.e. You can use the Back button.)\n\n\
         This might be due to some of the following reasons:\n\n\
             1. You might have forgotten to specify the feature before you inputted the stock information.\n\n\
             2. You might have made a typo typing out the URL.\n\n\
