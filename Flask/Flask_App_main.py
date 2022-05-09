@@ -24,7 +24,12 @@ nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 @app.route("/")
 def homepage():
     """
-    Create a homepage for the beta website.
+    DESCRIPTION:
+        Create a homepage for the beta website.
+    INPUT SIGNATURE:
+        1. None, this is the home page.
+    OUTPUT SIGNATURE:
+        2. Render the home page from our html template
     """
 
     header = "INVEST.ED BETA PLATFORM"
@@ -52,9 +57,20 @@ def homepage():
 @app.route("/stock_ROI/<ticker_symbol>/<investment_year>/<investment_month>/<buying_price>/<divestment_year>/<divestment_month>/<selling_price>")
 def flask_stock_ROI(ticker_symbol, investment_year, investment_month, buying_price,\
     divestment_year, divestment_month, selling_price):
-    "DESCRIPTION:\
-        This function is the web-interface of our stock_ROI feature.\
-        It displays to the user what is their return on investment in percentage value."
+    """
+    DESCRIPTION:
+        This function is the web-interface of our stock_ROI feature.
+        It displays to the user what is their return on investment in percentage value.
+    
+    INPUT SIGNATURE:
+        1. ticker_symbol: the ticker of the stock of interest
+        2. investment_year: the year that the hypothetical investment was made
+        3. investment_month: the month that the hypothetical investment was made
+        4. buying_price: the price the stock was invested at, choose between 'Open', 'Close', 'Low', 'High', and 'Adjusted Close'
+        5. divestment_year: the year that the hypothetical divestment was made
+        6. divestment_month: the month that the hypothetical divestment was made
+        7. selling_price: the price the stock was divested at, choose between 'Open', 'Close', 'Low', 'High', and 'Adjusted Close'
+    """
 
     # convert input into the appropriate data format
     investment_year = int(investment_year)
@@ -95,12 +111,17 @@ def flask_stock_ROI(ticker_symbol, investment_year, investment_month, buying_pri
 @app.route('/extreme_dates/<ticker>', strict_slashes=False)
 def get_dates_of_stock(ticker):
     """
-    This function calls on the function in basic_stock_stat.py, which is our second feature that returns the earliest and 
-    latest dates of the stock specified by the ticker symbol parameter. The function takes in a ticker variable and 
-    returns the dates for the stock that the ticker symbol belongs to. It also calls a helper function to handle
-    the error of a ticker symbol not belonging in our dataset, and will return the error statement of what the helper
-    function will return.
+    DESCRIPTION:
+        Call upon the basic_stock_stat.py file within the back end and find the earliest and latest dates of a stock in the data
+
+    INPUT SIGNATURE:
+        1. ticker (string): the ticker of the interested stock
+
+    OUTPUT SIGNATURE:
+        1. result (string): a string contains the earliest and latest dates in the data of said stock
+            If there is any error, the string returned from the back_end will change to reflect that error itself
     """
+    
     if not check_ticker(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
         return str(get_dates(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"))
         # return page_not_found(not check_ticker(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"))"
