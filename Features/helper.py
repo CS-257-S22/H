@@ -44,6 +44,7 @@ def check_ticker(ticker, fileName):
     return False 
 
 def get_dataframe(fileName):
+
     """
     Description:
         1. Helper function for reading the dataset to avoid multiple layers of abstraction
@@ -58,3 +59,32 @@ def get_dataframe(fileName):
     nasdaq_df = pd.read_csv(fileName)
     nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
     return nasdaq_df
+
+def all_tickers(filePath = "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+
+    """
+    DESCRIPTION:
+        Find all ticker symbols (without duplicates) in any dataset
+
+    INPUT SIGNATURE:
+        1. filePath (string): the path to our dataframe
+
+    OUTPUT SIGNATURE
+        1. all_tickers (list): a Python list contains all tickers (unordered)
+    """
+
+    # read the data
+    stock_df = pd.read_csv(filePath)
+
+    # a list to store all tickers
+    all_tickers = []
+
+    # loop through the dataframe and get all tickers
+    for i in range(len(stock_df)) :
+        ticker = stock_df.loc[i, "Ticker Symbol"]
+        all_tickers.append(ticker)
+
+    # remove duplicate items
+    all_tickers = list(set(all_tickers))
+
+    return all_tickers
