@@ -1,0 +1,124 @@
+<html lang="en">
+
+<head>
+
+<title>Invest.ED</title>
+
+<!-- Scripts are for the drop down suggestion features of the ticker input bar-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+</script>  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"> 
+</script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style_mainpage.css') }}">
+</head>
+
+<body>
+
+    <div><h1>Invest.ED: Investment Education</h1></div>
+
+    <div>
+    <nav>
+    <ul>
+    <li><a href="#basicData">Inspect a stock</a></li>
+    <li><a href="#stockROI">Stock ROI</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#data">Data source</a></li>
+    </ul>
+    </nav>
+    </div>
+
+    <div id = "left" class="content">
+    <h2 class="subtitle" id="basicData">Inspect a Stock</h2>
+    
+    <h3>Purpose:</h3>
+    <p>Displays...</p>
+    
+    <h3>How to Use:</h3>
+    <ol>
+    <li>Input a desired ticker.</li>
+    <li>Press submit</li>
+    </ol>
+    
+    <!-- Form used to input specified stock information -->
+    <form class="inputfield" action="basicData" method="post">
+    <label for="ticker">Stock Ticker:</label><br>
+    <input type="text" id="ticker" name="ticker" value="" required><br><br>
+    
+    <!-- Autocomplete feature for the ticker search bar -->
+    <script>
+    $( function() {
+    var availableTags = [
+        {% for ticker_symbol in tickers %}
+                "{{ticker_symbol}}",
+            {% endfor %}
+        ];
+        $( "#ticker" ).autocomplete({
+            source: availableTags
+        });
+    } );
+    </script>
+    
+    <input type="submit" value="Submit">
+    </form>
+    </div>
+
+    <div id = "right" class="content">
+    <h2 class="subtitle" id="stockROI">Stock ROI</h2>
+    
+    <h3>Purpose:</h3>
+    <p>Displays...</p>
+    
+    <h3>How to Use:</h3>
+    <ol>
+    <li>Input a desired ticker.</li>
+    <li>Press submit</li>
+    </ol>
+    
+    <!-- Form used to input specified stock information -->
+    <form class="inputfield" action="basicData" method="post">
+    <label for="ticker">Stock Ticker:</label><br>
+    <input type="text" id="ticker" name="ticker" value="" required><br><br>
+    
+    <!-- Autocomplete feature for the ticker search bar -->
+    <script>
+    $( function() {
+    var availableTags = [
+        {% for ticker_symbol in tickers %}
+                "{{ticker_symbol}}",
+            {% endfor %}
+        ];
+        $( "#ticker" ).autocomplete({
+            source: availableTags
+        });
+    } );
+    </script>
+    
+    <input type="submit" value="Submit">
+    </form>
+    </div>
+    
+        <div class="">
+            <h2 id="data">Stock Market Dataset:</h2>
+            <p>Brief Description: General US stock market data</p>
+            <p>Source: <a href="https://www.kaggle.com/datasets/paultimothymooney/stock-market-data">Stock Market Data (NASDAQ, NYSE, S&P500). Version 57.</a></p>
+            <p>Data sets used: S&P500 Folder, NASDAQ Folder</p>
+            <p>Date Downloaded: April 11, 2022</p>
+            <p>Authorship: Paul Mooney</p>
+        </div>
+
+    <div class="content">
+    <h2 class="subtitle" id="about">About Invest Education:</h2>
+    <p>
+        The <b>purpose</b> of Invest Education is to help people learn about investments through providing both useful and informative investment tools.
+        <b>Currently</b> the only implemented tool allows the user to inspect a specified stock value over the limited span of time that our stock data covers.
+        <b>Future</b> tools of Invest Education include a stock comparison tool and a stock ROI tool displaying different investment strategies.
+    </p>
+    </div>
+
+</body>
+
+</html>
