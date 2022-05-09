@@ -1,0 +1,44 @@
+h1 {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #2f4540;
+    color: white;
+    text-align: center;
+}
+
+body {
+    background-color: #d7dccc;
+}
+
+h2 {
+    font-family: Verdana, Geneva, sans-serif; 
+}
+
+#left {
+    float:left; 
+    background:#6a948a;
+    width:33%;
+    height:280px;
+}
+
+#right {
+    float:right;
+    background:#6a948a;
+    width:33%;
+    height:280px;
+}
+
+h1 {
+    font-family: 'Italiana', serif;
+    font-size: 40px;
+}
+
+p, div {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+}
+
+li {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+    line-height: 1.4;
+}
+

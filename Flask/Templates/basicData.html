@@ -1,0 +1,19 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='datastyle.css') }}">
+</head>
+<body>
+<h1>{{basicTicker}} Data</h1>
+<h2>Beginning and Ending Dates of Recorded Data</h2>
+<p>The earliest recorded date of {{basicTicker}} is {{earlyDate}} and the latest recorded date of {{basicTicker}} is {{lateDate}}</p>
+
+<h3>Maximum Recored Value of {{basicTicker}}</h3>
+<p>{{max}} dollars per share of {{basicTicker}} which occured on {{maxDay}}</p>
+
+<h4>Minimum Recored Value of {{basicTicker}}</h4>
+<p>{{min}} dollars per share of {{basicTicker}} which occured on {{minDay}}</p>
+
+</body>
+</html>

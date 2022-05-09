@@ -17,7 +17,6 @@ import datetime
 import sys
 sys.path.append('./Features')
 from helper import *
-from helper import check_ticker, get_dataframe
 
 def find_query_input():
     """
@@ -169,7 +168,7 @@ def inspect(ticker, date, query_stat, dataframe):
         1. ticker symbol of stock (string)
         2. year of investment (int64)
         3. month of investment (int64)
-        4. query_stat (string, "Low", "Open", "Volume" "High", "Close", "Adjusted Close")
+        4. query_stat (string, "Low", "Open", "Volume" "High", "Close")
 
     Output Signature
         1. The relevant metric (query_stat) of a stock (ticker symbol) at a certain point in time (month and year of investment)
