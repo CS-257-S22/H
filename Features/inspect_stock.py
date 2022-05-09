@@ -85,6 +85,10 @@ def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
 
     # checks if the inputted date is in dataset and returns error statement if not found
     if not check_date(ticker, year, month, fileName):
+        print(ticker)
+        print(year)
+        print(month)
+        print(fileName)
         return "Invalid Date"
 
     # checks if the inputted query is offered
@@ -143,7 +147,7 @@ def check_date(ticker, year, month, fileName):
 def check_query(query):
     """
     Description:
-        This helper method checks whether the parameter query is valid and contained in our dataset. 
+        This helper method checks whether the parameter query is valid and contained in our dataset.
         Returns true if valid and false if invalid.
 
     Input:
