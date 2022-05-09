@@ -120,7 +120,8 @@ def inspect_specifified_stock(ticker,year,month,query_stat):
         month - month for inspecting the stock between 1 and 12 inclusive
         query_stat - the stat of the stock to inspect including open, close, low, and high
     Returns:
-        A description of the stock/stat and the desired value in the format: (ticker)'s (query_stat) on (month)/(year): (desired value)
+        description - A string description of the stock/stat and the desired value in the format: (ticker)'s (query_stat) on (month)/(year): 
+        value - A string that is the desired value follows immediately after the desciption
     
     """
     value = find_query(5, str(ticker), int(year), int(month), str(query_stat), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
@@ -134,7 +135,12 @@ def inspect_specifified_stock(ticker,year,month,query_stat):
 
 @app.errorhandler(404)
 def page_not_found(e):
-    "A page to instruct the user for the continuous step if an invalid route is entered."
+    """
+        Description:
+            A page to instruct the user on the steps to follow if an invalid route is entered.
+        Returns:
+            1. message404 - a string conveying further instructions to the user
+    """
 
     # the message to be displayed
     message404 = "ERROR 404\n\nInvalid Route.\
@@ -158,7 +164,13 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def python_bug(e):
-    "A page notifying the user that the encountered error is from the server, not the user."
+    """
+    Description:
+        A page notifying the user that the encountered error is from the server, not the user.
+    Returns:
+        message500 -    a string informing the user that the error is from the server and it is not
+                        their fault and tells them to inform the developement team 
+    """
 
     # the message to be displayed
     message500 =  "ERROR 500: INTERNAL SERVER ERROR\n\nDon't panic, it's NOT your fault!\n\
