@@ -2,8 +2,8 @@
 import sys
 sys.dont_write_bytecode = True
 
+from urllib import request
 from flask import render_template, Flask, request
-from helper import all_ticker
 import pandas as pd
 
 import sys
@@ -29,14 +29,15 @@ def homepage():
 
 #------------------------------
 
-@app.route("/basicData")
+@app.route("/basicData", methods =['GET', 'POST'])
 def basicData():
-    ticker = request.args[ticker]
-    dates = get_dates(ticker, "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+    ticker = request.form['ticker']
+    # dates = get_dates(ticker, "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+    dates = getExtremeDates(ticker)
     max = getMax(ticker)
     min = getMin(ticker)
-    earliestData = inspect(ticker, dates[0].split("-"), "Low", "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"), inspect(ticker, dates[0].split("-"), "High", "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"), inspect(ticker, dates[0].split("-"), "Open", "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"), inspect(ticker, dates[0].split("-"), "Close", "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"), inspect(ticker, dates[0].split("-"), "Volume", "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
-    latestData = inspect(ticker, dates[1].split("-"), "Low", "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"), inspect(ticker, dates[1].split("-"), "High", "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"), inspect(ticker, dates[1].split("-"), "Open", "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"), inspect(ticker, dates[1].split("-"), "Close", "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"), inspect(ticker, dates[1].split("-"), "Volume", "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+    earliestData = inspect(ticker, str(dates[0]).split("-"), "Low", nasdaq_df), inspect(ticker, dates[0].split("-"), "High", nasdaq_df), inspect(ticker, dates[0].split("-"), nasdaq_df), inspect(ticker, dates[0].split("-"), "Close", nasdaq_df), inspect(ticker, dates[0].split("-"), "Volume", nasdaq_df)
+    latestData = inspect(ticker, str(dates[1]).split("-"), "Low", nasdaq_df), inspect(ticker, dates[1].split("-"), "High", nasdaq_df), inspect(ticker, dates[1].split("-"), "Open", nasdaq_df), inspect(ticker, dates[1].split("-"), "Close", nasdaq_df), inspect(ticker, dates[1].split("-"), "Volume", nasdaq_df)
     return render_template("basicData.html", basicTicker=request.args['basicTicker'], earlyDate=dates[0], lateDate=dates[1], max=max[0], maxDay=max[1], min=min[0], minDay=min[1], earlyLow=earliestData[0], earlyHigh=earliestData[1], earlyOpen=earliestData[2], earlyClose=earliestData[3], earlyVolume=earliestData[4], lateLow=latestData[0], lateHigh=latestData[1], lateOpen=latestData[2], lateClose=latestData[3], lateVolume=latestData[4])
 
 #------------------------------
@@ -44,3 +45,6 @@ def basicData():
 @app.route("/stock_ROI")
 def stock_ROI():
     pass
+
+if __name__ == '__main__':
+     app.run()

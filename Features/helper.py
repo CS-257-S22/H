@@ -66,25 +66,25 @@ def get_dataframe(fileName):
     return nasdaq_df
 
 
-# def getDates(ticker):
-#     if not check_ticker(ticker, "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
-#         return "Please input a valid ticker symbol"
-#     f = open("./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", 'r', encoding = "UTF-8")
-#     firstDate = ""
-#     lastDate = ""
-#     with f as rFile:
-#         spamreader = csv.reader(rFile, delimiter=',')
-#         next(spamreader)
-#         for row in spamreader:
-#             if row[9] == ticker:
-#                 firstDate = row[0]
-#                 break
-#         for row in spamreader:
-#             if row[9] != ticker:
-#                 lastDate = row[0]
-#                 break
-#     f.close
-#     return firstDate, lastDate
+def getExtremeDates(ticker):
+    if not check_ticker(ticker, "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+        return "Please input a valid ticker symbol"
+    f = open("./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", 'r', encoding = "UTF-8")
+    firstDate = ""
+    lastDate = ""
+    with f as rFile:
+        spamreader = csv.reader(rFile, delimiter=',')
+        next(spamreader)
+        for row in spamreader:
+            if row[9] == ticker:
+                firstDate = row[0]
+                break
+        for row in spamreader:
+            if row[9] != ticker:
+                lastDate = row[0]
+                break
+    f.close
+    return firstDate, lastDate
 
 def getMax(ticker):
     """
@@ -134,7 +134,7 @@ def getMin(ticker):
     f.close
     return stat, minDate
 
-def all_tickers(filePath = "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+def all_tickers(filePath = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
 
     """
     DESCRIPTION:
@@ -144,7 +144,7 @@ def all_tickers(filePath = "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_ye
         1. filePath (string): the path to our dataframe
 
     OUTPUT SIGNATURE
-        1. all_tickers (list): a Python list contains all tickers (unordered)
+        1. all_tickers_not_duplicate (list): a Python list contains all tickers (unordered)
     """
 
     # read the data
@@ -159,7 +159,15 @@ def all_tickers(filePath = "../Data/Polished/NO_NULL_nasdaq_2010_mid_separate_ye
         all_tickers.append(ticker)
 
     # remove duplicate items
-    all_tickers = list(set(all_tickers))
+    all_tickers_not_duplicate = []
+    
+    for item in all_tickers:
 
-    return all_tickers
+        if item in all_tickers_not_duplicate:
+            pass
+
+        else:
+            all_tickers_not_duplicate.append(item)
+
+    return all_tickers_not_duplicate
 
