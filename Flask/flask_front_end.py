@@ -3,6 +3,7 @@ import sys
 sys.dont_write_bytecode = True
 
 from flask import render_template, Flask, request
+from helper import all_ticker
 import pandas as pd
 
 import sys
@@ -24,7 +25,7 @@ nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
 @app.route("/")
 def homepage():
-    return render_template('index_mainpage.html', tickers=all_ticker(dataframe))
+    return render_template('index_mainpage.html', tickers=all_tickers())
 
 #------------------------------
 
