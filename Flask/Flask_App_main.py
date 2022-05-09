@@ -145,7 +145,7 @@ def inspect_specifified_stock(ticker,year,month,query_stat):
         value - A string that is the desired value follows immediately after the desciption
     
     """
-    value = find_query(5, str(ticker), int(year), int(month), str(query_stat), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
+    value = find_query(6, str(ticker), int(year), int(month), str(query_stat), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
     description = ""
     if not isinstance(value,str) :
         #checks to see if output is not an invalid input message
