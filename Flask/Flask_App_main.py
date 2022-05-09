@@ -29,7 +29,7 @@ def homepage():
     INPUT SIGNATURE:
         1. None, this is the home page.
     OUTPUT SIGNATURE:
-        2. Render the home page from our html template
+        1. Render the home page from our html template
     """
 
     header = "INVEST.ED BETA PLATFORM"
@@ -70,6 +70,9 @@ def flask_stock_ROI(ticker_symbol, investment_year, investment_month, buying_pri
         5. divestment_year: the year that the hypothetical divestment was made
         6. divestment_month: the month that the hypothetical divestment was made
         7. selling_price: the price the stock was divested at, choose between 'Open', 'Close', 'Low', 'High', and 'Adjusted Close'
+
+    OUTPUT SIGNATURE:
+        1. message_stock_ROI (string): a message conveying the ROI of the chosen stock
     """
 
     # convert input into the appropriate data format
