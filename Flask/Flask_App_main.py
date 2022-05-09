@@ -112,7 +112,7 @@ def get_dates_of_stock(ticker):
 @app.route('/inspect_stock/<ticker>/<year>/<month>/<query_stat>', strict_slashes=False)
 def inspect_specifified_stock(ticker,year,month,query_stat):
     """Returns a stock statistic based on input stock information or returns an invalid input message for invalid inputs """
-    value = find_query(5, str(ticker), int(year), int(month), str(query_stat), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
+    value = find_query(6, str(ticker), int(year), int(month), str(query_stat), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
     description = ""
     if not isinstance(value,str) :
         #checks to see if output is not an invalid input message
@@ -126,8 +126,8 @@ def page_not_found(e):
     "A page to instruct the user for the continuous step if an invalid route is entered."
 
     # the message to be displayed
+        # \nReturn to Home Page for more instruction. (i.e. You can use the Back button.)\n\n\
     message404 = "ERROR 404\n\nInvalid Route.\
-        \nReturn to Home Page for more instruction. (i.e. You can use the Back button.)\n\n\
         This might be due to some of the following reasons:\n\n\
             1. You might have forgotten to specify the feature before you inputted the stock information.\n\n\
             2. You might have made a typo typing out the URL.\n\n\
