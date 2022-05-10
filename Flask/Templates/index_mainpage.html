@@ -16,6 +16,11 @@
         rel="stylesheet" type="text/css" />
 
 <link rel="stylesheet" href="{{ url_for('static', filename='style_mainpage.css') }}">
+<link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="text/css">
+ <link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
+ <link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -32,43 +37,77 @@
     </ul>
     </nav>
     </div>
-
+    
     <div id = "left" class="content">
-    <h2 class="subtitle" id="basicData">Inspect a Stock</h2>
-    
-    <h3>Purpose:</h3>
-    <p>Displays...</p>
-    
-    <h3>How to Use:</h3>
-    <ol>
-    <li>Input a desired ticker.</li>
-    <li>Press submit</li>
-    </ol>
-    
-    <!-- Form used to input specified stock information -->
-    <form class="inputfield" action="basicData" method="post">
-    <label for="ticker">Stock Ticker:</label><br>
-    <input type="text" id="ticker" name="ticker" value="" required><br><br><br>
-    
-    <!-- Autocomplete feature for the ticker search bar -->
-    <script>
-    $( function() {
-    var availableTags = [
-        {% for ticker_symbol in tickers %}
-                "{{ticker_symbol}}",
-            {% endfor %}
-        ];
-        $( "#ticker" ).autocomplete({
-            source: availableTags
-        });
-    } );
-    </script>
+        <h2 class="subtitle" id="basicData">Inspect a Stock</h2>
+        
+        <h3>Purpose:</h3>
+        <p>Displays...</p>
+        
+        <h3>How to Use:</h3>
+        <ol>
+            <li>Input a desired ticker.</li>
+            <li>Press submit</li>
+        </ol>
+        
+        <!-- Form used to input specified stock information -->
+        <form class="inputfield" action="basicData" method="post">
+            <label for="ticker">Stock Ticker:</label><br>
+            <input type="text" id="ticker1" name="ticker" value="" required><br><br><br>
+            
+            <!-- Autocomplete feature for the ticker search bar -->
+            <script>
+                $( function() {
+                    var availableTags = [
+                        {% for ticker_symbol in tickers %}
+                        "{{ticker_symbol}}",
+                        {% endfor %}
+                    ];
+                    $( "#ticker1" ).autocomplete({
+                        source: availableTags
+                    });
+                } );
+                </script>
     
     <input type="submit" value="Submit">
-    </form>
-    </div>
+</form>
+</div>
 
     <div id = "right" class="content">
+        <h2 class="subtitle" id="basicData">Inspect a Stock</h2>
+        
+        <h3>Purpose:</h3>
+        <p>Displays...</p>
+        
+        <h3>How to Use:</h3>
+        <ol>
+            <li>Input a desired ticker.</li>
+            <li>Press submit</li>
+        </ol>
+        
+        <!-- Form used to input specified stock information -->
+        <form class="inputfield" action="basicData" method="post">
+            <label for="ticker">Stock Ticker:</label><br>
+            <input type="text" id="ticker2" name="ticker" value="" required><br><br><br>
+            
+            <!-- Autocomplete feature for the ticker search bar -->
+            <script>
+                $( function() {
+                    var availableTags = [
+                        {% for ticker_symbol in tickers %}
+                        "{{ticker_symbol}}",
+                        {% endfor %}
+                    ];
+                    $( "#ticker2" ).autocomplete({
+                        source: availableTags
+                    });
+                } );
+                </script>
+    <input type="submit" value="Submit">
+</form>
+</div>
+
+<!-- <div id = "right" class="content">
     <h2 class="subtitle" id="stockROI">Stock ROI</h2>
     
     <h3>Purpose:</h3>
@@ -76,50 +115,51 @@
     
     <h3>How to Use:</h3>
     <ol>
-    <li>Input a desired ticker.</li>
-    <li>Press submit</li>
-    </ol>
+        <li>Input a desired ticker.</li>
+        <li>Press submit</li>
+    </ol> -->
     
     <!-- Form used to input specified stock information -->
-    <form class="inputfield" action="basicData" method="post">
-    <label for="ticker">Stock Ticker:</label><br>
-    <input type="text" id="ticker" name="ticker" value="" required><br><br>
-    
-    <!-- Autocomplete feature for the ticker search bar -->
-    <script>
-    $( function() {
-    var availableTags = [
-        {% for ticker_symbol in tickers %}
-                "{{ticker_symbol}}",
-            {% endfor %}
-        ];
-        $( "#ticker" ).autocomplete({
-            source: availableTags
-        });
-    } );
-    </script>
+    <!-- <form class="inputfield" action="stockROI" method="post">
+        <label for="ticker">Stock Ticker:</label><br>
+        <input type="text" id="ticker" name="ticker" value="" required><br><br><br> -->
+        
+        <!-- Autocomplete feature for the ticker search bar -->
+        <!-- <script>
+            $( function() {
+                var availableTags = [
+                    {% for ticker_symbol in tickers %}
+                    "{{ticker_symbol}}",
+                    {% endfor %}
+                ];
+                $( "#ticker" ).autocomplete({
+                    source: availableTags
+                });
+            } );
+            </script>
     
     <input type="submit" value="Submit">
-    </form>
-    </div>
-    
-        <div class="">
-            <h2 id="data">Stock Market Dataset:</h2>
-            <p>Brief Description: General US stock market data</p>
-            <p>Source: <a href="https://www.kaggle.com/datasets/paultimothymooney/stock-market-data">Stock Market Data (NASDAQ, NYSE, S&P500). Version 57.</a></p>
-            <p>Data sets used: S&P500 Folder, NASDAQ Folder</p>
-            <p>Date Downloaded: April 11, 2022</p>
-            <p>Authorship: Paul Mooney</p>
-        </div>
+</form>
+</div> -->
 
-    <div class="content">
-    <h2 class="subtitle" id="about">About Invest Education:</h2>
-    <p>
-        The <b>purpose</b> of Invest Education is to help people learn about investments through providing both useful and informative investment tools.
-        <b>Currently</b> the only implemented tool allows the user to inspect a specified stock value over the limited span of time that our stock data covers.
-        <b>Future</b> tools of Invest Education include a stock comparison tool and a stock ROI tool displaying different investment strategies.
-    </p>
-    </div>
+<div id="market" class="">
+    <h2 id="data">Stock Market Dataset:</h2>
+    <p>Brief Description: General US stock market data</p>
+    <p>Source: <a href="https://www.kaggle.com/datasets/paultimothymooney/stock-market-data">Stock Market Data (NASDAQ, NYSE, S&P500). Version 57.</a></p>
+    <p>Data sets used: S&P500 Folder, NASDAQ Folder</p>
+    <p>Date Downloaded: April 11, 2022</p>
+    <p>Authorship: Paul Mooney</p>
+</div>
+
+<div id="about" class="content">
+<h2 class="subtitle" id="about">About Invest Education:</h2>
+<p>
+    The <b>purpose</b> of Invest Education is to help people learn about investments through providing both useful and informative investment tools.
+    <b>Currently</b> the only implemented tool allows the user to inspect a specified stock value over the limited span of time that our stock data covers.
+    <b>Future</b> tools of Invest Education include a stock comparison tool and a stock ROI tool displaying different investment strategies.
+</p>
+</div>
+
 
 </body>
 
