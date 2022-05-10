@@ -42,9 +42,9 @@ def basicData():
 
 #------------------------------
 
-@app.route("/stock_ROI")
+@app.route("/stockROI", methods=['GET', 'POST'])
 def stock_ROI():
-    pass
+    return request.form['ticker']
 
 if __name__ == '__main__':
      app.run()
