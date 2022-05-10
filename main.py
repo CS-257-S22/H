@@ -67,7 +67,7 @@ def run_feature_called():
         date_divest = [int(sys.argv[6]), int(sys.argv[7])]
         buying_price = str(sys.argv[5])
         selling_price = str(sys.argv[8])
-        return stock_ROI.main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price, data_file = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+        return stock_ROI.main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price, data_file = "./Data/Polished/randomized_day_market.csv")
             
 
     else:

@@ -30,7 +30,7 @@ def get_dates_input():
             - Another list contains the earliest and the latest date of the stock
     """
     ticker = str(sys.argv[2])
-    fileName = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    fileName = "./Data/Polished/randomized_day_market.csv"
     output = get_dates(ticker, fileName)
     return output
 
