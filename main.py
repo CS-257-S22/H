@@ -11,7 +11,7 @@ import csv
 from Features import inspect_stock, basic_stock_stat, stock_ROI, helper
 
 # read all available data
-nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+nasdaq_df = pd.read_csv("Data/Polished/randomized_day_market.csv")
 
 def read_input():
     """
@@ -38,7 +38,7 @@ def read_input():
     """
 
     # calls a helper method for reading file so ensures there is only 1 level of abstraction
-    fileName = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    fileName = "./Data/Polished/randomized_day_market.csv"
     nasdaq_df = helper.get_dataframe(fileName)
     # num_of_args = len(sys.argv)
 

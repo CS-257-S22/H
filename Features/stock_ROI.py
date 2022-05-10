@@ -59,7 +59,7 @@ def terminal_call_stock_ROI():
 
 #------------------------------
 
-def main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price, data_file = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+def main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price, data_file = "./Data/Polished/randomized_day_market.csv"):
     """
     Description
         1. This is the main() function of this feature stock_ROI
