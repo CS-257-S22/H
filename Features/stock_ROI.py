@@ -1,8 +1,17 @@
 # Pycache are evil, don't produce them
+from enum import unique
+from logging import raiseExceptions
 import sys
 sys.dont_write_bytecode = True
 
 import pandas as pd
+
+import seaborn as sns
+# set desired graph size
+sns.set(rc={'figure.figsize':(15,10)})
+# set background color
+sns.set(rc={"axes.facecolor":"white", "figure.facecolor":"white"})
+
 import argparse
 
 #from inspect_stock import check_query
@@ -90,7 +99,6 @@ def main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price
 
     else:
         return(validity) # return the error message
-
 
 #------------------------------
 
@@ -212,6 +220,180 @@ def percentage_difference(initial, final):
 
     # return the percentage value
     return (difference * 100)
+
+#------------------------------
+
+def stock_years(ticker, dataframe):
+    """
+    DESCRIPTION:
+        Find all available years of a stock
+
+    INPUT SIGNATURE:
+        1. ticker (string): the ticker of the stock in question
+        2. dataframe (Pandas): a pandas dataframe that is passed into this method
+
+    OUTPUT SIGNATURE:
+        1. unique_years (list): an ascending list of all the years available
+    """
+
+    # filter out only the relevant ticker
+    lone_ticker_df = dataframe[dataframe["Ticker Symbol"] == ticker]
+
+    unique_years = list(lone_ticker_df["Year"].unique())
+    unique_years.sort()
+
+    return unique_years
+
+#------------------------------
+
+def extreme_month_of_year(ticker, year, method, dataframe):
+    """
+    DESCRIPTION:
+        Given a ticker and a year, find the earliest/latest month of available statistic of that ticker in that year
+    
+    INPUT SIGNATURE:
+        1. ticker (string): the ticker in question
+        2. year (int): the year in question
+        3. dataframe (Pandas): the dataframe loaded from our dataset
+
+    OUTPUT SIGNATURE:
+        1. month (int): the earliest/latest month available of that year
+    """
+
+    # filter out only the relevant ticker
+    lone_ticker_df = dataframe[dataframe["Ticker Symbol"] == ticker]
+
+    # filter out only the desired year
+    lone_year_df = lone_ticker_df.loc[lone_ticker_df["Year"] == year]
+
+    # get a list of the months
+    months = list(lone_year_df["Month"].unique())
+
+    if method == "earliest":
+        # find the smallest month
+        earliest_month = min(months)
+        return earliest_month
+
+    elif method == "latest":
+        # find the largest month
+        latest_month = max(months)
+        return latest_month
+
+    else:
+        return "Invalid Method argument for extreme_month_of_year() function. Only accept 'earliest' or 'latest'."
+
+#------------------------------
+
+def all_ROIs_one_ticker(ticker, dataframe):
+    """
+    DESCRIPTION:
+        Calculate all ROIs of a stock over the years
+    
+    INPUT SIGNATURE:
+        1. ticker (string): the ticker of the stock of interest
+        2. dataframe (Pandas): Pandas dataframe of our dataset
+
+    OUTPUT SIGNATURE:
+        1. yearly_ROI_df (Pandas): Pandas dataframe with 2 columns
+            - Year
+            - ROI (of that year)
+        2. unique_years (list): list of unique years of said ticker
+        3. ROIs (list): list of corresponding ROIs for each year of said ticker
+    """
+
+    # find all the years available in the dataset of our stock
+    unique_years = stock_years(ticker, dataframe)
+
+    # empty list to store yearly ROIs
+    ROIs = []
+
+    # find the first year, which is also the year of investment
+    first_year = unique_years[0]
+
+    # find the earliest time one can invest in the first year
+    first_month = extreme_month_of_year(ticker, first_year, method = "earliest", dataframe = dataframe)
+
+    # calculate ROI for each year (compared to the first year)
+    for year in unique_years:
+
+        # divestment month at the end of the year
+        last_month = extreme_month_of_year(ticker, year, method = "latest", dataframe = dataframe)
+
+        ROI = backbone_stock_ROI(dateframe = dataframe,\
+            ticker = ticker,\
+            date_invest = [first_year, first_month],\
+            date_divest = [year, last_month],\
+            buying_price = "Low",\
+            selling_price = "High")
+
+        # ROI = backbone_stock_ROI(dataframe, ticker,\
+            # [first_year, first_month], [year, last_month],\
+            # "Low", "High")
+
+        ROIs.append(ROI)
+
+    # merge data into a nice dataframe
+    data = {'Year':unique_years, 'ROI':ROIs}
+    yearly_ROI_df = pd.DataFrame(data)
+
+    return yearly_ROI_df, unique_years, ROIs
+
+#------------------------------
+
+def graph_ROIs_over_time_one_stock(ticker, dataframe):
+    """
+    DESCRIPTION:
+        Use seaborn to generate a graph of ROI and save it within the Flask folder
+
+    INPUT SIGNATURE:
+        1. ticker (string): the ticker of the stock in question
+        2. dataframe (Pandas): the dataframe containing said ticker
+
+    OUTPUT SIGNATURE:
+        1. graph: saved within ../Flask/static/photos/graphs
+    """
+
+    # get unique years and ROIs for each year
+    yearly_ROI_df, unique_year, ROIs = all_ROIs_one_ticker(ticker, dataframe)
+
+    # generate appropriate palette
+    colors = [] # empty list to store all colors
+    for ROI in ROIs:
+
+        if ROI == max(ROIs):
+            colors.append("#58a7a0")
+        
+        elif ROI == min(ROIs):
+            colors.append("#A7585F")
+
+        else:
+            colors.append("#CEBACB")
+
+    # generate the graph
+    graph_yearly_ROI = sns.barplot(x = "Year",\
+        y = "ROI",\
+        data = yearly_ROI_df,\
+        palette = colors) # palette = ["#bacebd" if x != max(ROIs) else "#a7585f" for x in dataframe["Ticker Symbol"]]
+
+    # set title to graph
+    graph_yearly_ROI.set_title("Yearly Return on Investment (%) for " + ticker)
+
+    # add label to each bar
+    for p in graph_yearly_ROI.patches:
+        graph_yearly_ROI.annotate("%.0f" % p.get_height(), (p.get_x() + p.get_width() / 2., p.get_height()),
+            ha='center', va='center', fontsize=10, color='black', xytext=(0, 5),
+            textcoords = 'offset points')
+
+    # generate graph's name and path
+    name = "yearly_ROIs_" + ticker + ".png"
+    location = "../Flask/static/photos/graphs/"
+    final_path = location + name
+
+    # export graph as png
+    graph_yearly_ROI.get_figure().savefig(final_path)
+
+    # return the name for accessibility from other functions
+    return (final_path)
 
 #------------------------------
 
