@@ -24,7 +24,12 @@ nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 @app.route("/")
 def homepage():
     """
-    Create a homepage for the beta website.
+    DESCRIPTION:
+        Create a homepage for the beta website.
+    INPUT SIGNATURE:
+        1. None, this is the home page.
+    OUTPUT SIGNATURE:
+        1. Render the home page from our html template
     """
 
     header = "INVEST.ED BETA PLATFORM"
@@ -52,9 +57,23 @@ def homepage():
 @app.route("/stock_ROI/<ticker_symbol>/<investment_year>/<investment_month>/<buying_price>/<divestment_year>/<divestment_month>/<selling_price>")
 def flask_stock_ROI(ticker_symbol, investment_year, investment_month, buying_price,\
     divestment_year, divestment_month, selling_price):
-    "DESCRIPTION:\
-        This function is the web-interface of our stock_ROI feature.\
-        It displays to the user what is their return on investment in percentage value."
+    """
+    DESCRIPTION:
+        This function is the web-interface of our stock_ROI feature.
+        It displays to the user what is their return on investment in percentage value.
+    
+    INPUT SIGNATURE:
+        1. ticker_symbol: the ticker of the stock of interest
+        2. investment_year: the year that the hypothetical investment was made
+        3. investment_month: the month that the hypothetical investment was made
+        4. buying_price: the price the stock was invested at, choose between 'Open', 'Close', 'Low', 'High', and 'Adjusted Close'
+        5. divestment_year: the year that the hypothetical divestment was made
+        6. divestment_month: the month that the hypothetical divestment was made
+        7. selling_price: the price the stock was divested at, choose between 'Open', 'Close', 'Low', 'High', and 'Adjusted Close'
+
+    OUTPUT SIGNATURE:
+        1. message_stock_ROI (string): a message conveying the ROI of the chosen stock
+    """
 
     # convert input into the appropriate data format
     investment_year = int(investment_year)
@@ -95,12 +114,17 @@ def flask_stock_ROI(ticker_symbol, investment_year, investment_month, buying_pri
 @app.route('/extreme_dates/<ticker>', strict_slashes=False)
 def get_dates_of_stock(ticker):
     """
-    This function calls on the function in basic_stock_stat.py, which is our second feature that returns the earliest and 
-    latest dates of the stock specified by the ticker symbol parameter. The function takes in a ticker variable and 
-    returns the dates for the stock that the ticker symbol belongs to. It also calls a helper function to handle
-    the error of a ticker symbol not belonging in our dataset, and will return the error statement of what the helper
-    function will return.
+    DESCRIPTION:
+        Call upon the basic_stock_stat.py file within the back end and find the earliest and latest dates of a stock in the data
+
+    INPUT SIGNATURE:
+        1. ticker (string): the ticker of the interested stock
+
+    OUTPUT SIGNATURE:
+        1. result (string): a string contains the earliest and latest dates in the data of said stock
+            If there is any error, the string returned from the back_end will change to reflect that error itself
     """
+    
     if not check_ticker(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
         return str(get_dates(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"))
         # return page_not_found(not check_ticker(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"))"
@@ -111,7 +135,19 @@ def get_dates_of_stock(ticker):
 
 @app.route('/inspect_stock/<ticker>/<year>/<month>/<query_stat>', strict_slashes=False)
 def inspect_specifified_stock(ticker,year,month,query_stat):
-    """Returns a stock statistic based on input stock information or returns an invalid input message for invalid inputs """
+    """
+    Description: 
+        Shows the user a stock statistic based on input stock information or returns an invalid input message for invalid inputs
+    Parameters:
+        ticker - stock ticker for the stock intending to inspect
+        year - year for inspecting the stock between 2001 and 2022 inclusive
+        month - month for inspecting the stock between 1 and 12 inclusive
+        query_stat - the stat of the stock to inspect including open, close, low, and high
+    Returns:
+        description - A string description of the stock/stat and the desired value in the format: (ticker)'s (query_stat) on (month)/(year): 
+        value - A string that is the desired value follows immediately after the desciption
+    
+    """
     value = find_query(6, str(ticker), int(year), int(month), str(query_stat), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
     description = ""
     if not isinstance(value,str) :
@@ -123,11 +159,16 @@ def inspect_specifified_stock(ticker,year,month,query_stat):
 
 @app.errorhandler(404)
 def page_not_found(e):
-    "A page to instruct the user for the continuous step if an invalid route is entered."
+    """
+        Description:
+            A page to instruct the user on the steps to follow if an invalid route is entered.
+        Returns:
+            1. message404 - a string conveying further instructions to the user
+    """
 
     # the message to be displayed
-        # \nReturn to Home Page for more instruction. (i.e. You can use the Back button.)\n\n\
     message404 = "ERROR 404\n\nInvalid Route.\
+        \nReturn to Home Page for more instruction. (i.e. You can use the Back button.)\n\n\
         This might be due to some of the following reasons:\n\n\
             1. You might have forgotten to specify the feature before you inputted the stock information.\n\n\
             2. You might have made a typo typing out the URL.\n\n\
@@ -147,7 +188,13 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def python_bug(e):
-    "A page notifying the user that the encountered error is from the server, not the user."
+    """
+    Description:
+        A page notifying the user that the encountered error is from the server, not the user.
+    Returns:
+        message500 -    a string informing the user that the error is from the server and it is not
+                        their fault and tells them to inform the developement team 
+    """
 
     # the message to be displayed
     message500 =  "ERROR 500: INTERNAL SERVER ERROR\n\nDon't panic, it's NOT your fault!\n\

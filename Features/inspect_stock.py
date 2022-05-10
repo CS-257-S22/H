@@ -17,7 +17,6 @@ import datetime
 import sys
 sys.path.append('./Features')
 from helper import *
-from helper import check_ticker, get_dataframe
 
 def find_query_input():
     """
@@ -86,6 +85,10 @@ def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
 
     # checks if the inputted date is in dataset and returns error statement if not found
     if not check_date(ticker, year, month, fileName):
+        print(ticker)
+        print(year)
+        print(month)
+        print(fileName)
         return "Invalid Date"
 
     # checks if the inputted query is offered
@@ -144,7 +147,7 @@ def check_date(ticker, year, month, fileName):
 def check_query(query):
     """
     Description:
-        This helper method checks whether the parameter query is valid and contained in our dataset. 
+        This helper method checks whether the parameter query is valid and contained in our dataset.
         Returns true if valid and false if invalid.
 
     Input:
@@ -169,7 +172,7 @@ def inspect(ticker, date, query_stat, dataframe):
         1. ticker symbol of stock (string)
         2. year of investment (int64)
         3. month of investment (int64)
-        4. query_stat (string, "Low", "Open", "Volume" "High", "Close", "Adjusted Close")
+        4. query_stat (string, "Low", "Open", "Volume" "High", "Close")
 
     Output Signature
         1. The relevant metric (query_stat) of a stock (ticker symbol) at a certain point in time (month and year of investment)
