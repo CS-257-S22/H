@@ -36,7 +36,8 @@ def find_query_input():
     """
 
     # calls a helper method for reading file so ensures there is only 1 level of abstraction
-    fileName = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    # fileName = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
+    fileName = "./Data/Polished/randomized_day_market.csv"
     nasdaq_df = get_dataframe(fileName)
 
 
@@ -138,7 +139,7 @@ def check_date(ticker, year, month, fileName):
         spamreader = csv.reader(rFile, delimiter=',')
         next(spamreader)
         for row in spamreader:
-            if row[10] == ticker and row[3] == str(year) and row[2] == str(month):
+            if row[9] == ticker and row[3] == str(year) and row[2] == str(month):
                 f.close
                 return True
     f.close
