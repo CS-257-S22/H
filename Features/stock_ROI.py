@@ -39,11 +39,11 @@ def terminal_call_stock_ROI():
     parser.add_argument("date_invest_year", type = int, help = "the year that you hypothetically bought the stock")
     parser.add_argument("date_invest_month", type = int, help = "the month that you hypothetically bought the stock")
     parser.add_argument("buying_price", type = str, help = "the price that you hypothetically bought the stock at\
-        , choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close'")
+        , choose between 'Open', 'Close', 'High', and 'Close'")
     parser.add_argument("date_divest_year", type = int, help = "the year that you hypothetically sold the stock")
     parser.add_argument("date_divest_month", type = int, help = "the month that you hypothetically sold the stock")
     parser.add_argument("selling_price", type = str, help = "the price that you hypothetically bought the stock at\
-        , choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close'")
+        , choose between 'Open', 'Close', 'High', and 'Close'")
 
     # parse all arguments
     args = parser.parse_args()
