@@ -22,7 +22,7 @@ def check_basicTicker(ticker):
     Output:
         1. Returns the result of check_ticker(ticker, fileName) where fileName is preset to a default file
     """
-    return check_ticker(ticker, "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+    return check_ticker(ticker, "./Data/Polished/randomized_day_market.csv")
 
 def check_ticker(ticker, fileName):
     """
@@ -42,7 +42,7 @@ def check_ticker(ticker, fileName):
         spamreader = csv.reader(rFile, delimiter=',')
         next(spamreader)
         for row in spamreader:
-            if row[10] == ticker:
+            if row[9] == ticker:
                 f.close
                 return True
     f.close
@@ -67,9 +67,9 @@ def get_dataframe(fileName):
 
 
 def getExtremeDates(ticker):
-    if not check_ticker(ticker, "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+    if not check_ticker(ticker, "./Data/Polished/randomized_day_market.csv"):
         return "Please input a valid ticker symbol"
-    f = open("./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", 'r', encoding = "UTF-8")
+    f = open("./Data/Polished/randomized_day_market.csv", 'r', encoding = "UTF-8")
     firstDate = ""
     lastDate = ""
     with f as rFile:
@@ -94,11 +94,11 @@ def getMax(ticker):
     Input: Takes in a ticker symbol which must be recorded in our dataset (Only TSLA is acceptable at this time)
     Output: The maximum recorded value of particular stock and the date it was recorded on
     """
-    if not check_ticker(ticker, "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+    if not check_ticker(ticker, "./Data/Polished/randomized_day_market.csv"):
         return "Please input a valid ticker symbol"
     stat = float(0)
     maxDate = ""
-    f = open("./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", 'r', encoding = "UTF-8")
+    f = open("./Data/Polished/randomized_day_market.csv", 'r', encoding = "UTF-8")
     with f as rFile:
         reader = csv.reader(rFile, delimiter=",")
         next(reader)
@@ -118,11 +118,11 @@ def getMin(ticker):
     Input: Takes in a ticker symbol which must be recorded in our dataset (Only TSLA is acceptable at this time)
     Output: The maximum recorded value of particular stock and the date it was recorded on
     """
-    if not check_ticker(ticker, "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+    if not check_ticker(ticker, "./Data/Polished/randomized_day_market.csv"):
         return "Please input a valid ticker symbol"
     stat = float(99999999999999999)
     minDate = ""
-    f = open("./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", 'r', encoding = "UTF-8")
+    f = open("./Data/Polished/randomized_day_market.csv", 'r', encoding = "UTF-8")
     with f as rFile:
         reader = csv.reader(rFile, delimiter=",")
         next(reader)
@@ -134,7 +134,7 @@ def getMin(ticker):
     f.close
     return stat, minDate
 
-def all_tickers(filePath = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
+def all_tickers(filePath = "./Data/Polished/randomized_day_market.csv"):
 
     """
     DESCRIPTION:
