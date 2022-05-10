@@ -1,0 +1,28 @@
+/*Head Banner*/
+h1 {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #1e93bd;
+    color: #FEFEFF;
+    text-align: right;
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+
+/*Center Graph*/
+img {
+    position: absolute;
+    left: 50%;
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+/*Adjusting Fonts*/
+h1 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 5 em;
+    font-weight: bold;
+    color: #FEFEFF;
+}

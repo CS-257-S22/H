@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+
+    <head>
+
+        <title>{{ticker}} Yearly ROI</title>
+        <link rel = "stylesheet" href = "{{ url_for('static', filename = 'stock_ROI_graph_stylesheet.css') }}">
+
+    </head>
+
+    <body>
+
+        <h1>{{ticker}} Yearly Return on Investment (%) ...</h1>
+
+        <img src = "{{graph_image}}" alt = "A Bar Graph Displaying {{ticker}} Yearly Return on Investment">
+
+    </body>
+
+</html>

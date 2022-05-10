@@ -2,6 +2,7 @@
 from enum import unique
 from logging import raiseExceptions
 import sys
+import matplotlib
 sys.dont_write_bytecode = True
 
 import pandas as pd
@@ -351,6 +352,7 @@ def graph_ROIs_over_time_one_stock(ticker, dataframe):
 
     OUTPUT SIGNATURE:
         1. graph: saved within ../Flask/static/photos/graphs
+        2. name (string): the name of the saved graph
     """
 
     # get unique years and ROIs for each year
@@ -386,14 +388,16 @@ def graph_ROIs_over_time_one_stock(ticker, dataframe):
 
     # generate graph's name and path
     name = "yearly_ROIs_" + ticker + ".png"
-    location = "../Flask/static/photos/graphs/"
+    location = "./Flask/static/photos/graphs/"
     final_path = location + name
 
     # export graph as png
-    graph_yearly_ROI.get_figure().savefig(final_path)
+    # graph_yearly_ROI.get_figure().savefig(final_path)
+    graph_yearly_ROI.figure.savefig(final_path)
+    graph_yearly_ROI.figure.clf()
 
     # return the name for accessibility from other functions
-    return (final_path)
+    return name
 
 #------------------------------
 
