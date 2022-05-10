@@ -23,13 +23,13 @@ class Tests(unittest.TestCase):
 
     def test_get_dates(self):
         """Tests whether or not the correct dates are retreived when calling the get_dates method"""
-        values = get_dates("AMZN", "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+        values = get_dates("AMZN", "Data/Polished/randomized_day_market.csv")
         trueValues = ([2010, 1], [2022, 3])
         self.assertEqual(values, trueValues)
     
     def test_wrong_get_dates(self):
         """Tests whether or not an incorrect date value is recognized as being so"""
-        values = get_dates("AMZN", "Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+        values = get_dates("AMZN", "Data/Polished/randomized_day_market.csv")
         trueValues = ([2009,2], [2021,5])
         self.assertFalse(values == trueValues)
 
@@ -47,7 +47,7 @@ class Tests(unittest.TestCase):
     def test_wrong_inspect(self):
         """This tests if when an incorrect value is inputted whether it is recognized as being incorrect or not"""
         testData = pd.read_csv("Tests/DataForTesting/test_data_sample.csv")
-        # testData = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+        # testData = pd.read_csv("Data/Polished/randomized_day_market.csv")
         testData["Date"] = pd.to_datetime(testData["Date"])
 
         value = inspect("ROST", [2020, 10], "Low", testData)
