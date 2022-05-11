@@ -118,7 +118,13 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
             (dataframe["Year"] == earliest_year)]\
             ["Month"].min()
 
-        return [earliest_year, earliest_month]
+        # find the earliest day in record
+        earliest_day = dataframe.loc[(dataframe["Ticker Symbol"] == ticker) &\
+            (dataframe["Year"] == earliest_year) &\
+            (dataframe["Month"] == earliest_month)]\
+            ["Day"].min()
+
+        return [earliest_year, earliest_month, earliest_day]
 
 
     elif method == "latest":
@@ -132,7 +138,13 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
             (dataframe["Year"] == latest_year)]\
             ["Month"].max()
 
-        return [latest_year, latest_month]
+        # find the earliest day in record
+        latest_day = dataframe.loc[(dataframe["Ticker Symbol"] == ticker) &\
+            (dataframe["Year"] == latest_year) &\
+            (dataframe["Month"] == latest_month)]\
+            ["Day"].max()
+
+        return [latest_year, latest_month, latest_day]
 
 if __name__ == '__main__':
     get_dates_input()
