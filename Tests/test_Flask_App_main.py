@@ -24,7 +24,7 @@ class test_Flask_app(unittest.TestCase):
 
         # list of inputs for testing purposes
         given = [["AMD", [2017, 3] , [2022, 3], "Low", "High"],\
-            ["RIBT", [2010, 3], [2022, 3], "Open", "High"],\
+            ["RIBT", [2012, 3], [2022, 3], "Open", "High"],\
             ["GENE", [2017, 11], [2022, 3], "Open", "Close"],\
             ["HWBK", [2012, 2], [2022, 3], "High", "Open"],\
             ["SAFM", [2017, 9], [2022, 3], "Close", "Low"]]
@@ -33,11 +33,11 @@ class test_Flask_app(unittest.TestCase):
         routes = route_generator_stock_ROI(given)
 
         # list of corresponding expected output
-        expected = [705.3597897435196,\
-            -97.38888889551163,\
-            -42.18750011641532,\
-            287.1387238256577,\
-            11.231881260542963]
+        expected = [699.0476391424841,\
+            -98.11538457870483,\
+            -41.26505762368915,\
+            278.8730269264091,\
+            12.236049408098589]
 
         # loop through all the possible routes/input and compare the result
         for i in range(len(routes)):
@@ -73,14 +73,14 @@ class test_Flask_app(unittest.TestCase):
         self.app = app.test_client()
 
         # list of inputs for testing purposes
-        given = [["ZUMZ", [2010, 1] , [2022, 3], "Low", "High"],\
-            ["AAL", [2010, 1], [2022, 3], "Open", "High"]]
+        given = [["ZUMZ", [2012, 1] , [2022, 3], "Low", "High"],\
+            ["AAL", [2012, 1], [2022, 3], "Open", "High"]]
 
         # convert the list of inputs into routes
         routes = route_generator_stock_ROI(given)
 
         # list of corresponding expected output
-        expected = [207.3442263507863, 180.1418539851878]
+        expected = [49.705884974537206, 115.72103921641789]
 
         # loop through all the possible routes/input and compare the result
         for i in range(len(routes)):

@@ -91,15 +91,13 @@ class test_stock_ROI(unittest.TestCase):
         given = [[1434200, "Volume"],\
             ["sfbhvsg", "Ticker Symbol"],\
             [15, "Day"],\
-            [999, "Open"],\
-            [155, "Adjusted Close"]]
+            [999, "Open"]]
 
         # list of corresponding expected output
         expected = [True,\
             False,\
             True,\
-            False,\
-            True]
+            False]
 
         # loop through the list of given and expected outcome and compare multiple cases
         for i in range(len(given)):
@@ -120,14 +118,12 @@ class test_stock_ROI(unittest.TestCase):
         given = [["AMD", [2017, 3] , [2030, 7], "Low", "High"],\
             ["RIBT", [2010, 3], [2030, 3], "Open", "High"],\
             ["GENE", [2017, 11], [2030, 6], "Open", "Close"],\
-            ["HWBK", [2012, 2], [2030, 8], "Adjusted Close", "Open"],\
             ["SAFM", [2017, 9], [2030, 3], "Close", "Low"]]
 
         # list of corresponding expected output
         expected = [5292.308,\
             1577.778,\
             1133.333,\
-            9999916.667,\
             -92.2581]
         
         # loop through the list of given and expected outcome and compare multiple cases
