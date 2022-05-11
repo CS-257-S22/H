@@ -369,7 +369,7 @@ def graph_ROIs_over_time_one_stock(ticker, dataframe):
             colors.append("#A7585F")
 
         else:
-            colors.append("#CEBACB")
+            colors.append("#d7dccc")
 
     # generate the graph
     graph_yearly_ROI = sns.barplot(x = "Year",\
