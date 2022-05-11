@@ -16,7 +16,7 @@ app = flask.Flask(__name__)
 #------------------------------
 
 # read in pandas dataframe
-nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+nasdaq_df = pd.read_csv("./Data/Polished/randomized_day_market.csv")
 nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
 #------------------------------
@@ -125,10 +125,10 @@ def get_dates_of_stock(ticker):
             If there is any error, the string returned from the back_end will change to reflect that error itself
     """
     
-    if not check_ticker(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"):
-        return str(get_dates(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"))
+    if not check_ticker(str(ticker), "./Data/Polished/randomized_day_market.csv"):
+        return str(get_dates(str(ticker), "./Data/Polished/randomized_day_market.csv"))
         # return page_not_found(not check_ticker(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"))"
-    result = str(get_dates(str(ticker), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"))
+    result = str(get_dates(str(ticker), "./Data/Polished/randomized_day_market.csv"))
     return "The dates for " + str(ticker) + " are " + result
 
 #------------------------------
@@ -148,7 +148,7 @@ def inspect_specifified_stock(ticker,year,month,query_stat):
         value - A string that is the desired value follows immediately after the desciption
     
     """
-    value = find_query(6, str(ticker), int(year), int(month), str(query_stat), "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv", nasdaq_df)
+    value = find_query(6, str(ticker), int(year), int(month), str(query_stat), "./Data/Polished/randomized_day_market.csv", nasdaq_df)
     description = ""
     if not isinstance(value,str) :
         #checks to see if output is not an invalid input message
