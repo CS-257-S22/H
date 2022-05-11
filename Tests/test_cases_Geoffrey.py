@@ -24,7 +24,7 @@ class Tests(unittest.TestCase):
         function calls, including inspect() and check_query() among others.
         """
         nasdaq_df = self.get_file()
-        self.assertEqual(find_query(6, "GENE", 2017, 11, "Open", "Tests/DataForTesting/test_data_sample.csv", nasdaq_df), 3.200000047683716)
+        self.assertEqual(find_query(6, "GENE", 2017, 11, "Open", "Tests/DataForTesting/test_data_sample.csv", nasdaq_df), 3.200000048)
 
     def test_check_num_args_true(self):
         """

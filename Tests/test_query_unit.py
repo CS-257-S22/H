@@ -30,7 +30,7 @@ class TestInspectCaseLow(unittest.TestCase):
         sample_df = pd.read_csv("Tests/DataForTesting/test_data_sample.csv")
 
         output = find_query(6, "HWBK", 2012, 2, "Low", "Tests/DataForTesting/test_data_sample.csv", sample_df)
-        actual = 6.57344388961792
+        actual = 6.57344389
         self.assertEqual(float(output), actual)
 
 class TestInspectCaseHigh(unittest.TestCase):
@@ -43,7 +43,7 @@ class TestInspectCaseHigh(unittest.TestCase):
         sample_df = pd.read_csv("Tests/DataForTesting/test_data_sample.csv")
 
         output = find_query(6, "ROST", 2020, 10, "High", "Tests/DataForTesting/test_data_sample.csv", sample_df)
-        actual = 96.94000244140624
+        actual = 96.94000244
         self.assertEqual(float(output), actual)
 
 class TestInspectCaseClose(unittest.TestCase):
@@ -56,7 +56,7 @@ class TestInspectCaseClose(unittest.TestCase):
         sample_df = pd.read_csv("Tests/DataForTesting/test_data_sample.csv")
 
         output = find_query(6, "EQIX", 2014, 12, "Close", "Tests/DataForTesting/test_data_sample.csv", sample_df)
-        actual = 221.8600006103516
+        actual = 221.8600006
         self.assertEqual(float(output), actual)
 
 class TestInspectCaseOpen(unittest.TestCase):
@@ -69,7 +69,7 @@ class TestInspectCaseOpen(unittest.TestCase):
         sample_df = pd.read_csv("Tests/DataForTesting/test_data_sample.csv")
 
         output = find_query(6, "USLM", 2019, 3, "Open", "Tests/DataForTesting/test_data_sample.csv", sample_df)
-        actual = 74.56999969482422
+        actual = 74.56999969
         self.assertEqual(float(output), actual)
 
 if __name__ == '__main__':

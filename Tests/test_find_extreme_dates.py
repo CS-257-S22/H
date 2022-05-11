@@ -14,7 +14,7 @@ class TestInspectCase(unittest.TestCase):
         Tests that right data is return for a specific valid ticker
         """
         nasdaq_df = pd.read_csv("Data/Polished/randomized_day_market.csv")
-        actual = [2010, 1]
+        actual = [2012, 1]
         output = find_earliest_or_latest_record("AAPL", "earliest", nasdaq_df)
         self.assertEqual(output, actual)
         print(output)
