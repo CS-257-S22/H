@@ -147,7 +147,7 @@ class test_Flask_app(unittest.TestCase):
             """
             self.app = app.test_client()
             response = self.app.get('/inspect_stock/NLST/2013/11/Volume', follow_redirects=True)
-            self.assertEqual(b"NLST's Volume on 11/2013: 376400.0", response.data)
+            self.assertEqual(b"NLST's Volume on 11/2013: 65700.0", response.data)
 
     #------------------------------
         
@@ -176,7 +176,7 @@ class test_Flask_app(unittest.TestCase):
         Tests that correct message is returned by the inspect_specified_stock function to inform the user that their input query stat is invalid
         """
         self.app = app.test_client()
-        response = self.app.get('/inspect_stock/AAPL/2011/3/Date', follow_redirects=True)
+        response = self.app.get('/inspect_stock/AAPL/2013/3/Date', follow_redirects=True)
         self.assertEqual(b"Invalid Query", response.data)
 
     #------------------------------
@@ -186,8 +186,8 @@ class test_Flask_app(unittest.TestCase):
         Tests that correct output is returned by the inspect_specified_stock function for first stock in the data set
         """
         self.app = app.test_client()
-        response = self.app.get('/inspect_stock/AAL/2010/1/Low', follow_redirects=True)
-        self.assertEqual(b"AAL's Low on 1/2010: 5.429999828338623", response.data)
+        response = self.app.get('/inspect_stock/AAL/2012/1/Low', follow_redirects=True)
+        self.assertEqual(b"AAL's Low on 1/2012: 8.100000381469727", response.data)
 
     #------------------------------
 
@@ -196,8 +196,8 @@ class test_Flask_app(unittest.TestCase):
         Tests that correct output is returned by the inspect_specified_stock function for last stock in the data set
         """
         self.app = app.test_client()
-        response = self.app.get('/inspect_stock/ZUMZ/2022/3/Close', follow_redirects=True)
-        self.assertEqual(b"ZUMZ's Close on 3/2022: 41.09000015258789", response.data)
+        response = self.app.get('/inspect_stock/ZUMZ/2022/4/Close', follow_redirects=True)
+        self.assertEqual(b"ZUMZ's Close on 4/2022: 38.790000915527344", response.data)
 
     #------------------------------
 
@@ -208,7 +208,7 @@ class test_Flask_app(unittest.TestCase):
         """
         self.app = app.test_client()
         response = self.app.get('/extreme_dates/FB', follow_redirects=True)
-        self.assertEqual(b'The dates for FB are ([2012, 6], [2022, 3])', response.data)
+        self.assertEqual(b'The dates for FB are ([2012, 5], [2022, 4])', response.data)
 
     #------------------------------    
 
@@ -220,7 +220,7 @@ class test_Flask_app(unittest.TestCase):
         """
         self.app = app.test_client()
         response = self.app.get('/extreme_dates/AAL', follow_redirects=True)
-        self.assertEqual(b'The dates for AAL are ([2010, 1], [2022, 3])', response.data)
+        self.assertEqual(b'The dates for AAL are ([2012, 1], [2022, 4])', response.data)
 
     #------------------------------
 
@@ -232,7 +232,7 @@ class test_Flask_app(unittest.TestCase):
         """
         self.app = app.test_client()
         response = self.app.get('/extreme_dates/ZUMZ', follow_redirects=True)
-        self.assertEqual(b'The dates for ZUMZ are ([2010, 1], [2022, 3])', response.data)
+        self.assertEqual(b'The dates for ZUMZ are ([2012, 1], [2022, 4])', response.data)
 
     #------------------------------
 

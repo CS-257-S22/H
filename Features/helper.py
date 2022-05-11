@@ -128,8 +128,8 @@ def getMin(ticker):
         next(reader)
         for item in reader:
             if item[9] == ticker:
-                if (float(item[7]) < stat):
-                    stat = float(item[7])
+                if (float(item[4]) < stat):
+                    stat = float(item[4])
                     minDate = item[0]
     f.close
     return stat, minDate
