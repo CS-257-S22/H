@@ -40,14 +40,18 @@ def homepage():
 
 @app.route("/basicData", methods=['GET', 'POST'])
 def basicData():
+    """
+    This route displays basic data of a inputted stock including data on the earliest and latest days recorded 
+    """
     ticker = request.form['ticker']
     dates = get_dates(ticker, "Data/Polished/randomized_day_market.csv")
+    reformatedDates = str(dates[0][0]) + "-" + str(dates[0][1]) + "-" + str(dates[0][2]), str(dates[1][0]) + "-" + str(dates[1][1]) + "-" + str(dates[1][2])
     max = getMax(ticker)
     min = getMin(ticker)
 
     earliestData = inspect(ticker, dates[0], "Low", nasdaq_df), inspect(ticker, dates[0], "High", nasdaq_df), inspect(ticker, dates[0], "Open", nasdaq_df), inspect(ticker, dates[0], "Close", nasdaq_df), inspect(ticker, dates[0], "Volume", nasdaq_df)
     latestData = inspect(ticker, dates[1], "Low", nasdaq_df), inspect(ticker, dates[1], "High", nasdaq_df), inspect(ticker, dates[1], "Open", nasdaq_df), inspect(ticker, dates[1], "Close", nasdaq_df), inspect(ticker, dates[1], "Volume", nasdaq_df)
-    return render_template("basicData.html", basicTicker=ticker, earlyDate=dates[0], lateDate=dates[1], max=max[0], maxDay=max[1], min=min[0], minDay=min[1], earlyLow=earliestData[0], earlyHigh=earliestData[1], earlyOpen=earliestData[2], earlyClose=earliestData[3], earlyVolume=earliestData[4], lateLow=latestData[0], lateHigh=latestData[1], lateOpen=latestData[2], lateClose=latestData[3], lateVolume=latestData[4])
+    return render_template("basicData.html", basicTicker=ticker, earlyDate=reformatedDates[0], lateDate=reformatedDates[1], max=max[0], maxDay=max[1], min=min[0], minDay=min[1], earlyLow=earliestData[0], earlyHigh=earliestData[1], earlyOpen=earliestData[2], earlyClose=earliestData[3], earlyVolume=earliestData[4], lateLow=latestData[0], lateHigh=latestData[1], lateOpen=latestData[2], lateClose=latestData[3], lateVolume=latestData[4])
 
 #------------------------------
 

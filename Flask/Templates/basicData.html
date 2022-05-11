@@ -6,14 +6,36 @@
 </head>
 <body>
 <h1>{{basicTicker}} Data</h1>
-<h2>Beginning and Ending Dates of Recorded Data</h2>
-<p>The earliest recorded date of {{basicTicker}} is {{earlyDate}} and the latest recorded date of {{basicTicker}} is {{lateDate}}</p>
 
-<h3>Maximum Recored Value of {{basicTicker}}</h3>
-<p>{{max}} dollars per share of {{basicTicker}} which occured on {{maxDay}}</p>
+<h2>Earliest Recorded Date of {{basicTicker}}: {{earlyDate}}</h2>
+<p>
+Low: {{earlyLow}} dollars per share<br>
+High: {{earlyHigh}} dollars per share<br>
+Open: {{earlyOpen}} dollars per share<br>
+Close: {{earlyClose}} dollars per share<br>
+Volume: {{earlyVolume}} shares
+</p>
 
-<h4>Minimum Recored Value of {{basicTicker}}</h4>
-<p>{{min}} dollars per share of {{basicTicker}} which occured on {{minDay}}</p>
+<h3>Latest Recorded Date of {{basicTicker}}: {{lateDate}}</h3>
+<p>
+Low: {{lateLow}} dollars per share<br>
+High: {{lateHigh}} dollars per share<br>
+Open: {{lateOpen}} dollars per share<br>
+Close: {{lateClose}} dollars per share<br>
+Volume: {{lateVolume}} shares
+</p>
+
+<h4>Maximum Recored Value of {{basicTicker}}</h4>
+<p>
+Date of occurence: {{maxDay}}<br>
+Maxiumum Recorded Price: {{max}} dollars per share
+</p>
+
+<h5>Minimum Recored Value of {{basicTicker}}</h5>
+<p>
+Date of occurence: {{minDay}}<br>
+Minimum Recorded Price: {{min}} dollars per share
+</p>
 
 </body>
 </html>
