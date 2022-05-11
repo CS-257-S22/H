@@ -27,7 +27,7 @@ app = Flask(__name__)
 #------------------------------
 
 # read in pandas dataframe
-nasdaq_df = pd.read_csv("Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+nasdaq_df = pd.read_csv("Data/Polished/randomized_day_market.csv")
 nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
 #------------------------------
@@ -41,7 +41,7 @@ def homepage():
 @app.route("/basicData", methods=['GET', 'POST'])
 def basicData():
     ticker = request.form['ticker']
-    dates = get_dates(ticker, "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv")
+    dates = get_dates(ticker, "Data/Polished/randomized_day_market.csv")
     max = getMax(ticker)
     min = getMin(ticker)
 
