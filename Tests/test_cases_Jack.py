@@ -24,7 +24,7 @@ class Tests(unittest.TestCase):
     def test_get_dates(self):
         """Tests whether or not the correct dates are retreived when calling the get_dates method"""
         values = get_dates("AMZN", "Data/Polished/randomized_day_market.csv")
-        trueValues = ([2010, 1], [2022, 3])
+        trueValues = ([2012, 1], [2022, 4])
         self.assertEqual(values, trueValues)
     
     def test_wrong_get_dates(self):
@@ -41,7 +41,7 @@ class Tests(unittest.TestCase):
         testData["Date"] = pd.to_datetime(testData["Date"])
 
         value = inspect("ROST", [2020, 10], "Low", testData)
-        trueValue = 94.87999725341795
+        trueValue = 94.87999725
         self.assertEqual(value, trueValue)
     
     def test_wrong_inspect(self):
