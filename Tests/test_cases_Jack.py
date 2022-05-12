@@ -24,7 +24,7 @@ class Tests(unittest.TestCase):
     def test_get_dates(self):
         """Tests whether or not the correct dates are retreived when calling the get_dates method"""
         values = get_dates("AMZN", "Data/Polished/randomized_day_market.csv")
-        trueValues = ([2012, 1], [2022, 4])
+        trueValues = ([2012, 1, 23], [2022, 4, 4])
         self.assertEqual(values, trueValues)
     
     def test_wrong_get_dates(self):
