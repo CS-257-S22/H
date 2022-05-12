@@ -34,6 +34,10 @@ nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
 @app.route("/")
 def homepage():
+    """
+    Default homepage route which displays information on the functionality of our website and displays search bars for the 
+    basic data and stock roi functions
+    """
     return render_template('index_mainpage.html', tickers = all_tickers())
 
 #------------------------------
@@ -41,7 +45,13 @@ def homepage():
 @app.route("/basicData", methods=['GET', 'POST'])
 def basicData():
     """
-    This route displays basic data of a inputted stock including data on the earliest and latest days recorded 
+    Description: This route displays basic data of a inputted stock including data on the earliest and latest days recorded as well as the days
+    where the maximum and minimum values were recorded
+
+    Input: Takes in a ticker symbol which is passed in through a search bar from the homepage
+
+    Output: Basic data on the requested stock including, the earliest and latest recorded dates of the stock including he low, high, open, close and volume of these dates.
+    Also displays data regarding the days in which the maximum and minimum value of the stock was recorded.
     """
     ticker = request.form['ticker']
     dates = get_dates(ticker, "Data/Polished/randomized_day_market.csv")
