@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+
+    <head>
+
+        <title>Page Not Found</title>
+        <link rel = "stylesheet" href = "{{ url_for('static', filename = 'error_style.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        <h1>Internal Server Error (500 Error)</h1>
+
+        <h2>
+            Don't panic! What it means is that this is (probably) not your fault!
+        </h2>
+
+        <h2>
+            Return to Home Page and try a different INPUT or FEATURE. (i.e. You can use the Back button.)
+        </h2>
+
+        <h3>
+            We, the development team, would also be grateful if you can report this bug to us, so we can fix it asap!
+        </h3>
+
+        <!-- Home button -->
+        <form action="/">
+            <input class="button" type="submit" value="Back to Home Page"/>
+        </form>
+
+    </body>
+
+</html>

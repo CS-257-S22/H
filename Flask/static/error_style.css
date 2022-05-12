@@ -1,4 +1,4 @@
-/* Body */
+/*General Page Body*/
 body {
     margin-left: 1em;
     margin-right: 1em;
@@ -17,6 +17,12 @@ h1 {
     font-size: 40px;
 }
 
+/*Bulk Body Adjustment*/
+h2, h3, p {
+    font-family: 'Verdana', serif;
+    font-size: 20px;
+}
+
 .button {
     background-color: white; /* Green */
     border: 2px solid navy;
@@ -33,13 +39,3 @@ h1 {
     background-color: green; /* Green */
     color: white;
 }
-
-/*Center Graph*/
-img {
-    position: absolute;
-    left: 50%;
-    -moz-transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
-

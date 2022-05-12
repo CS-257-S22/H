@@ -6,12 +6,20 @@
 
         <title>{{ticker}} Yearly ROI</title>
         <link rel = "stylesheet" href = "{{ url_for('static', filename = 'stock_ROI_graph_stylesheet.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
 
     </head>
 
     <body>
 
-        <h1>{{ticker}} Yearly Return on Investment (%) ...</h1>
+        <h1>{{ticker}} Yearly Return on Investment (%)</h1>
+
+        <!-- Home button -->
+        <form action="/">
+            <input class="button" type="submit" value="Back to Home Page"/>
+        </form>
 
         <img src = "{{graph_image}}" alt = "A Bar Graph Displaying {{ticker}} Yearly Return on Investment">
 
