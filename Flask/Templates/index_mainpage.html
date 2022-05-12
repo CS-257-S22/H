@@ -7,8 +7,8 @@
 
 
 <!-- Scripts are for the drop down suggestion features of the ticker input bar-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
-</script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"> 
 </script>
@@ -23,6 +23,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
 </head>
 
+<!-- Styling for the body of the webpage begins here -->
 <body>
 
     <div><h1>Invest.ED: Investment Education</h1></div>
@@ -32,17 +33,18 @@
     <ul>
     <li><a href="#basicData">Inspect a stock</a></li>
     <li><a href="#stockROI">Stock ROI</a></li>
-    <li><a href="#about">About</a></li>
     <li><a href="#data">Data source</a></li>
+    <li><a href="#about">About</a></li>
     </ul>
     </nav>
     </div>
     
+    <!-- HTML for Inspect a Stock section -->
     <div id = "left" class="content">
         <h2 class="subtitle" id="basicData">Inspect a Stock</h2>
         
         <h3>Purpose:</h3>
-        <p>Displays...</p>
+        <p>Displays basic data of an inputted stock including data on the earliest and latest days recorded as well as the days where the maximum and minimum values were recorded.</p>
         
         <h3>How to Use:</h3>
         <ol>
@@ -51,9 +53,9 @@
         </ol>
         
         <!-- Form used to input specified stock information -->
-        <form class="inputfield" action="basicData" method="post">
+        <form class="inputfield" name="autcomplete_inspect" action="basicData" method="post">
             <label for="ticker">Stock Ticker:</label><br>
-            <input type="text" id="ticker1" name="ticker" value="" required><br><br><br>
+            <input type="text" id="ticker1" name="ticker" value="" required><br><br>
             
             <!-- Autocomplete feature for the ticker search bar -->
             <script>
@@ -73,22 +75,27 @@
 </form>
 </div>
 
+    <!-- HTML for Stock ROI section -->
     <div id = "right" class="content">
         <h2 class="subtitle" id="stockROI">Stock ROI</h2>
         
         <h3>Purpose:</h3>
-        <p>Displays...</p>
+        <p>Displays a graph visualizing the input stock's ROI overtime.<br></p>
         
         <h3>How to Use:</h3>
         <ol>
             <li>Input a desired ticker.</li>
             <li>Press submit</li>
         </ol>
+
+        <p>
+            <br>
+        </p>
         
         <!-- Form used to input specified stock information -->
-        <form class="inputfield" action="stock_ROI" method="get">
+        <form class="inputfield" name="autcomplete_ROI" action="stock_ROI" method="get">
             <label for="ticker">Stock Ticker:</label><br>
-            <input type="text" id="ticker2" name="ticker" value="" required><br><br><br>
+            <input type="text" id="ticker2" name="ticker" value="" required><br><br>
             
             <!-- Autocomplete feature for the ticker search bar -->
             <script>
@@ -107,42 +114,8 @@
 </form>
 </div>
 
-<!-- <div id = "right" class="content">
-    <h2 class="subtitle" id="stockROI">Stock ROI</h2>
-    
-    <h3>Purpose:</h3>
-    <p>Displays...</p>
-    
-    <h3>How to Use:</h3>
-    <ol>
-        <li>Input a desired ticker.</li>
-        <li>Press submit</li>
-    </ol> -->
-    
-    <!-- Form used to input specified stock information -->
-    <!-- <form class="inputfield" action="stockROI" method="post">
-        <label for="ticker">Stock Ticker:</label><br>
-        <input type="text" id="ticker" name="ticker" value="" required><br><br><br> -->
-        
-        <!-- Autocomplete feature for the ticker search bar -->
-        <!-- <script>
-            $( function() {
-                var availableTags = [
-                    {% for ticker_symbol in tickers %}
-                    "{{ticker_symbol}}",
-                    {% endfor %}
-                ];
-                $( "#ticker" ).autocomplete({
-                    source: availableTags
-                });
-            } );
-            </script>
-    
-    <input type="submit" value="Submit">
-</form>
-</div> -->
-
-<div id="market" class="">
+<!-- HTML for Stock Market Dataset section -->
+<div id="market" class="citation">
     <h2 id="data">Stock Market Dataset:</h2>
     <p>Brief Description: General US stock market data</p>
     <p>Source: <a href="https://www.kaggle.com/datasets/paultimothymooney/stock-market-data">Stock Market Data (NASDAQ, NYSE, S&P500). Version 57.</a></p>
@@ -151,6 +124,7 @@
     <p>Authorship: Paul Mooney</p>
 </div>
 
+<!-- HTML for About section -->
 <div id="about" class="content">
 <h2 class="subtitle" id="about">About Invest Education:</h2>
 <p>

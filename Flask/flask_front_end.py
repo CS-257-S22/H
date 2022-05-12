@@ -35,8 +35,15 @@ nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 @app.route("/")
 def homepage():
     """
-    Default homepage route which displays information on the functionality of our website and displays search bars for the 
-    basic data and stock roi functions
+    DESCRIPTION:
+        Default homepage route which displays information on the functionality of our website and displays search bars for the 
+        basic data and stock ROI functions
+    
+    INPUT SIGNATURE:
+        1. None
+
+    OUTPUT SIGNATURE:
+        1. Dynamically generate a homepage based on the given HTML and CSS file
     """
     return render_template('index_mainpage.html', tickers = all_tickers())
 
@@ -45,13 +52,19 @@ def homepage():
 @app.route("/basicData", methods=['GET', 'POST'])
 def basicData():
     """
-    Description: This route displays basic data of a inputted stock including data on the earliest and latest days recorded as well as the days
-    where the maximum and minimum values were recorded
+    DESCRIPTION:
+        This route displays basic data of a inputted stock including data on the earliest and latest days recorded as well as the days
+        where the maximum and minimum values were recorded
 
-    Input: Takes in a ticker symbol which is passed in through a search bar from the homepage
+    INPUT SIGNATURE:
+        1. ticker (string): a ticker symbol which is passed in through a search bar from the homepage
 
-    Output: Basic data on the requested stock including, the earliest and latest recorded dates of the stock including he low, high, open, close and volume of these dates.
-    Also displays data regarding the days in which the maximum and minimum value of the stock was recorded.
+    OUTPUT SIGNATURE:
+        A dynamically generated site displaying
+            1. A stock's statistics the earliest recorded date (Open, Close, Low, High, and Volume)
+            2. A stock's statistics the latest recorded date (Open, Close, Low, High, and Volume)
+            3. A stock's maximum price and the days which it occured
+            4. A stock's minimum price and the days which it occured
     """
     ticker = request.form['ticker']
     dates = get_dates(ticker, "Data/Polished/randomized_day_market.csv")
@@ -91,5 +104,34 @@ def stock_ROI():
     # display the webpage that contains the graph
     return render_template("stock_ROI_graph.html", ticker = ticker, graph_image = graph_url)
 
+#------------------------------
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """
+        Description:
+            A page to instruct the user on the steps to follow if an invalid route is entered.
+        Returns:
+            1. Render the 404 page based on an HTML file
+    """
+
+    # render the webpage
+    return render_template("404.html")
+
+#------------------------------
+
+@app.errorhandler(500)
+def python_bug(e):
+    """
+    Description:
+        A page notifying the user that the encountered error is from the server, not the user.
+    Returns:
+        message500 -    a string informing the user that the error is from the server and it is not
+                        their fault and tells them to inform the developement team 
+    """
+
+    # render the 500 error page
+    return render_template("500.html")
+
 if __name__ == '__main__':
-     app.run()
+    app.run()

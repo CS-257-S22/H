@@ -1,12 +1,19 @@
 <html>
+    <!-- Builds the framework for the head of the webpage -->
 <head>
     <meta charset="UTF-8">
     <title>Basic Data</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='datastyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='basic_data_style.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <!-- Main heading for webpage -->
 <h1>{{basicTicker}} Data</h1>
 
+<!-- Displays data on the earliest recorded date of the particular stock -->
 <h2>Earliest Recorded Date of {{basicTicker}}: {{earlyDate}}</h2>
 <p>
 Low: {{earlyLow}} dollars per share<br>
@@ -16,6 +23,7 @@ Close: {{earlyClose}} dollars per share<br>
 Volume: {{earlyVolume}} shares
 </p>
 
+<!-- Displays data on the latest recorded date of the particular stock -->
 <h3>Latest Recorded Date of {{basicTicker}}: {{lateDate}}</h3>
 <p>
 Low: {{lateLow}} dollars per share<br>
@@ -25,17 +33,24 @@ Close: {{lateClose}} dollars per share<br>
 Volume: {{lateVolume}} shares
 </p>
 
+<!-- Displays the day and value on which the all time high price that is recorded for the particular stock -->
 <h4>Maximum Recored Value of {{basicTicker}}</h4>
 <p>
 Date of occurence: {{maxDay}}<br>
 Maxiumum Recorded Price: {{max}} dollars per share
 </p>
 
+<!-- Displays the day and value on which the all time low price that is recorded for the particular stock -->
 <h5>Minimum Recored Value of {{basicTicker}}</h5>
 <p>
 Date of occurence: {{minDay}}<br>
 Minimum Recorded Price: {{min}} dollars per share
 </p>
+
+<!-- Home button -->
+<form action="/">
+    <input class="button" type="submit" value="Back to Home Page"/>
+</form>
 
 </body>
 </html>
