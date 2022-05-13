@@ -1,13 +1,13 @@
 DROP TABLE IF EXISTS nasdaq;
 CREATE TABLE nasdaq (
-  Recorded_Date date,
-  Recorded_Day real,
-  Recorded_Month real,
-  Recorded_Year real,
+  Rec_Date date,
+  Rec_Day real,
+  Rec_Month real,
+  Rec_Year real,
   Low real,
-  Recorded_Open real,
+  Rec_Open real,
   Volume real,
   High real,
-  Recorded_Close real,
-  Ticker_Symbol text
+  Rec_Close real,
+  ticker text
 );
