@@ -44,8 +44,8 @@ class test_stock_ROI(unittest.TestCase):
         
         # loop through the list of given and expected outcome and compare multiple cases
         for i in range(len(given)):
-            self.assertAlmostEqual(round(main_stock_ROI(\
-                given[i][0], given[i][1], given[i][2], given[i][3], given[i][4], data_file), ndigits = 3),\
+            self.assertAlmostEqual(round(float(main_stock_ROI(\
+                given[i][0], given[i][1], given[i][2], given[i][3], given[i][4], data_file)), ndigits = 3),\
                 expected[i], places = 3)
 
     #------------------------------
