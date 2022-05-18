@@ -13,6 +13,8 @@ import sys
 import csv
 import pandas as pd
 import datetime
+import psycopg2
+import psqlConfig as config
 #from Features import helper
 import sys
 sys.path.append('./Features')
@@ -119,7 +121,7 @@ def check_num_args(num_of_args):
     return True
     
 
-def check_date(ticker, year, month, fileName):
+def check_date(ticker, year, month): #might need to take in fileName if reading a csv
     """
     Description:
         This helper method checks to make sure that the specified date (year and month) is located within the dataset 
@@ -134,15 +136,23 @@ def check_date(ticker, year, month, fileName):
     Output:
         1. A boolean representing whether or not the particular data point is located within the requested dataset
     """
-    f = open(fileName, 'r', encoding = "UTF-8")
-    with f as rFile:
-        spamreader = csv.reader(rFile, delimiter=',')
-        next(spamreader)
-        for row in spamreader:
-            if row[9] == ticker and row[3] == str(year) and row[2] == str(month):
-                f.close
-                return True
-    f.close
+    
+    # f = open(fileName, 'r', encoding = "UTF-8")
+    # with f as rFile:
+    #     spamreader = csv.reader(rFile, delimiter=',')
+    #     next(spamreader)
+    #     for row in spamreader:
+    #         if row[9] == ticker and row[3] == str(year) and row[2] == str(month):
+    #             f.close
+    #             return True
+    # f.close
+    cursor = teamh.database.cursor()
+    cursor.execute("SELECT ticker, rec_year, rec_month FROM nasdaq")
+    table = cursor.fetchall()
+
+    for row in table:
+        if row[0] == str(ticker) and row[1] == str(year) and row[2] == str(month):
+            return True
     return False
 
 def check_query(query):

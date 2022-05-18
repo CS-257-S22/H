@@ -9,6 +9,10 @@ directory = path.Path(__file__).abspath()
 # setting path to the directory with the feature
 sys.path.append(directory.parent.parent)
 
+# database import
+import psycopg2
+import psqlConfig as config
+
 import csv
 
 def check_basicTicker(ticker):
@@ -64,7 +68,6 @@ def get_dataframe(fileName):
     nasdaq_df = pd.read_csv(fileName)
     nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
     return nasdaq_df
-
 
 def getExtremeDates(ticker):
     if not check_ticker(ticker, "./Data/Polished/randomized_day_market.csv"):
@@ -170,3 +173,25 @@ def all_tickers(filePath = "./Data/Polished/randomized_day_market.csv"):
             all_tickers_not_duplicate.append(item)
 
     return all_tickers_not_duplicate
+
+class DataSource():
+        
+    #------------------------------
+
+    def __init__(self):
+        self.database = self.connect()
+
+    #------------------------------
+
+    def connect(self):
+        
+        try:
+            connection = psycopg2.connect(database=config.database, user=config.user, password=config.password, host = "localhost")
+        
+        except Exception as e:
+            print("Connection error: ", e)
+            exit()
+
+        return connection
+
+teamh = DataSource()
