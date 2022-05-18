@@ -31,10 +31,10 @@ class test_stock_ROI(unittest.TestCase):
         """
 
         # list of inputs
-        given = [["AMD", [2017, 3] , [2030, 7], "Low", "High"],\
-            ["RIBT", [2010, 3], [2030, 3], "Open", "High"],\
-            ["GENE", [2017, 11], [2030, 6], "Open", "Close"],\
-            ["SAFM", [2017, 9], [2030, 3], "Close", "Low"]]
+        given = [["AMD", [2017, 3] , [2021, 7], "Low", "High"],\
+            ["RIBT", [2010, 3], [2021, 3], "Open", "High"],\
+            ["GENE", [2017, 11], [2021, 6], "Open", "Close"],\
+            ["SAFM", [2017, 9], [2021, 3], "Close", "Low"]]
 
         # list of corresponding expected output
         expected = [5292.308,\
