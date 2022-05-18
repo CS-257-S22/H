@@ -16,8 +16,9 @@ sns.set(rc={"axes.facecolor":"white", "figure.facecolor":"white"})
 import argparse
 
 #from inspect_stock import check_query
-sys.path.append('Features')
+sys.path.append('./Features')
 from inspect_stock import check_query
+from helper import *
 
 #------------------------------
 
@@ -85,8 +86,9 @@ def main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price
         6. data_file: the path to our .csv file
     """
 
-    # read in the data
-    nasdaq_df = pd.read_csv(data_file)
+    # read the database from psql server to pandas and rename the columns
+    nasdaq_df = pd.read_sql_query("select * from nasdaq;", teamh.database)
+    nasdaq_df = rename_database_friendly(nasdaq_df)
     
    # check if the input is valid
     validity = all_input_is_valid_stock_ROI(nasdaq_df, ticker, date_invest, date_divest, buying_price, selling_price)

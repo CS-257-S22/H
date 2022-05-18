@@ -13,8 +13,7 @@ import sys
 import csv
 import pandas as pd
 import datetime
-import psycopg2
-import psqlConfig as config
+
 #from Features import helper
 import sys
 sys.path.append('./Features')
@@ -41,6 +40,7 @@ def find_query_input():
     # fileName = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
     fileName = "./Data/Polished/randomized_day_market.csv"
     nasdaq_df = get_dataframe(fileName)
+    nasdaq_df = rename_database_friendly(nasdaq_df)
 
 
     num_of_args = len(sys.argv)
