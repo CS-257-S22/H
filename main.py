@@ -7,14 +7,14 @@ import path
 import sys
 import csv
 
+import psycopg2
+import psqlConfig as config
+
 # import all sub-functions from other .py files
 from Features import inspect_stock, basic_stock_stat, stock_ROI, helper
 
 # read all available data
 nasdaq_df = pd.read_csv("Data/Polished/randomized_day_market.csv")
-
-import psycopg2
-import psqlConfig as config
 
 #------------------------------
 
@@ -37,52 +37,6 @@ class DataSource:
             exit()
 
         return connection
-
-    #------------------------------
-
-    def getExample(self):
-
-        #Open a cursor to perform database operations
-        cursor = self.database.cursor()
-
-        #Execute a query
-        cursor.execute("SELECT * FROM nasdaq")
-
-        #Retrieve query results
-        records = cursor.fetchall()
-
-        print(records)
-
-    #------------------------------
-
-    def inspect_ticker(self, ticker):
-        try:
-
-            #set up a cursor
-            cursor = self.database.cursor()
-
-            #make the query using %s as a placeholder for the variable
-            query = "SELECT * FROM nasdaq WHERE ticker = %s"
-
-            #executing the query and saying that the magnitude variable 
-            # should be placed where %s was, the trailing comma is important!
-            cursor.execute(query, (ticker,))
-            print(cursor.fetchall())
-
-        except Exception as e:
-            print ("Something went wrong when executing the query: ", e)
-            return None
-
-#------------------------------
-
-if __name__ == '__main__':
-
-    my_source = DataSource()
-
-    #call your methods
-
-    # test out inspect feature with TSLA
-    my_source.inspect_ticker('TSLA')
 
 #------------------------------
 
@@ -163,4 +117,11 @@ def check_number_of_arguments(check):
 """
 
 if __name__ == '__main__':
+
+    # read the database from psql server
+    teamh = DataSource() # to access the sql table, use teamh.database
+
+    # convert the database to pandas
+    nasdaq_df = pd.read_sql_query("select * from nasdaq;", teamh.database)
+
     print(read_input())
