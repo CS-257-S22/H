@@ -170,4 +170,3 @@ def all_tickers(filePath = "./Data/Polished/randomized_day_market.csv"):
             all_tickers_not_duplicate.append(item)
 
     return all_tickers_not_duplicate
-

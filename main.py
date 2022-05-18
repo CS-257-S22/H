@@ -13,6 +13,79 @@ from Features import inspect_stock, basic_stock_stat, stock_ROI, helper
 # read all available data
 nasdaq_df = pd.read_csv("Data/Polished/randomized_day_market.csv")
 
+import psycopg2
+import psqlConfig as config
+
+#------------------------------
+
+class DataSource:
+        
+    #------------------------------
+
+    def __init__(self):
+        self.database = self.connect()
+
+    #------------------------------
+
+    def connect(self):
+        
+        try:
+            connection = psycopg2.connect(database=config.database, user=config.user, password=config.password, host = "localhost")
+        
+        except Exception as e:
+            print("Connection error: ", e)
+            exit()
+
+        return connection
+
+    #------------------------------
+
+    def getExample(self):
+
+        #Open a cursor to perform database operations
+        cursor = self.database.cursor()
+
+        #Execute a query
+        cursor.execute("SELECT * FROM nasdaq")
+
+        #Retrieve query results
+        records = cursor.fetchall()
+
+        print(records)
+
+    #------------------------------
+
+    def inspect_ticker(self, ticker):
+        try:
+
+            #set up a cursor
+            cursor = self.database.cursor()
+
+            #make the query using %s as a placeholder for the variable
+            query = "SELECT * FROM nasdaq WHERE ticker = %s"
+
+            #executing the query and saying that the magnitude variable 
+            # should be placed where %s was, the trailing comma is important!
+            cursor.execute(query, (ticker,))
+            print(cursor.fetchall())
+
+        except Exception as e:
+            print ("Something went wrong when executing the query: ", e)
+            return None
+
+#------------------------------
+
+if __name__ == '__main__':
+
+    my_source = DataSource()
+
+    #call your methods
+
+    # test out inspect feature with TSLA
+    my_source.inspect_ticker('TSLA')
+
+#------------------------------
+
 def read_input():
     """
     Objective:
@@ -47,6 +120,8 @@ def read_input():
     # python3 main.py -inspect_stock AMZN 2022 3 Volume
     # python3 main.py -basic_stat AMZN
     # python3 main.py -stock_ROI AMZN 2011 12 Low 2022 3 High
+
+#------------------------------
 
 def run_feature_called():
     num_of_args = len(sys.argv)
