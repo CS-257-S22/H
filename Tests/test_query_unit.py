@@ -16,8 +16,8 @@ class TestInspectCaseVolume(unittest.TestCase):
         Tests that right volume is returned when inputted correct values to find_query function
         """
 
-        output = find_query(6, "SAFM", 2017, 9, "Volume", nasdaq)
-        actual = 669900.0
+        output = find_query(6, "AAME", 2016, 5, "Volume", nasdaq)
+        actual = 5900.0
         self.assertEqual(float(output), actual)
 
 class TestInspectCaseLow(unittest.TestCase):
@@ -26,8 +26,8 @@ class TestInspectCaseLow(unittest.TestCase):
         Tests that right open is returned when inputted correct values to find_query function
         """
 
-        output = find_query(6, "HWBK", 2012, 2, "Low", nasdaq)
-        actual = 6.57344389
+        output = find_query(6, "NRCIB", 2015, 8, "Low", nasdaq)
+        actual = 32.79999923706055
         self.assertEqual(float(output), actual)
 
 class TestInspectCaseHigh(unittest.TestCase):
@@ -36,8 +36,8 @@ class TestInspectCaseHigh(unittest.TestCase):
         Tests that right high is returned when inputted correct values to find_query function
         """
 
-        output = find_query(6, "ROST", 2020, 10, "High", nasdaq)
-        actual = 96.94000244
+        output = find_query(6, "VTNR", 2022, 8, "High", nasdaq)
+        actual = 9.4399995803833
         self.assertEqual(float(output), actual)
 
 class TestInspectCaseClose(unittest.TestCase):
@@ -46,8 +46,8 @@ class TestInspectCaseClose(unittest.TestCase):
         Tests that right close is returned when inputted correct values to find_query function
         """
 
-        output = find_query(6, "EQIX", 2014, 12, "Close", nasdaq)
-        actual = 221.8600006
+        output = find_query(6, "PLBC", 2017, 11, "Close", nasdaq)
+        actual = 21.38999938964844
         self.assertEqual(float(output), actual)
 
 class TestInspectCaseOpen(unittest.TestCase):
@@ -56,8 +56,8 @@ class TestInspectCaseOpen(unittest.TestCase):
         Tests that right open is returned when inputted correct values to find_query function
         """
 
-        output = find_query(6, "USLM", 2019, 3, "Open", nasdaq)
-        actual = 74.56999969
+        output = find_query(6, "EXPD", 2019, 2, "Open", nasdaq)
+        actual = 73.33999633789062
         self.assertEqual(float(output), actual)
 
 if __name__ == '__main__':
