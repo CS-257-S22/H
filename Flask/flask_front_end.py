@@ -16,7 +16,8 @@ import matplotlib
 matplotlib.pyplot.switch_backend('Agg')
 
 import sys
-sys.path.append('Features')
+# sys.path.append('Features')
+sys.path.append(sys.path[0]+'/../Features')
 from inspect_stock import *
 from basic_stock_stat import *
 from stock_ROI import *
