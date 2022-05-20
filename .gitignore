@@ -4,3 +4,4 @@ __pycache__
 Flask_App_Miles
 psqlConfig.py
 psqlConfig.pyc
+.vscode
