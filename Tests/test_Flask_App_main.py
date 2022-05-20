@@ -220,7 +220,7 @@ class test_Flask_app(unittest.TestCase):
         """
         self.app = app.test_client()
         response = self.app.get('/extreme_dates/AAL', follow_redirects=True)
-        self.assertEqual(b'The dates for AAL are ([2012, 1, 31], [2022, 4, 1])', response.data)
+        self.assertEqual(b'The dates for AAL are ([2012.0, 1.0, 31.0], [2022.0, 4.0, 1.0])', response.data)
 
     #------------------------------
 
@@ -232,7 +232,7 @@ class test_Flask_app(unittest.TestCase):
         """
         self.app = app.test_client()
         response = self.app.get('/extreme_dates/ZUMZ', follow_redirects=True)
-        self.assertEqual(b'The dates for ZUMZ are ([2012, 1, 9], [2022, 4, 4])', response.data)
+        self.assertEqual(b'The dates for ZUMZ are ([2012.0, 1.0, 9.0], [2022.0, 4.0, 4.0])', response.data)
 
     #------------------------------
 
