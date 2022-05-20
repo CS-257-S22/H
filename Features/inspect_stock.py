@@ -148,7 +148,7 @@ def check_date(ticker, year, month): #might need to take in fileName if reading 
     table = cursor.fetchall()
 
     for row in table:
-        if row[0] == str(ticker) and row[1] == str(year) and row[2] == str(month):
+        if row[0] == str(ticker) and row[1] == float(year) and row[2] == float(month):
             return True
     return False
 
