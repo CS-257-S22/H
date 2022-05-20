@@ -208,7 +208,7 @@ class test_Flask_app(unittest.TestCase):
         """
         self.app = app.test_client()
         response = self.app.get('/extreme_dates/FB', follow_redirects=True)
-        self.assertEqual(b'The dates for FB are ([2012, 5, 29], [2022, 4, 1])', response.data)
+        self.assertEqual(b'The dates for FB are ([2012.0, 5.0, 29.0], [2022.0, 4.0, 1.0])', response.data)
 
     #------------------------------    
 
