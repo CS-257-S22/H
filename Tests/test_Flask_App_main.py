@@ -80,7 +80,7 @@ class test_Flask_app(unittest.TestCase):
         routes = route_generator_stock_ROI(given)
 
         # list of corresponding expected output
-        expected = [49.705884974537206, 115.72103921641789]
+        expected = [49.705882352941174, 115.72103921641789]
 
         # loop through all the possible routes/input and compare the result
         for i in range(len(routes)):
