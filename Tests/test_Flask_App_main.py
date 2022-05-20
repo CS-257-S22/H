@@ -34,10 +34,10 @@ class test_Flask_app(unittest.TestCase):
 
         # list of corresponding expected output
         expected = [699.0476190476189,\
-            -98.11538457870483,\
-            -41.26505762368915,\
-            278.8730269264091,\
-            12.236049408098589]
+            -98.11538461538463,\
+            -41.265060240963855,\
+            278.872907061742,\
+            12.23604826546003]
 
         # loop through all the possible routes/input and compare the result
         for i in range(len(routes)):
