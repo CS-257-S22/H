@@ -37,9 +37,7 @@ def find_query_input():
     """
 
     # calls a helper method for reading file so ensures there is only 1 level of abstraction
-    # fileName = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
-    fileName = "./Data/Polished/randomized_day_market.csv"
-    nasdaq_df = get_dataframe(fileName)
+    nasdaq_df = get_dataframe()
     nasdaq_df = rename_database_friendly(nasdaq_df)
 
 

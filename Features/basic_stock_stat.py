@@ -30,13 +30,12 @@ def get_dates_input():
             - Another list contains the earliest and the latest date of the stock
     """
     ticker = str(sys.argv[2])
-    fileName = "./Data/Polished/randomized_day_market.csv"
-    output = get_dates(ticker, fileName)
+    output = get_dates(ticker)
     return output
 
 #------------------------------
 
-def get_dates(ticker, fileName):
+def get_dates(ticker):
     """
     Description:
         Read through our data file and find the earliest and latest 
@@ -53,10 +52,10 @@ def get_dates(ticker, fileName):
     """
 
     # sets variable to dataframe by calling helper function to avoid layer of abstraction
-    nasdaq_df = get_dataframe(fileName)
+    nasdaq_df = get_dataframe()
 
     # calls helper function to check if ticker is in dataset
-    if not check_ticker(ticker, fileName):
+    if not check_ticker(ticker):
         return "Ticker not found in dataset"
    
     # outputs the list of earliest and latest dates and prints and returns it
