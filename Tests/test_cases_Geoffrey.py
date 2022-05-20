@@ -55,10 +55,10 @@ class Tests(unittest.TestCase):
     def test_check_date_edge(self):
         """
         This is a unit test for the check_date function, and is an edge test case. It checks 
-        the earliest date in the dataset and checks if the functino will still include that as a 
+        the earliest date in the dataset and checks if the function will still include that as a 
         valid date. 
         """
-        self.assertTrue(check_date("RGS", 2011, 6))
+        self.assertTrue(check_date("RGS", 2012, 1))
 
 
     def test_check_date_wrong_input(self):
