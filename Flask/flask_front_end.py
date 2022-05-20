@@ -28,7 +28,6 @@ app = Flask(__name__)
 
 # read in pandas dataframe
 nasdaq_df = get_dataframe()
-nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
 #------------------------------
 
@@ -132,6 +131,8 @@ def python_bug(e):
 
     # render the 500 error page
     return render_template("500.html")
+
+app.run(host='0.0.0.0', port=27)
 
 if __name__ == '__main__':
     app.run()

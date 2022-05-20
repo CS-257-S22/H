@@ -1,3 +1,5 @@
+# WE ARE NOT USING THIS SHIT
+
 # Pycache are evil, don't produce them
 import sys
 sys.dont_write_bytecode = True
@@ -10,14 +12,14 @@ sys.path.append('Features')
 from inspect_stock import *
 from basic_stock_stat import *
 from stock_ROI import *
+from helper import *
 
 app = flask.Flask(__name__)
 
 #------------------------------
 
 # read in pandas dataframe
-nasdaq_df = pd.read_csv("./Data/Polished/randomized_day_market.csv")
-nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
+nasdaq_df = get_dataframe()
 
 #------------------------------
 
