@@ -16,7 +16,7 @@ class TestInspectCaseVolume(unittest.TestCase):
         Tests that right volume is returned when inputted correct values to find_query function
         """
 
-        output = find_query(6, "SAFM", 2017, 9, "Volume", "Tests/DataForTesting/test_data_sample.csv", nasdaq)
+        output = find_query(6, "SAFM", 2017, 9, "Volume", nasdaq)
         actual = 669900.0
         self.assertEqual(float(output), actual)
 
@@ -26,7 +26,7 @@ class TestInspectCaseLow(unittest.TestCase):
         Tests that right open is returned when inputted correct values to find_query function
         """
 
-        output = find_query(6, "HWBK", 2012, 2, "Low", "Tests/DataForTesting/test_data_sample.csv", nasdaq)
+        output = find_query(6, "HWBK", 2012, 2, "Low", nasdaq)
         actual = 6.57344389
         self.assertEqual(float(output), actual)
 
