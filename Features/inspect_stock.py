@@ -132,16 +132,6 @@ def check_date(ticker, year, month): #might need to take in fileName if reading 
     Output:
         1. A boolean representing whether or not the particular data point is located within the requested dataset
     """
-    
-    # f = open(fileName, 'r', encoding = "UTF-8")
-    # with f as rFile:
-    #     spamreader = csv.reader(rFile, delimiter=',')
-    #     next(spamreader)
-    #     for row in spamreader:
-    #         if row[9] == ticker and row[3] == str(year) and row[2] == str(month):
-    #             f.close
-    #             return True
-    # f.close
     cursor = teamh.database.cursor()
     cursor.execute("SELECT ticker, rec_year, rec_month FROM nasdaq")
     table = cursor.fetchall()

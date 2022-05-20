@@ -73,17 +73,6 @@ def check_ticker(ticker): #needs to take in filename if using csv
     Output:
         1. A boolean representing whether or not the requested ticker symbol is found within the reference dataset   
     """
-    
-    # f = open(fileName, 'r', encoding = "UTF-8")
-    # with f as rFile:
-    #     spamreader = csv.reader(rFile, delimiter=',')
-    #     next(spamreader)
-    #     for row in spamreader:
-    #         if row[9] == ticker:
-    #             f.close
-    #             return True
-    # f.close
-    # return false
 
     cursor.execute("SELECT ticker FROM nasdaq")
     table = cursor.fetchall()
@@ -112,37 +101,6 @@ def get_dataframe():
 
     return nasdaq_df
 
-# def getExtremeDates(ticker):
-#     if not check_ticker(ticker):
-#         return "Please input a valid ticker symbol"
-
-#     f = open("./Data/Polished/randomized_day_market.csv", 'r', encoding = "UTF-8")
-#     firstDate = ""
-#     lastDate = ""
-#     with f as rFile:
-#         spamreader = csv.reader(rFile, delimiter=',')
-#         next(spamreader)
-#         for row in spamreader:
-#             if row[9] == ticker:
-#                 firstDate = row[0]
-#                 break
-#         for row in spamreader:
-#             if row[9] != ticker:
-#                 lastDate = row[0]
-#                 break
-#     f.close
-
-#     cursor.execute("SELECT ticker, rec_date FROM nasdaq")
-#     table = cursor.fetchall()
-#     for row in table:
-#         if row[0] == ticker:
-#             firstDate = row[1]
-#             break
-#     for row in table:
-#         if row[9]
-
-#     return firstDate, lastDate
-
 def getMax(ticker):
     """
     Objective: Searches through a dataset (Only data on TSLA is recorded at this time so it is hardcoded) and returns
@@ -166,18 +124,6 @@ def getMax(ticker):
                 maxDate = row[2]
                 
     return stat, maxDate
-    
-    # f = open("./Data/Polished/randomized_day_market.csv", 'r', encoding = "UTF-8")
-    # with f as rFile:
-    #     reader = csv.reader(rFile, delimiter=",")
-    #     next(reader)
-    #     for item in reader:
-    #         if item[9] == ticker:
-    #             if (float(item[7]) > stat):
-    #                 stat = float(item[7])
-    #                 maxDate = item[0]
-    # f.close
-    # return stat, maxDate
 
 def getMin(ticker):
     """
@@ -202,19 +148,6 @@ def getMin(ticker):
                 minDate = row[2]
     
     return stat, minDate
-    
-    
-    # f = open("./Data/Polished/randomized_day_market.csv", 'r', encoding = "UTF-8")
-    # with f as rFile:
-    #     reader = csv.reader(rFile, delimiter=",")
-    #     next(reader)
-    #     for item in reader:
-    #         if item[9] == ticker:
-    #             if (float(item[4]) < stat):
-    #                 stat = float(item[4])
-    #                 minDate = item[0]
-    # f.close
-    # return stat, minDate
 
 def all_tickers():
 
