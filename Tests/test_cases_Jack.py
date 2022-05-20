@@ -13,23 +13,23 @@ class Tests(unittest.TestCase):
 
     def test_check_ticker(self):
         """Tests whether the check_ticker method properly recognizes that a ticker is in the dataset"""
-        value = check_ticker("ROST", "Tests/DataForTesting/test_data_sample.csv")
+        value = check_ticker("ROST")
         self.assertEqual(value, True)
 
     def test_wrong_check_ticker(self):
         """Tests wheter the check_tciker method properly recognizes that a ticker is NOT in the dataset"""
-        value = check_ticker("AMOR", "Tests/DataForTesting/test_data_sample.csv")
+        value = check_ticker("AMOR")
         self.assertEqual(value, False)
 
     def test_get_dates(self):
         """Tests whether or not the correct dates are retreived when calling the get_dates method"""
-        values = get_dates("AMZN", "Data/Polished/randomized_day_market.csv")
+        values = get_dates("AMZN")
         trueValues = ([2012, 1, 23], [2022, 4, 4])
         self.assertEqual(values, trueValues)
     
     def test_wrong_get_dates(self):
         """Tests whether or not an incorrect date value is recognized as being so"""
-        values = get_dates("AMZN", "Data/Polished/randomized_day_market.csv")
+        values = get_dates("AMZN")
         trueValues = ([2009,2], [2021,5])
         self.assertFalse(values == trueValues)
 

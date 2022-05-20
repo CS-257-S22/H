@@ -59,7 +59,7 @@ def check_basicTicker(ticker):
     Output:
         1. Returns the result of check_ticker(ticker, fileName) where fileName is preset to a default file
     """
-    return check_ticker(ticker, "./Data/Polished/randomized_day_market.csv")
+    return check_ticker(ticker)
 
 def check_ticker(ticker): #needs to take in filename if using csv
     """
