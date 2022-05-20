@@ -187,7 +187,7 @@ class test_Flask_app(unittest.TestCase):
         """
         self.app = app.test_client()
         response = self.app.get('/inspect_stock/AAL/2012/1/Low', follow_redirects=True)
-        self.assertEqual(b"AAL's Low on 1/2012: 8.100000381469727", response.data)
+        self.assertEqual(b"AAL's Low on 1/2012: 8.1", response.data)
 
     #------------------------------
 
@@ -197,7 +197,7 @@ class test_Flask_app(unittest.TestCase):
         """
         self.app = app.test_client()
         response = self.app.get('/inspect_stock/ZUMZ/2022/4/Close', follow_redirects=True)
-        self.assertEqual(b"ZUMZ's Close on 4/2022: 38.790000915527344", response.data)
+        self.assertEqual(b"ZUMZ's Close on 4/2022: 38.79", response.data)
 
     #------------------------------
 
