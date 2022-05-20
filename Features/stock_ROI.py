@@ -9,7 +9,7 @@ import pandas as pd
 
 import seaborn as sns
 # set desired graph size
-sns.set(rc={'figure.figsize':(9,6)})
+sns.set(rc={'figure.figsize':(10,5)})
 # set background color
 sns.set(rc={"axes.facecolor":"white", "figure.facecolor":"white"})
 
