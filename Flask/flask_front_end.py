@@ -27,7 +27,7 @@ app = Flask(__name__)
 #------------------------------
 
 # read in pandas dataframe
-nasdaq_df = pd.read_csv("Data/Polished/randomized_day_market.csv")
+nasdaq_df = get_dataframe()
 nasdaq_df["Date"] = pd.to_datetime(nasdaq_df["Date"])
 
 #------------------------------
@@ -67,7 +67,7 @@ def basicData():
             4. A stock's minimum price and the days which it occured
     """
     ticker = request.form['ticker']
-    dates = get_dates(ticker, "Data/Polished/randomized_day_market.csv")
+    dates = get_dates(ticker)
     reformatedDates = str(dates[0][0]) + "-" + str(dates[0][1]) + "-" + str(dates[0][2]), str(dates[1][0]) + "-" + str(dates[1][1]) + "-" + str(dates[1][2])
     max = getMax(ticker)
     min = getMin(ticker)
