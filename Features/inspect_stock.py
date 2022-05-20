@@ -164,7 +164,7 @@ def check_query(query):
     Output:
         1. Boolean representing whether or not the input query is a valid request
     """
-    list = ["Low", "Rec_open", "Volume", "High", "Rec_close"]
+    list = ["Low", "Open", "Volume", "High", "Close"]
     if query in list:
         return True
 

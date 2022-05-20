@@ -46,7 +46,7 @@ class TestInspectCaseClose(unittest.TestCase):
         Tests that right close is returned when inputted correct values to find_query function
         """
 
-        output = find_query(6, "PLBC", 2017, 11, "Rec_close", nasdaq)
+        output = find_query(6, "PLBC", 2017, 11, "Close", nasdaq)
         actual = 21.39
         self.assertEqual(float(output), actual)
 
@@ -56,7 +56,7 @@ class TestInspectCaseOpen(unittest.TestCase):
         Tests that right open is returned when inputted correct values to find_query function
         """
 
-        output = find_query(6, "EXPD", 2019, 2, "Rec_open", nasdaq)
+        output = find_query(6, "EXPD", 2019, 2, "Open", nasdaq)
         actual = 74.37
         self.assertEqual(float(output), actual)
 
