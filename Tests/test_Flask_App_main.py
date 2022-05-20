@@ -33,7 +33,7 @@ class test_Flask_app(unittest.TestCase):
         routes = route_generator_stock_ROI(given)
 
         # list of corresponding expected output
-        expected = [699.0476391424841,\
+        expected = [699.0476190476189,\
             -98.11538457870483,\
             -41.26505762368915,\
             278.8730269264091,\
