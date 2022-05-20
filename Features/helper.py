@@ -268,7 +268,7 @@ def rename_database_friendly(dataframe):
     """
 
     dataframe.rename(columns = {'rec_date':'Date', 'rec_day':'Day','rec_month':'Month', 'rec_year':'Year',\
-        'low':'Low', 'rec_open':'Open', 'volume':'Volume', 'high':'High', 'rec_close':'close',\
+        'low':'Low', 'rec_open':'Open', 'volume':'Volume', 'high':'High', 'rec_close':'Close',\
         'ticker':'Ticker Symbol'}, inplace = True)
 
     return dataframe
