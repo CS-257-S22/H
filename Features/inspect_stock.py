@@ -54,11 +54,11 @@ def find_query_input():
     query = str(sys.argv[5])
 
     # calls find_query function to get the actual statistic and print and return the result
-    output = find_query(num_of_args, ticker, year, month, query, fileName, nasdaq_df)
+    output = find_query(num_of_args, ticker, year, month, query, nasdaq_df)
     # print(output)
     return output
 
-def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
+def find_query(num_of_args, ticker, year, month, query, dataframe):
     """
     Description:
         This function runs helper functions to check for the correct user input, including the 
@@ -83,15 +83,14 @@ def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
         return "There needs to be 4 arguments; TickerSymbol, Year, Month, Query"
 
     # checks if ticker symbol is in the dataset and returns error statement if not found
-    if not check_ticker(ticker, fileName):
+    if not check_ticker(ticker):
         return "Ticker not found in dataset"
 
     # checks if the inputted date is in dataset and returns error statement if not found
-    if not check_date(ticker, year, month, fileName):
+    if not check_date(ticker, year, month):
         print(ticker)
         print(year)
         print(month)
-        print(fileName)
         return "Invalid Date"
 
     # checks if the inputted query is offered
