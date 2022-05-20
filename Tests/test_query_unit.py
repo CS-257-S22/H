@@ -27,7 +27,7 @@ class TestInspectCaseLow(unittest.TestCase):
         """
 
         output = find_query(6, "NRCIB", 2015, 8, "Low", nasdaq)
-        actual = 32.79999923706055
+        actual = 32.7501
         self.assertEqual(float(output), actual)
 
 class TestInspectCaseHigh(unittest.TestCase):
