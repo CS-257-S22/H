@@ -3,44 +3,19 @@ import pandas as pd
 import unittest
 import argparse
 import pandas as pd
-import path
 import sys
 import csv
-
 import psycopg2
 import psqlConfig as config
 
-# import all sub-functions from other .py files
 from Features import inspect_stock, basic_stock_stat, stock_ROI, helper
 
 # read all available data
-nasdaq_df = pd.read_csv("Data/Polished/randomized_day_market.csv")
+nasdaq_df = helper.get_dataframe()
 
 #------------------------------
 
-class DataSource:
-        
-    #------------------------------
-
-    def __init__(self):
-        self.database = self.connect()
-
-    #------------------------------
-
-    def connect(self):
-        
-        try:
-            connection = psycopg2.connect(database=config.database, user=config.user, password=config.password, host = "localhost")
-        
-        except Exception as e:
-            print("Connection error: ", e)
-            exit()
-
-        return connection
-
-#------------------------------
-
-def read_input():
+def run_feature_called():
     """
     Objective:
     This function checks the user input for the command line app and runs the valid corresponding feature.
@@ -63,21 +38,6 @@ def read_input():
     at a certain point in time (specified by month and year of investment).
 
     """
-
-    # calls a helper method for reading file so ensures there is only 1 level of abstraction
-    fileName = "./Data/Polished/randomized_day_market.csv"
-    nasdaq_df = helper.get_dataframe(fileName)
-    # num_of_args = len(sys.argv)
-
-    return run_feature_called()
-    
-    # python3 main.py -inspect_stock AMZN 2022 3 Volume
-    # python3 main.py -basic_stat AMZN
-    # python3 main.py -stock_ROI AMZN 2011 12 Low 2022 3 High
-
-#------------------------------
-
-def run_feature_called():
     num_of_args = len(sys.argv)
     if num_of_args == 1:
         print("No feature Input! Try using the arguments -inspect, -basic_stat, or -stock_ROI")
@@ -101,27 +61,6 @@ def run_feature_called():
 
     else:
         return "Invalid feature! Try using the arguments -inspect, -basic_stat, or -stock_ROI"
-"""
-def check_number_of_arguments(check):
-    num_of_args = len(sys.argv)
-    if (check == "inspect") and (num_of_args != 5):
-        print("There needs to be 4 more arguments after -inspect; TickerSymbol, Year, Month, Query")
-        return False
-    elif (check == "basic_stat") and (num_of_args != 2):
-        print("There needs to be 1 more argument after -basic_stat: TickerSymbol")
-        return False
-    elif (check == "stock_ROI") and (num_of_args != 8):
-        print("There needs to be 7 more arguments after -inspect; TickerSymbol, First Year, First Month, First Query, Second Year, Second Month, Second Query")
-        return False
-    return True
-"""
 
 if __name__ == '__main__':
-
-    # read the database from psql server
-    teamh = DataSource() # to access the sql table, use teamh.database
-
-    # convert the database to pandas
-    nasdaq_df = pd.read_sql_query("select * from nasdaq;", teamh.database)
-
-    print(read_input())
+    print(run_feature_called())
