@@ -116,7 +116,6 @@ def check_num_args(num_of_args):
     if num_of_args != 6:
         return False
     return True
-    
 
 def check_date(ticker, year, month): #might need to take in fileName if reading a csv
     """
