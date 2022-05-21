@@ -51,7 +51,7 @@ nav li a:hover {
 
 /* Sets font and lineheight */
 li {
-    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+    font-family: Verdana, Geneva, sans-serif; 
     line-height: 1.4;
 }
 
