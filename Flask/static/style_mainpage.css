@@ -50,20 +50,20 @@ h2 {
 }
 
 /* Styles the left block displayed on the webpage */
-/* #left {
+#left {
     float:left; 
     background:#6a948a;
-    width:33%;
+    width:50%;
     height: 25em;
-} */
+}
     
 /* Styles the right block displayed on the webpage */
-/* #right {
+#right {
     float:right;
     background:#6a948a;
-    width:33%;
+    width:50%;
     height:25em;
-} */
+}
 
 /* Styles the citation for the stock data section */
 #market {
