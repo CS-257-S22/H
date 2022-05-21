@@ -18,7 +18,11 @@ h1 {
 }
 
 /*Bulk Body Adjustment*/
-h2, h3, p {
+h2 {
+    font-family: 'Verdana', serif;
+    font-size: 30px;
+}
+h3, p {
     font-family: 'Verdana', serif;
     font-size: 20px;
 }
