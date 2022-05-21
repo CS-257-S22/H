@@ -74,6 +74,10 @@ h2 {
     margin-top: 2%;
 }
 
+#about {
+    background-color: #6a948a;
+}
+
 /* Sets font */
 p, div {
     font-family: 'Nobile', Helvetica, Arial, sans-serif;
