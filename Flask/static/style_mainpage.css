@@ -51,6 +51,7 @@ h2 {
 
 /* Styles the left block displayed on the webpage */
 #left {
+    margin: auto;
     float:left; 
     background:#6a948a;
     width:49%;
@@ -59,6 +60,7 @@ h2 {
     
 /* Styles the right block displayed on the webpage */
 #right {
+    margin: auto;
     float:right;
     background:#6a948a;
     width:49%;
