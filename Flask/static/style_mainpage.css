@@ -51,19 +51,19 @@ h2 {
 
 /* Styles the left block displayed on the webpage */
 #left {
-    padding: 1%;
+    padding: 2%;
     float:left; 
     background:#6a948a;
-    width:46%;
+    width:48%;
     height: 25em;
 }
     
 /* Styles the right block displayed on the webpage */
 #right {
-    padding: 1%;
+    padding: 2%;
     float:right;
     background:#6a948a;
-    width:46%;
+    width:48%;
     height:25em;
 }
 
