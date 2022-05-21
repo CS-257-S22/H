@@ -18,10 +18,15 @@ h1 {
 }
 
 /* Sets font and font size for all heading but the inital */
-h2, h3, h4, h5 {
-   font-family: Verdana, Geneva, sans-serif; 
-   font-size: 16;
+h2 {
+    font-family: 'Italiana', serif;
+    font-size: 30px;
 }
+
+h3, h4, h5 {
+    font-family: Verdana, Geneva, sans-serif; 
+    font-size: 16;
+ }
 
 /* Sets font and line height for paragraphs */
 p {
