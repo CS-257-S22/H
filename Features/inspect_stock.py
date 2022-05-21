@@ -38,8 +38,6 @@ def find_query_input():
 
     # calls a helper method for reading file so ensures there is only 1 level of abstraction
     nasdaq_df = get_dataframe()
-    nasdaq_df = rename_database_friendly(nasdaq_df)
-
 
     num_of_args = len(sys.argv)
     # assigns command line arguments to variables with correct types by casting
@@ -133,7 +131,7 @@ def check_date(ticker, year, month): #might need to take in fileName if reading 
         1. A boolean representing whether or not the particular data point is located within the requested dataset
     """
     cursor = teamh.database.cursor()
-    cursor.execute("SELECT ticker, rec_year, rec_month FROM nasdaq")
+    cursor.execute("SELECT ticker, rec_year, rec_month FROM nasdaq where Volume != 0")
     table = cursor.fetchall()
 
     for row in table:

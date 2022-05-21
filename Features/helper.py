@@ -96,7 +96,7 @@ def get_dataframe():
     """
 
     # read the database from psql server to pandas and rename the columns
-    nasdaq_df = pd.read_sql_query("select * from nasdaq;", teamh.database)
+    nasdaq_df = pd.read_sql_query("select * from nasdaq where Volume !=0;", teamh.database)
     nasdaq_df = rename_database_friendly(nasdaq_df)
 
     return nasdaq_df
@@ -114,7 +114,7 @@ def getMax(ticker):
     stat = float(0)
     maxDate = ""
     
-    cursor.execute("SELECT ticker, high, rec_date FROM nasdaq")
+    cursor.execute("SELECT ticker, high, rec_date FROM nasdaq where Volume !=0")
     table = cursor.fetchall()
 
     for row in table:
@@ -138,7 +138,7 @@ def getMin(ticker):
     stat = float(99999999999999999)
     minDate = ""
 
-    cursor.execute("SELECT ticker, low, rec_date FROM nasdaq")
+    cursor.execute("SELECT ticker, low, rec_date FROM nasdaq where Volume != 0")
     table = cursor.fetchall()
 
     for row in table:
@@ -163,8 +163,7 @@ def all_tickers():
     """
 
     # read the data from psql server and rename the columns
-    stock_df = pd.read_sql_query("select * from nasdaq;", teamh.database)
-    stock_df = rename_database_friendly(stock_df)
+    stock_df = get_dataframe()
 
     # a list to store all tickers
     all_tickers = []
