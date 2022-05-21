@@ -49,6 +49,12 @@ nav li a:hover {
     background-color: #6a948a;
 }
 
+/* Sets font and lineheight */
+li {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+    line-height: 1.4;
+}
+
 .button {
     background-color: white; /* Green */
     border: 2px solid navy;
