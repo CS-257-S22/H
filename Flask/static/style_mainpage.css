@@ -42,6 +42,7 @@ body {
     margin-top: 1%;
     margin-left: 1%;
     margin-right: 1%;
+    margin-bottom: 5%;
 }
 
 /* Sets font */
@@ -69,8 +70,13 @@ h2 {
 
 /* Styles the citation for the stock data section */
 #market {
-    padding-top: 10%;
-    margin-top: 20%;
+    padding-top: 2%;
+    margin-top: 2%;
+}
+
+#about {
+    padding: 2%;
+    background:#6a948a;
 }
 
 /* Sets font */
@@ -86,5 +92,6 @@ li {
 
 .citation {
     margin:auto;
-    padding-bottom: 20%;
+    padding-bottom: 5%;
+    float:left;
 }
