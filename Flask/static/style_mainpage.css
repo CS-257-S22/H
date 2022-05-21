@@ -68,11 +68,9 @@ h2 {
 }
 
 /* Styles the citation for the stock data section */
-/* #market {
-    padding-left: 30px;
-    padding-right: 30px;
-    height: 400px;
-} */
+#market {
+    padding-top: 2%
+}
 
 /* Sets font */
 p, div {
