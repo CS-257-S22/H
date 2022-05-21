@@ -74,11 +74,6 @@ h2 {
     margin-top: 2%;
 }
 
-#about {
-    color: #2f4540;
-    /* background:#6a948a; */
-}
-
 /* Sets font */
 p, div {
     font-family: 'Nobile', Helvetica, Arial, sans-serif;
@@ -92,6 +87,6 @@ li {
 
 .citation {
     margin:auto;
-    padding-bottom: 5%;
+    /* padding-bottom: 5%; */
     float:left;
 }
