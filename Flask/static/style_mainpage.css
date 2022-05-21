@@ -68,12 +68,6 @@ h2 {
     height:25em;
 }
 
-/* Styles the citation for the stock data section */
-#market {
-    /* padding-top: 1%;
-    margin-top: 2%; */
-}
-
 /* Sets font */
 p, div {
     font-family: 'Nobile', Helvetica, Arial, sans-serif;
