@@ -10,8 +10,6 @@ h1 {
 }
 
 /* Styles border for navigation bar */
-
-
 nav ul {
     border: 2px solid #2f4540;
     list-style-type: none;
@@ -53,7 +51,7 @@ h2 {
 
 /* Styles the left block displayed on the webpage */
 #left {
-    padding: 5%;
+    padding: 1%;
     float:left; 
     background:#6a948a;
     width:49%;
@@ -62,7 +60,7 @@ h2 {
     
 /* Styles the right block displayed on the webpage */
 #right {
-    padding: 5%;
+    padding: 1%;
     float:right;
     background:#6a948a;
     width:49%;
