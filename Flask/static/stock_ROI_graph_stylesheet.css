@@ -17,6 +17,11 @@ h1 {
     font-size: 40px;
 }
 
+h2 {
+    font-family: Verdana, Geneva, sans-serif; 
+    font-size: 30px;
+}
+
 .button {
     background-color: white; /* Green */
     border: 2px solid navy;

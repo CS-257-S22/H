@@ -19,7 +19,7 @@ h1 {
 
 /* Sets font and font size for all heading but the inital */
 h2 {
-    font-family: 'Italiana', serif;
+    font-family: Verdana, Geneva, sans-serif; 
     font-size: 30px;
 }
 
