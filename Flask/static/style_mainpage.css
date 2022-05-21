@@ -68,11 +68,11 @@ h2 {
 }
 
 /* Styles the citation for the stock data section */
-#market {
+/* #market {
     padding-left: 30px;
     padding-right: 30px;
     height: 400px;
-}
+} */
 
 /* Sets font */
 p, div {
@@ -83,4 +83,9 @@ p, div {
 li {
     font-family: Verdana, Geneva, sans-serif; 
     line-height: 1.4;
+}
+
+.citation {
+    margin:auto;
+    padding-bottom: 20%;
 }
