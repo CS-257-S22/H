@@ -57,7 +57,7 @@ h2 {
     height: 25em;
 }
     
-/* Styles the righ tblock displayed on the webpage */
+/* Styles the right block displayed on the webpage */
 #right {
     float:right;
     background:#6a948a;
@@ -79,6 +79,7 @@ p, div {
 
 /* Sets font and lineheight */
 li {
-    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+    /* font-family: 'Nobile', Helvetica, Arial, sans-serif; */
+    font-family: Verdana, Geneva, sans-serif; 
     line-height: 1.4;
 }
