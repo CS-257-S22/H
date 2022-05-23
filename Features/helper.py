@@ -116,7 +116,7 @@ def getMax(ticker):
     stat = float(0)
     maxDate = ""
     
-    cursor.execute("SELECT ticker, high, rec_date FROM nasdaq where volume > 0")
+    cursor.execute("SELECT ticker, high, rec_date FROM nasdaq")
     table = cursor.fetchall()
 
     for row in table:
@@ -140,7 +140,7 @@ def getMin(ticker):
     stat = float(99999999999999999)
     minDate = ""
 
-    cursor.execute("SELECT ticker, low, rec_date FROM nasdaq where volume > 0")
+    cursor.execute("SELECT ticker, low, rec_date FROM nasdaq")
     table = cursor.fetchall()
 
     for row in table:
