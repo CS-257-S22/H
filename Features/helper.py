@@ -204,3 +204,50 @@ def rename_database_friendly(dataframe):
         'ticker':'Ticker Symbol'}, inplace = True)
 
     return dataframe
+
+#------------------------------
+
+def closest_available_record(ticker, date, dataframe):
+    """
+    DESCRIPTION:
+        Input in a date, and this function will find out whether that date is available in the record for said ticker.
+        If it doesn't, this function will return the closest date available.
+
+    INPUT SIGNATURE:
+        1. ticker (string)
+        2. date (list): [year, month]
+        3. dataframe: pandas
+
+    OUTPUT SIGNATURE:
+        1. True if the input date is in record
+        2. the closest date if the input date is NOT in record
+    """
+
+    # find the earliest and latest dates
+    earliest_date, latest_date = stock_extreme_dates(ticker, dataframe)
+
+    # convert everything to seconds for convenience
+    earliest_seconds = to_seconds(earliest_date)
+    latest_seconds = to_seconds(latest_date)
+    date_seconds = to_seconds(date)
+
+    if (earliest_seconds <= date_seconds <= latest_seconds):
+        return True
+
+    elif date_seconds > latest_seconds:
+        return latest_date
+
+    elif date_seconds < earliest_seconds:
+        return earliest_date
+
+#------------------------------
+
+def to_seconds(date):
+    """
+    DESCRIPTION:
+        Convert a list [year, month] to seconds for easy comparision
+    """
+
+    seconds = date[0] * 31557600 + date[1] * 2629800
+
+    return seconds
