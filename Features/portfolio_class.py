@@ -228,10 +228,19 @@ class portfolio():
             if shares == 0:
                 raise Exception("Ticker not removed after selling all shares.")
 
-            # the total cash equivalent of all owned shares
-            liquitable = inspect(firm, [year, month], query, nasdaq_df) * shares
+            closest_record = closest_available_record(ticker, [year, month], nasdaq_df)
 
-            self.value += liquitable
+            if closest_record == True:
+                # the total cash equivalent of all owned shares
+                liquitable = inspect(firm, [year, month], query, nasdaq_df) * shares
+
+                self.value += liquitable
+
+            else:
+                # the total cash equivalent of all owned shares
+                liquitable = inspect(firm, closest_record, query, nasdaq_df) * shares
+
+                self.value += liquitable
 
         # calculate the ROI (in percentage)
         self.ROI = self.value/self.invested * 100
