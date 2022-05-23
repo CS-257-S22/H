@@ -228,14 +228,19 @@ class portfolio():
             # the total amount of shares owned
             shares = len(self.holdings[firm])
 
+            # DEBUG
+            print("\n\n#------------------------------\n",\
+                "Firm: ", firm,\
+                "\nShares: ", shares)
+
             if shares == 0:
                 raise Exception("Ticker not removed after selling all shares.")
 
             closest_record = closest_available_record(firm, [year, month], nasdaq_df)
 
             # DEBUG
-            print("\n\n#------------------------------\n\
-                Liquidating: ", firm,\
+            print("\nLiquidating: ",\
+                firm,\
                 "\nOn: ", year, "-", month,\
                 "\nat: ", query)
 
