@@ -228,7 +228,7 @@ class portfolio():
             if shares == 0:
                 raise Exception("Ticker not removed after selling all shares.")
 
-            closest_record = closest_available_record(ticker, [year, month], nasdaq_df)
+            closest_record = closest_available_record(firm, [year, month], nasdaq_df)
 
             if closest_record == True:
                 # the total cash equivalent of all owned shares

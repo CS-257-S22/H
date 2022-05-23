@@ -233,7 +233,7 @@ def closest_available_record(ticker, date, dataframe):
     latest_seconds = to_seconds(latest_date)
     date_seconds = to_seconds(date)
 
-    if (earliest_seconds <= date_seconds <= latest_seconds):
+    if (earliest_seconds <= date_seconds) and (date_seconds <= latest_seconds):
         return True
 
     elif date_seconds > latest_seconds:
