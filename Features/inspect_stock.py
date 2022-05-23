@@ -131,7 +131,7 @@ def check_date(ticker, year, month): #might need to take in fileName if reading 
         1. A boolean representing whether or not the particular data point is located within the requested dataset
     """
     cursor = teamh.database.cursor()
-    cursor.execute("SELECT ticker, rec_year, rec_month FROM nasdaq where volume > 0")
+    cursor.execute("SELECT ticker, rec_year, rec_month FROM nasdaq")
     table = cursor.fetchall()
 
     for row in table:
