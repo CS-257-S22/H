@@ -98,7 +98,7 @@ def get_dataframe():
     """
 
     # read the database from psql server to pandas and rename the columns
-    nasdaq_df = pd.read_sql_query("select * from nasdaq where volume > 0;", teamh.database)
+    nasdaq_df = pd.read_sql_query("select * from nasdaq;", teamh.database)
     nasdaq_df = rename_database_friendly(nasdaq_df)
 
     return nasdaq_df
