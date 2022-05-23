@@ -2,6 +2,8 @@
 import sys
 sys.dont_write_bytecode = True
 
+from basic_stock_stat import *
+
 import pandas as pd
 import path
 # current directory
