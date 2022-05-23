@@ -17,7 +17,7 @@ import argparse
 
 #from inspect_stock import check_query
 sys.path.append('./Features')
-from inspect_stock import check_query
+from inspect_stock import *
 from helper import *
 
 #------------------------------

@@ -12,7 +12,7 @@ from fileinput import filename
 import sys
 import csv
 import pandas as pd
-from helper import check_ticker, get_dataframe
+from helper import *
 from Features import helper
 
 def get_dates_input():
