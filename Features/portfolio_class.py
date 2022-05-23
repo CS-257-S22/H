@@ -110,19 +110,39 @@ class portfolio():
         # capitalized all letter within action variable just in case of human error
         action = action.upper()
 
-        # find the price of the transaction
-        price = inspect(ticker, date, query, nasdaq_df)
+        closest_record = closest_available_record(ticker, date, nasdaq_df)
 
-        # adjust the records
-        self.ticker.append(ticker)
-        self.action.append(action)
-        self.year.append(date[0])
-        self.month.append(date[1])
-        self.query.append(query)
-        self.price.append(price)
+        if closest_record == True:
 
-        # record that this transaction is not yet included in the tally
-        self.latest_transaction_tally_state = False
+            # find the price of the transaction
+            price = inspect(ticker, date, query, nasdaq_df)
+
+            # adjust the records
+            self.ticker.append(ticker)
+            self.action.append(action)
+            self.year.append(date[0])
+            self.month.append(date[1])
+            self.query.append(query)
+            self.price.append(price)
+
+            # record that this transaction is not yet included in the tally
+            self.latest_transaction_tally_state = False
+
+        else:
+
+            # do the transaction on the closest day
+            price = inspect(ticker, closest_record, query, nasdaq_df)
+
+            # adjust the records
+            self.ticker.append(ticker)
+            self.action.append(action)
+            self.year.append(closest_record[0])
+            self.month.append(closest_record[1])
+            self.query.append(query)
+            self.price.append(price)
+
+            # record that this transaction is not yet included in the tally
+            self.latest_transaction_tally_state = False
 
     #------------------------------
 
