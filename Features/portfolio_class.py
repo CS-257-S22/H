@@ -233,6 +233,12 @@ class portfolio():
 
             closest_record = closest_available_record(firm, [year, month], nasdaq_df)
 
+            # DEBUG
+            print("\n\n#------------------------------\n\
+                Liquidating: ", firm,\
+                "\nOn: ", year, "-", month,\
+                "\nat: ", query)
+
             if closest_record == True:
                 # the total cash equivalent of all owned shares
                 liquitable = inspect(firm, [year, month], query, nasdaq_df) * shares
@@ -341,12 +347,6 @@ class portfolio():
                 raise Exception("Ticker not removed after selling all shares.")
 
             closest_record = closest_available_record(firm, [year, month], nasdaq_df)
-
-            # DEBUG
-            print("\n\n#------------------------------\n\
-                Liquidating: ", firm,\
-                "\nOn: ", year, "-", month,\
-                "\nat: ", query)
 
             if closest_record == True:
                 # the total cash equivalent of all owned shares
