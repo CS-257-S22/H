@@ -257,7 +257,7 @@ class portfolio():
                 self.value += liquitable
 
         # calculate the ROI (in percentage)
-        self.ROI = self.value/self.invested * 100
+        self.ROI = percentage_difference(self.invested, self.value)
 
         return self.value, self.liquid, self.invested, self.divested, self.ROI
 
