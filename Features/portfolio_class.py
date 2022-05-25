@@ -66,6 +66,8 @@ class portfolio():
 
         self.latest_transaction_tally_state = True
 
+        return self.transaction_df
+
     #------------------------------
 
     def reset(self):
