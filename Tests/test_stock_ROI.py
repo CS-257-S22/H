@@ -94,7 +94,7 @@ class test_stock_ROI(unittest.TestCase):
 
         # loop through the list of given and expected outcome and compare multiple cases
         for i in range(len(given)):
-            self.assertEqual(stock_ROI.in_dateframe(given[i][0], given[i][1], dummy_df),\
+            self.assertEqual(stock_ROI.in_dataframe(given[i][0], given[i][1], dummy_df),\
             expected[i])
 
     #------------------------------
