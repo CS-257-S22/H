@@ -59,8 +59,8 @@ def basicData():
     reformatedDates = str(dates[0][0]) + "-" + str(dates[0][1]) + "-" + str(dates[0][2]), str(dates[1][0]) + "-" + str(dates[1][1]) + "-" + str(dates[1][2])
     data = helper.get_dataframe()
     extDates = basic_stock_stat.stock_extreme_dates(ticker, data)
-    max = int(extDates[0][0]) + "-" + int(extDates[0][1]) + "-" + int(extDates[0][2])
-    min = int(extDates[1][0]) + "-" + int(extDates[1][1]) + "-" + int(extDates[1][2])
+    max = str(int(extDates[0][0])) + "-" + str(int(extDates[0][1])) + "-" + str(int(extDates[0][2]))
+    min = str(int(extDates[1][0])) + "-" + str(int(extDates[1][1])) + "-" + str(int(extDates[1][2]))
 
     earliestData = inspect_stock.inspect(ticker, dates[0], "Low", nasdaq_df),\
         inspect_stock.inspect(ticker, dates[0], "High", nasdaq_df),\
