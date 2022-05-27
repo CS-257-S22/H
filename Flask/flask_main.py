@@ -1,6 +1,6 @@
 # setting path to the directory with the features
 import sys
-sys.path.append(sys.path[0]+'/./Features')
+sys.path.append(sys.path[0]+'/../Features')
 
 # UNIVERSAL IMPORT
 from universal_import import *
