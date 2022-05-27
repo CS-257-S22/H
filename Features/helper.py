@@ -1,21 +1,13 @@
-# Pycache are evil, don't produce them
-import sys
-sys.dont_write_bytecode = True
+# UNIVERSAL IMPORT
+from universal_import import *
 
-from basic_stock_stat import *
+# setting path to the directory with the features
+sys.path.append(sys.path[0]+'/../Features')
 
-import pandas as pd
-import path
-# current directory
-directory = path.Path(__file__).abspath()
-# setting path to the directory with the feature
-sys.path.append(directory.parent.parent)
-
-# database import
-import psycopg2
-import psqlConfig as config
-
-import csv
+# import other features
+import basic_stock_stat
+import inspect_stock
+import stock_ROI
 
 # a class to read from the psql database
 class DataSource():

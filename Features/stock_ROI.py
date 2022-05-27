@@ -1,24 +1,13 @@
-# Pycache are evil, don't produce them
-from enum import unique
-from logging import raiseExceptions
-import sys
-import matplotlib
-sys.dont_write_bytecode = True
+# UNIVERSAL IMPORT
+from universal_import import *
 
-import pandas as pd
+# setting path to the directory with the features
+sys.path.append(sys.path[0]+'/../Features')
 
-import seaborn as sns
-# set desired graph size
-sns.set(rc={'figure.figsize':(10,5)})
-# set background color
-sns.set(rc={"axes.facecolor":"white", "figure.facecolor":"white"})
-
-import argparse
-
-#from inspect_stock import check_query
-sys.path.append('./Features')
-from inspect_stock import *
-from helper import *
+# import other features
+import basic_stock_stat
+import inspect_stock
+import helper
 
 #------------------------------
 

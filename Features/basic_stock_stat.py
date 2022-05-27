@@ -1,19 +1,13 @@
-# Pycache are evil, don't produce them
-import sys
-sys.dont_write_bytecode = True
+# UNIVERSAL IMPORT
+from universal_import import *
 
-import path
-# current directory
-directory = path.Path(__file__).abspath()
-# setting path to the directory with the feature
-sys.path.append(directory.parent.parent)
+# setting path to the directory with the features
+sys.path.append(sys.path[0]+'/../Features')
 
-from fileinput import filename
-import sys
-import csv
-import pandas as pd
-from helper import *
-from Features import helper
+# import other features
+import helper
+import inspect_stock
+import stock_ROI
 
 def get_dates_input():
     """

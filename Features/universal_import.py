@@ -25,6 +25,12 @@ from enum import unique
 from logging import raiseExceptions
 
 #------------------------------
+# DATABASE IMPORT
+
+import psycopg2
+import psqlConfig as config
+
+#------------------------------
 # IMPORT FEATURES
 
 # We do NOT import all features in the universal import file because we don't want a feature to call itself.
