@@ -47,10 +47,10 @@ def get_dates(ticker):
     """
 
     # sets variable to dataframe by calling helper function to avoid layer of abstraction
-    nasdaq_df = get_dataframe()
+    nasdaq_df = helper.get_dataframe()
 
     # calls helper function to check if ticker is in dataset
-    if not check_ticker(ticker):
+    if not helper.check_ticker(ticker):
         return "Ticker not found in dataset"
    
     # outputs the list of earliest and latest dates and prints and returns it
