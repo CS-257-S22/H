@@ -103,54 +103,6 @@ def get_dataframe():
 
     return nasdaq_df
 
-def getMax(ticker):
-    """
-    Objective: Searches through a dataset (Only data on TSLA is recorded at this time so it is hardcoded) and returns
-    the maximum recorded 'High' price for a particular stock (Only TSLA is acceptable at this time). Also returns the
-    data of the highest recorded stock price.
-    Input: Takes in a ticker symbol which must be recorded in our dataset (Only TSLA is acceptable at this time)
-    Output: The maximum recorded value of particular stock and the date it was recorded on
-    """
-    if not check_ticker(ticker):
-        return "Please input a valid ticker symbol"
-    stat = float(0)
-    maxDate = ""
-    
-    cursor.execute("SELECT ticker, high, rec_date FROM nasdaq")
-    table = cursor.fetchall()
-
-    for row in table:
-        if row[0] == ticker:
-            if (float(row[1]) > stat):
-                stat = float(row[1])
-                maxDate = row[2]
-                
-    return stat, maxDate
-
-def getMin(ticker):
-    """
-    Objective: Searches through a dataset (Only data on TSLA is recorded at this time so it is hardcoded) and returns
-    the maximum recorded 'High' price for a particular stock (Only TSLA is acceptable at this time). Also returns the
-    data of the highest recorded stock price.
-    Input: Takes in a ticker symbol which must be recorded in our dataset (Only TSLA is acceptable at this time)
-    Output: The maximum recorded value of particular stock and the date it was recorded on
-    """
-    if not check_ticker(ticker):
-        return "Please input a valid ticker symbol"
-    stat = float(99999999999999999)
-    minDate = ""
-
-    cursor.execute("SELECT ticker, low, rec_date FROM nasdaq")
-    table = cursor.fetchall()
-
-    for row in table:
-        if row[0] == ticker:
-            if (float(row[1]) < stat):
-                stat = float(row[1])
-                minDate = row[2]
-    
-    return stat, minDate
-
 def all_tickers():
 
     """
