@@ -1,5 +1,8 @@
 # Pycache are evil, don't produce them
 import sys
+from Features.basic_stock_stat import stock_extreme_dates
+
+from Features.helper import get_dataframe
 sys.dont_write_bytecode = True
 
 from flask import render_template, Flask, request, url_for
@@ -69,8 +72,10 @@ def basicData():
     ticker = request.form['ticker']
     dates = get_dates(ticker)
     reformatedDates = str(dates[0][0]) + "-" + str(dates[0][1]) + "-" + str(dates[0][2]), str(dates[1][0]) + "-" + str(dates[1][1]) + "-" + str(dates[1][2])
-    max = getMax(ticker)
-    min = getMin(ticker)
+    data = get_dataframe()
+    dates = stock_extreme_dates(ticker, data)
+    max = dates[0]
+    min = dates[1]
 
     earliestData = inspect(ticker, dates[0], "Low", nasdaq_df), inspect(ticker, dates[0], "High", nasdaq_df), inspect(ticker, dates[0], "Open", nasdaq_df), inspect(ticker, dates[0], "Close", nasdaq_df), inspect(ticker, dates[0], "Volume", nasdaq_df)
     latestData = inspect(ticker, dates[1], "Low", nasdaq_df), inspect(ticker, dates[1], "High", nasdaq_df), inspect(ticker, dates[1], "Open", nasdaq_df), inspect(ticker, dates[1], "Close", nasdaq_df), inspect(ticker, dates[1], "Volume", nasdaq_df)
