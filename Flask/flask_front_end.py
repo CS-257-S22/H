@@ -27,7 +27,7 @@ app = Flask(__name__)
 #------------------------------
 
 # read in pandas dataframe
-nasdaq_df = get_dataframe()
+nasdaq_df = helper.get_dataframe()
 
 #------------------------------
 
@@ -68,8 +68,8 @@ def basicData():
     ticker = request.form['ticker']
     dates = basic_stock_stat.get_dates(ticker)
     reformatedDates = str(dates[0][0]) + "-" + str(dates[0][1]) + "-" + str(dates[0][2]), str(dates[1][0]) + "-" + str(dates[1][1]) + "-" + str(dates[1][2])
-    data = get_dataframe()
-    extDates = stock_extreme_dates(ticker, data)
+    data = helper.get_dataframe()
+    extDates = basic_stock_stat.stock_extreme_dates(ticker, data)
     max = int(extDates[0][0]) + "-" + int(extDates[0][1]) + "-" + int(extDates[0][2])
     min = int(extDates[1][0]) + "-" + int(extDates[1][1]) + "-" + int(extDates[1][2])
 
