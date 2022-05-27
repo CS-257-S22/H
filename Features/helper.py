@@ -44,13 +44,33 @@ def check_ticker(ticker): #needs to take in filename if using csv
             return True
     return False
 
-def get_max():
-    cursor.execute("SELECT MAX(high), rec_date FROM nasdaq GROUP BY rec_date")
+def get_max(inputTicker):
+    """
+    Objective: Searches through a dataset (Only data on TSLA is recorded at this time so it is hardcoded) and returns
+    the maximum recorded 'High' price for a particular stock (Only TSLA is acceptable at this time). Also returns the
+    data of the highest recorded stock price.
+    Input: Takes in a ticker symbol which must be recorded in our dataset (Only TSLA is acceptable at this time)
+    Output: The maximum recorded value of particular stock and the date it was recorded on
+    """
+    if not check_ticker(inputTicker):
+        return "Please input a valid ticker symbol"
+
+    cursor.execute("SELECT MAX(high), rec_date FROM nasdaq WHERE ticker=inputTicker GROUP BY rec_date")
     table = cursor.fetchall()
     return table[0][0], table[0][1]
 
-def get_min():
-    cursor.execute("SELECT MAX(low), rec_date FROM nasdaq GROUP BY rec_date")
+def get_min(inputTicker):
+    """
+    Objective: Searches through a dataset (Only data on TSLA is recorded at this time so it is hardcoded) and returns
+    the maximum recorded 'High' price for a particular stock (Only TSLA is acceptable at this time). Also returns the
+    data of the highest recorded stock price.
+    Input: Takes in a ticker symbol which must be recorded in our dataset (Only TSLA is acceptable at this time)
+    Output: The maximum recorded value of particular stock and the date it was recorded on
+    """
+    if not check_ticker(inputTicker):
+        return "Please input a valid ticker symbol"
+
+    cursor.execute("SELECT MAX(low), rec_date FROM nasdaq WHERE ticker=inputTicker GROUP BY rec_date")
     table = cursor.fetchall()
     return table[0][0], table[0][1]
 
