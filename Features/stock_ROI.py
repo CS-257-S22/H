@@ -349,6 +349,9 @@ def graph_ROIs_over_time_one_stock(ticker, dataframe):
     # get unique years and ROIs for each year
     yearly_ROI_df, unique_year, ROIs = all_ROIs_one_ticker(ticker, dataframe)
 
+    # convert yearly ROI colume
+    yearly_ROI_df["Year"].astype(int)
+
     # generate appropriate palette
     colors = [] # empty list to store all colors
     for ROI in ROIs:
