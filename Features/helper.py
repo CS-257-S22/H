@@ -45,12 +45,12 @@ def check_ticker(ticker): #needs to take in filename if using csv
     return False
 
 def get_max():
-    cursor.execute("SELECT MAX(high), rec_date FROM nasdaq")
+    cursor.execute("SELECT MAX(high), rec_date FROM nasdaq GROUP BY rec_date")
     table = cursor.fetchall()
     return table[0][0], table[0][1]
 
 def get_min():
-    cursor.execute("SELECT MAX(low), rec_date FROM nasdaq")
+    cursor.execute("SELECT MAX(low), rec_date FROM nasdaq GROUP BY rec_date")
     table = cursor.fetchall()
     return table[0][0], table[0][1]
 
