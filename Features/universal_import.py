@@ -12,8 +12,10 @@ import csv
 from fileinput import filename
 
 import pandas as pd
-import matplotlib
 import datetime
+
+import matplotlib
+matplotlib.pyplot.switch_backend('Agg')
 
 import seaborn as sns
 # set desired graph size
@@ -23,6 +25,8 @@ sns.set(rc={"axes.facecolor":"white", "figure.facecolor":"white"})
 
 from enum import unique
 from logging import raiseExceptions
+
+from flask import render_template, Flask, request, url_for
 
 #------------------------------
 # DATABASE IMPORT

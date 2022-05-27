@@ -1,27 +1,15 @@
-# Pycache are evil, don't produce them
+# setting path to the directory with the features
 import sys
-sys.dont_write_bytecode = True
-import path
-
-# sys.path.append('Features')
 sys.path.append(sys.path[0]+'/../Features')
+
+# UNIVERSAL IMPORT
+from universal_import import *
+
+# import other features
 import inspect_stock
 import basic_stock_stat
 import stock_ROI
 import helper
-
-from flask import render_template, Flask, request, url_for
-
-import pandas as pd
-import seaborn as sns
-# set desired graph size
-sns.set(rc={'figure.figsize':(10,5)})
-# set background color
-sns.set(rc={"axes.facecolor":"white", "figure.facecolor":"white"})
-
-# attempting to fix NSWindow Drag Exception
-import matplotlib
-matplotlib.pyplot.switch_backend('Agg')
 
 app = Flask(__name__)
 

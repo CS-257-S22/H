@@ -1,8 +1,9 @@
+# setting path to the directory with the features
+import sys
+sys.path.append(sys.path[0]+'/../Features')
+
 # UNIVERSAL IMPORT
 from universal_import import *
-
-# setting path to the directory with the features
-sys.path.append(sys.path[0]+'/../Features')
 
 # import other features
 import basic_stock_stat
