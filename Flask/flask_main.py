@@ -92,7 +92,7 @@ def basicData():
 #------------------------------
 
 @app.route("/stock_ROI")
-def stock_ROI():
+def graph_stock_ROI():
     """
     DESCRIPTION:
         This is the back-end of the stock_ROI page.
