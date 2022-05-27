@@ -44,7 +44,7 @@ def homepage():
     OUTPUT SIGNATURE:
         1. Dynamically generate a homepage based on the given HTML and CSS file
     """
-    return render_template('index_mainpage.html', tickers = all_tickers())
+    return render_template('index_mainpage.html', tickers = stock_ROI.all_tickers())
 
 #------------------------------
 
