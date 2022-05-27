@@ -11,6 +11,7 @@ import argparse
 import csv
 from fileinput import filename
 import unittest
+import random
 
 import pandas as pd
 import datetime
@@ -67,7 +68,9 @@ class DataSource():
 
         return connection
 
-# creating a copy of the team's database
+#------------------------------
+
+# CREATE THE TEAM'S DATABASE OBJECT
 teamh = DataSource()
 cursor = teamh.database.cursor()
 

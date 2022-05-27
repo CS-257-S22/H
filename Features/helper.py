@@ -10,39 +10,6 @@ import basic_stock_stat
 import inspect_stock
 import stock_ROI
 
-# a class to read from the psql database
-class DataSource():
-        
-    #------------------------------
-
-    def __init__(self):
-        """
-        Establish the first instance by connecting to the database
-        """
-
-        self.database = self.connect()
-
-    #------------------------------
-
-    def connect(self):
-        """
-        Connect to the team's database using the given credentials on perlman
-        """
-
-
-        try:
-            connection = psycopg2.connect(database=config.database, user=config.user, password=config.password, host = "localhost")
-        
-        except Exception as e:
-            print("Connection error: ", e)
-            exit()
-
-        return connection
-
-# creating a copy of the team's database
-teamh = DataSource()
-cursor = teamh.database.cursor()
-
 def check_basicTicker(ticker):
     """
     Description:
