@@ -1,12 +1,15 @@
-# Pycache are evil, don't produce them
+# setting path to the directory with the features
 import sys
-sys.dont_write_bytecode = True
+sys.path.append(sys.path[0]+'/../Features')
 
-import sys
-sys.path.append('../H/Features')
-import pandas as pd
-import unittest
-from basic_stock_stat import find_earliest_or_latest_record
+# UNIVERSAL IMPORT
+from universal_import import *
+
+# import other features
+import basic_stock_stat
+import inspect_stock
+import helper
+import stock_ROI
 
 class TestInspectCase(unittest.TestCase):
     def test_case_(self):
@@ -15,7 +18,7 @@ class TestInspectCase(unittest.TestCase):
         """
         nasdaq_df = pd.read_csv("Data/Polished/randomized_day_market.csv")
         actual = [2012, 1, 18]
-        output = find_earliest_or_latest_record("AAPL", "earliest", nasdaq_df)
+        output = basic_stock_stat.find_earliest_or_latest_record("AAPL", "earliest", nasdaq_df)
         self.assertEqual(output, actual)
         print(output)
 
