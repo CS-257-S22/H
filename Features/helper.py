@@ -44,6 +44,16 @@ def check_ticker(ticker): #needs to take in filename if using csv
             return True
     return False
 
+def get_max():
+    cursor.execute("SELECT MAX(high) FROM nasdaq")
+    table = cursor.fetchall()
+    return table[0][0], table[0][1]
+
+def get_min():
+    cursor.execute("SELECT MAX(low) FROM nasdaq")
+    table = cursor.fetchall()
+    return table[0][0], table[0][1]
+
 def get_dataframe():
 
     """
