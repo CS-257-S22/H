@@ -131,7 +131,7 @@ def portfolio_menu():
     OUTPUT SIGNATURE:
         1. Dynamically generate a menu page based on the given HTML and CSS file
     """
-return render_template("custom_portfolio.html")
+    return render_template("custom_portfolio.html")
 
 #------------------------------
 
