@@ -1,22 +1,15 @@
-# Pycache are evil, don't produce them
+# setting path to the directory with the features
 import sys
-sys.dont_write_bytecode = True
+sys.path.append(sys.path[0]+'/./Features')
 
-import unittest
+# UNIVERSAL IMPORT
+from universal_import import *
 
-import argparse
-import pandas as pd
-
-import path
-# current directory
-directory = path.Path(__file__).abspath()
-# setting path to the directory with the feature
-sys.path.append(directory.parent.parent)
-sys.path.append("Features")
-
-# importing the functions we are testing
-from stock_ROI import *
-from inspect_stock import check_query
+# import other features
+import basic_stock_stat
+import inspect_stock
+import helper
+import stock_ROI
 
 # specifying path to test data
 data_file = "Tests/DataForTesting/test_data_fabricated.csv"
@@ -44,7 +37,7 @@ class test_stock_ROI(unittest.TestCase):
         
         # loop through the list of given and expected outcome and compare multiple cases
         for i in range(len(given)):
-            self.assertAlmostEqual(round(float(main_stock_ROI(\
+            self.assertAlmostEqual(round(float(stock_ROI.main_stock_ROI(\
                 given[i][0], given[i][1], given[i][2], given[i][3], given[i][4], data_file)), ndigits = 3),\
                 expected[i], places = 3)
 
@@ -73,7 +66,7 @@ class test_stock_ROI(unittest.TestCase):
 
         # loop through the list of given and expected outcome and compare multiple cases
         for i in range(len(given)):
-            self.assertEqual(all_input_is_valid_stock_ROI(dummy_df,\
+            self.assertEqual(stock_ROI.all_input_is_valid_stock_ROI(dummy_df,\
                 given[i][0], given[i][1], given[i][2], given[i][3], given[i][4]),\
                 expected[i])
 
@@ -101,7 +94,7 @@ class test_stock_ROI(unittest.TestCase):
 
         # loop through the list of given and expected outcome and compare multiple cases
         for i in range(len(given)):
-            self.assertEqual(in_dateframe(given[i][0], given[i][1], dummy_df),\
+            self.assertEqual(stock_ROI.in_dateframe(given[i][0], given[i][1], dummy_df),\
             expected[i])
 
     #------------------------------
@@ -128,7 +121,7 @@ class test_stock_ROI(unittest.TestCase):
         
         # loop through the list of given and expected outcome and compare multiple cases
         for i in range(len(given)):
-            self.assertAlmostEqual(round(backbone_stock_ROI(dummy_df,\
+            self.assertAlmostEqual(round(stock_ROI.backbone_stock_ROI(dummy_df,\
                 given[i][0], given[i][1], given[i][2], given[i][3], given[i][4]), ndigits=3),\
                 expected[i], places = 3)
 
@@ -146,7 +139,7 @@ class test_stock_ROI(unittest.TestCase):
         expected = [-83.333, 320467.200, -386.207]
 
         for i in range(len(given)):
-            self.assertAlmostEqual(round(percentage_difference(given[i][0], given[i][1]), ndigits = 3), \
+            self.assertAlmostEqual(round(stock_ROI.percentage_difference(given[i][0], given[i][1]), ndigits = 3), \
             expected[i], places = 3)
 
 
