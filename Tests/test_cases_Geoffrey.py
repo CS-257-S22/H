@@ -1,18 +1,15 @@
+# setting path to the directory with the features
 import sys
-sys.dont_write_bytecode = True
+sys.path.append(sys.path[0]+'/../Features')
 
-import unittest
-import pandas as pd
-import sys
+# UNIVERSAL IMPORT
+from universal_import import *
 
-# sys.path.append('../Features')
-import path
-# current directory
-directory = path.Path(__file__).abspath()
-# setting path to the directory with the feature
-sys.path.append(directory.parent.parent)
-sys.path.append("Features")
-from inspect_stock import check_date, check_num_args, find_query
+# import other features
+import basic_stock_stat
+import inspect_stock
+import helper
+import stock_ROI
 
 class Tests(unittest.TestCase):
 

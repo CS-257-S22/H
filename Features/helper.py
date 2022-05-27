@@ -171,7 +171,7 @@ def closest_available_record(ticker, date, dataframe):
     """
 
     # find the earliest and latest dates
-    earliest_date, latest_date = stock_extreme_dates(ticker, dataframe)
+    earliest_date, latest_date = basic_stock_stat.stock_extreme_dates(ticker, dataframe)
 
     # convert everything to seconds for convenience
     earliest_seconds = to_seconds(earliest_date)
