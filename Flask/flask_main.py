@@ -121,6 +121,20 @@ def graph_stock_ROI():
 
 #------------------------------
 
+@app.route("/mock_portfolio")
+def portfolio_menu():
+"""
+DESCRIPTION:
+    This is the men for the mock stock portfolio feature.
+INPUT SIGNATURE:
+    1. None
+OUTPUT SIGNATURE:
+    1. Dynamically generate a menu page based on the given HTML and CSS file
+"""
+return render_template("custom_portfolio.html")
+
+#------------------------------
+
 @app.errorhandler(404)
 def page_not_found(e):
     """
