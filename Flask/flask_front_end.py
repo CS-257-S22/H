@@ -1,9 +1,13 @@
 # Pycache are evil, don't produce them
 import sys
-from Features.basic_stock_stat import stock_extreme_dates
-
-from Features.helper import get_dataframe
 sys.dont_write_bytecode = True
+
+# sys.path.append('Features')
+sys.path.append(sys.path[0]+'/../Features')
+import inspect_stock
+import basic_stock_stat
+import stock_ROI
+import helper
 
 from flask import render_template, Flask, request, url_for
 
@@ -17,14 +21,6 @@ sns.set(rc={"axes.facecolor":"white", "figure.facecolor":"white"})
 # attempting to fix NSWindow Drag Exception
 import matplotlib
 matplotlib.pyplot.switch_backend('Agg')
-
-import sys
-# sys.path.append('Features')
-sys.path.append(sys.path[0]+'/../Features')
-import inspect_stock
-import basic_stock_stat
-import stock_ROI
-import helper
 
 app = Flask(__name__)
 
