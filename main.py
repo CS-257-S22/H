@@ -1,12 +1,11 @@
-# import all libraries
-import pandas as pd
-import unittest
-import argparse
-import pandas as pd
+# setting path to the directory with the features
 import sys
-import csv
-import psycopg2
-import psqlConfig as config
+sys.path.append(sys.path[0]+'/../Features')
+
+# UNIVERSAL IMPORT
+from universal_import import *
+
+# import other features
 
 from Features import inspect_stock, basic_stock_stat, stock_ROI, helper
 
