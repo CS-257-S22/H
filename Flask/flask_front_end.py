@@ -21,10 +21,10 @@ matplotlib.pyplot.switch_backend('Agg')
 import sys
 # sys.path.append('Features')
 sys.path.append(sys.path[0]+'/../Features')
-from inspect_stock import *
-from basic_stock_stat import *
-from stock_ROI import *
-from helper import *
+import inspect_stock
+import basic_stock_stat
+import stock_ROI
+import helper
 
 app = Flask(__name__)
 
@@ -70,16 +70,39 @@ def basicData():
             4. A stock's minimum price and the days which it occured
     """
     ticker = request.form['ticker']
-    dates = get_dates(ticker)
+    dates = basic_stock_stat.get_dates(ticker)
     reformatedDates = str(dates[0][0]) + "-" + str(dates[0][1]) + "-" + str(dates[0][2]), str(dates[1][0]) + "-" + str(dates[1][1]) + "-" + str(dates[1][2])
     data = get_dataframe()
     dates = stock_extreme_dates(ticker, data)
     max = dates[0]
     min = dates[1]
 
-    earliestData = inspect(ticker, dates[0], "Low", nasdaq_df), inspect(ticker, dates[0], "High", nasdaq_df), inspect(ticker, dates[0], "Open", nasdaq_df), inspect(ticker, dates[0], "Close", nasdaq_df), inspect(ticker, dates[0], "Volume", nasdaq_df)
-    latestData = inspect(ticker, dates[1], "Low", nasdaq_df), inspect(ticker, dates[1], "High", nasdaq_df), inspect(ticker, dates[1], "Open", nasdaq_df), inspect(ticker, dates[1], "Close", nasdaq_df), inspect(ticker, dates[1], "Volume", nasdaq_df)
-    return render_template("basicData.html", basicTicker=ticker, earlyDate=reformatedDates[0], lateDate=reformatedDates[1], max=max[0], maxDay=max[1], min=min[0], minDay=min[1], earlyLow=earliestData[0], earlyHigh=earliestData[1], earlyOpen=earliestData[2], earlyClose=earliestData[3], earlyVolume=earliestData[4], lateLow=latestData[0], lateHigh=latestData[1], lateOpen=latestData[2], lateClose=latestData[3], lateVolume=latestData[4])
+    earliestData = inspect_stock.inspect(ticker, dates[0], "Low", nasdaq_df),\
+        inspect_stock.inspect(ticker, dates[0], "High", nasdaq_df),\
+        inspect_stock.inspect(ticker, dates[0], "Open", nasdaq_df),\
+        inspect_stock.inspect(ticker, dates[0], "Close", nasdaq_df),\
+        inspect_stock.inspect(ticker, dates[0], "Volume", nasdaq_df)
+    latestData = inspect_stock.inspect(ticker, dates[1], "Low", nasdaq_df),\
+        inspect_stock.inspect(ticker, dates[1], "High", nasdaq_df),\
+        inspect_stock.inspect(ticker, dates[1], "Open", nasdaq_df),\
+        inspect_stock.inspect(ticker, dates[1], "Close", nasdaq_df),\
+        inspect_stock.inspect(ticker, dates[1], "Volume", nasdaq_df)
+
+    return render_template("basicData.html", basicTicker=ticker,\
+        earlyDate=reformatedDates[0],\
+        lateDate=reformatedDates[1],\
+        max=max[0], maxDay=max[1],\
+        min=min[0], minDay=min[1],\
+        earlyLow=earliestData[0],\
+        earlyHigh=earliestData[1],\
+        earlyOpen=earliestData[2],\
+        earlyClose=earliestData[3],\
+        earlyVolume=earliestData[4],\
+        lateLow=latestData[0],\
+        lateHigh=latestData[1],\
+        lateOpen=latestData[2],\
+        lateClose=latestData[3],\
+        lateVolume=latestData[4])
 
 #------------------------------
 
@@ -100,7 +123,7 @@ def stock_ROI():
     ticker = request.args["ticker"]
 
     # generate the requested ticker's yearly ROI graph in the back-end
-    graph = graph_ROIs_over_time_one_stock(ticker, nasdaq_df)
+    graph = stock_ROI.graph_ROIs_over_time_one_stock(ticker, nasdaq_df)
 
     # get the proper path
     graph_url = url_for('static', filename = "photos/graphs/" + graph)
