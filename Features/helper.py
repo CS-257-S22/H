@@ -90,8 +90,15 @@ def get_dataframe():
         2. Dataset ready for use in command line functions shaped by pandas
     """
 
-    # read the database from psql server to pandas and rename the columns
+    # read the database from psql server to pandas
     nasdaq_df = pd.read_sql_query("select * from nasdaq;", teamh.database)
+
+    # convert columns' type
+    nasdaq_df["rec_year"].astype(int)
+    nasdaq_df["rec_month"].astype(int)
+    nasdaq_df["rec_day"].astype(int)
+
+    # rename the columns
     nasdaq_df = rename_database_friendly(nasdaq_df)
 
     return nasdaq_df
