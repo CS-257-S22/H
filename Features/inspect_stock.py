@@ -28,7 +28,7 @@ def find_query_input():
     """
 
     # calls a helper method for reading file so ensures there is only 1 level of abstraction
-    nasdaq_df = get_dataframe()
+    nasdaq_df = helper.get_dataframe()
 
     num_of_args = len(sys.argv)
     # assigns command line arguments to variables with correct types by casting
@@ -70,7 +70,7 @@ def find_query(num_of_args, ticker, year, month, query, dataframe):
         return "There needs to be 4 arguments; TickerSymbol, Year, Month, Query"
 
     # checks if ticker symbol is in the dataset and returns error statement if not found
-    if not check_ticker(ticker):
+    if not helper.check_ticker(ticker):
         return "Ticker not found in dataset"
 
     # checks if the inputted date is in dataset and returns error statement if not found
