@@ -21,7 +21,7 @@ class Tests(unittest.TestCase):
         function calls, including inspect() and check_query() among others.
         """
         nasdaq_df = self.get_file()
-        self.assertEqual(find_query(6, "GENE", 2017, 11, "Open", nasdaq_df), 3.200000048)
+        self.assertEqual(inspect_stock.find_query(6, "GENE", 2017, 11, "Open", nasdaq_df), 3.200000048)
 
     def test_check_num_args_true(self):
         """
@@ -30,7 +30,7 @@ class Tests(unittest.TestCase):
         it is testing if the function will output True when the number of arguments are the
         right number.
         """
-        self.assertTrue(check_num_args(6))
+        self.assertTrue(inspect_stock.check_num_args(6))
 
     def test_check_num_args_false(self):
         """
@@ -38,7 +38,7 @@ class Tests(unittest.TestCase):
         if the function will output False when the number of arguments are the
         wrong number. 
         """
-        self.assertFalse(check_num_args(4))
+        self.assertFalse(inspect_stock.check_num_args(4))
 
     def test_check_date_standard(self):
         """
@@ -47,7 +47,7 @@ class Tests(unittest.TestCase):
         or not. This unit test checks if the function returns True when inputing a
         date for a stock that is in our dummy dataset.
         """
-        self.assertTrue(check_date("AMD", 2017, 3))
+        self.assertTrue(inspect_stock.check_date("AMD", 2017, 3))
 
     def test_check_date_edge(self):
         """
@@ -55,7 +55,7 @@ class Tests(unittest.TestCase):
         the earliest date in the dataset and checks if the function will still include that as a 
         valid date. 
         """
-        self.assertTrue(check_date("RGS", 2012, 1))
+        self.assertTrue(inspect_stock.check_date("RGS", 2012, 1))
 
 
     def test_check_date_wrong_input(self):
@@ -65,7 +65,7 @@ class Tests(unittest.TestCase):
         line arguments. This unit test checks if the function returns False when there is an
         inputting error where the year and month parameters are switched on the command line.
         """
-        self.assertFalse(check_date("AMD", 3, 2017))
+        self.assertFalse(inspect_stock.check_date("AMD", 3, 2017))
 
 
     def get_file(self):
