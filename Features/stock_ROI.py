@@ -77,8 +77,7 @@ def main_stock_ROI(ticker, date_invest, date_divest, buying_price, selling_price
     """
 
     # read the database from psql server to pandas and rename the columns
-    nasdaq_df = pd.read_sql_query("select * from nasdaq;", teamh.database)
-    nasdaq_df = rename_database_friendly(nasdaq_df)
+    nasdaq_df = helper.get_dataframe()
     
    # check if the input is valid
     validity = all_input_is_valid_stock_ROI(nasdaq_df, ticker, date_invest, date_divest, buying_price, selling_price)
@@ -113,27 +112,27 @@ def all_input_is_valid_stock_ROI(dataframe, ticker, date_invest, date_divest, bu
     """
 
     # check ticker
-    if not in_dateframe(ticker, "Ticker Symbol", dataframe):
+    if not in_dataframe(ticker, "Ticker Symbol", dataframe):
         return "INPUT ERROR: Invalid ticker symbol. Please choose one that exists within our data instead."
 
     # check invest date
-    if not in_dateframe(date_invest[0], "Year", dataframe):
+    if not in_dataframe(date_invest[0], "Year", dataframe):
         return "INPUT ERROR: Invalid year for investment date."
     else: # check month if year is valid
-        if not in_dateframe(date_invest[1], "Month", dataframe.loc[dataframe["Year"] == date_invest[0]]):
+        if not in_dataframe(date_invest[1], "Month", dataframe.loc[dataframe["Year"] == date_invest[0]]):
             return "INPUT ERROR: Invalid investment date. The given month is not in our data."
     
     # check divest date
-    if not in_dateframe(date_divest[0], "Year", dataframe):
+    if not in_dataframe(date_divest[0], "Year", dataframe):
         return "INPUT ERROR: Invalid year for divestment date."
     else: # check month if year is valid
-        if not in_dateframe(date_divest[1], "Month", dataframe.loc[dataframe["Year"] == date_divest[0]]):
+        if not in_dataframe(date_divest[1], "Month", dataframe.loc[dataframe["Year"] == date_divest[0]]):
             return "INPUT ERROR: Invalid divestment date. The given month is not in our data."
 
     # check the queries in question
-    if not check_query(buying_price):
+    if not inspect_stock.check_query(buying_price):
         return "INPUT ERROR: Invalid buying price. Choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close' only."
-    if not check_query(selling_price):
+    if not inspect_stock.check_query(selling_price):
         return "INPUT ERROR: Invalid selling price. Choose between 'Open', 'Close', 'High', 'Close', and 'Adjusted Close' only."
 
     # if no error is encountered, return True
@@ -141,7 +140,7 @@ def all_input_is_valid_stock_ROI(dataframe, ticker, date_invest, date_divest, bu
 
 #------------------------------
 
-def in_dateframe(value, column, dataframe):
+def in_dataframe(value, column, dataframe):
     """
     Description:
         Check if a value is within a column of a dataframe
