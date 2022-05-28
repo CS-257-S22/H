@@ -432,6 +432,10 @@ class portfolio():
 
         # loop through each year and get its ROI
         this_year = earliest_year
+
+        # DEBUG
+        print ("\n\nTHIS YEAR: ", this_year)
+
         while this_year != divestment_year:
             
             if this_year == 2022:
