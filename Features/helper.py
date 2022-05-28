@@ -56,11 +56,7 @@ def get_max(inputTicker):
     if not check_ticker(ticker):
         return "Please input a valid ticker symbol"
 
-<<<<<<< HEAD
-    cursor.execute("SELECT MAX(high), rec_date FROM nasdaq WHERE ticker=inputTicker GROUP BY rec_date;")
-=======
     cursor.execute("SELECT rec_date, high FROM nasdaq WHERE ticker=%s ORDER BY high DESC;", (inputTicker, ))
->>>>>>> 6b83c3075f25e9eff2885875c4e262e8827f1e30
     table = cursor.fetchall()
     return table[0][1], table[0][0]
 
@@ -75,13 +71,8 @@ def get_min(inputTicker):
     """
     if not check_ticker(ticker):
         return "Please input a valid ticker symbol"
-<<<<<<< HEAD
-
-    cursor.execute("SELECT MIN(low), rec_date FROM nasdaq WHERE ticker=inputTicker GROUP BY rec_date;")
-=======
         
     cursor.execute("SELECT rec_date, low FROM nasdaq WHERE ticker=%s ORDER BY low;", (inputTicker, ))
->>>>>>> 6b83c3075f25e9eff2885875c4e262e8827f1e30
     table = cursor.fetchall()
     return table[0][1], table[0][0]
 
