@@ -317,8 +317,11 @@ class portfolio():
         # sort the data by Year, then Month
         to_this_year_df = to_this_year_df.sort_values(by = ["Year", "Month"])
 
+        # reset the index
+        to_this_year_df.reset_index(inplace = True)
+
         # DEBUG
-        print("\n\nLength of to_this_year_df after sorting:", len(to_this_year_df))
+        print("\n\nLength of to_this_year_df after sorting and resetting index:", len(to_this_year_df))
 
         # loop through the dataframe and calculate the value of the portfolio, the amount of money invested initially, and the amount in cash
         for row in range(len(to_this_year_df)):
