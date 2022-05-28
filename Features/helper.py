@@ -53,7 +53,9 @@ def get_max(inputTicker):
     Output: 
         1. The maximum recorded value of particular stock and the date it was recorded on
     """
-    
+    if not check_ticker(ticker):
+        return "Please input a valid ticker symbol"
+
     cursor.execute("SELECT rec_date, high FROM nasdaq WHERE ticker=%s ORDER BY high DESC;", (inputTicker, ))
     table = cursor.fetchall()
     return table[0][1], table[0][0]
@@ -67,7 +69,9 @@ def get_min(inputTicker):
     Output: 
         1. The minimum recorded value of particular stock and the date it was recorded on
     """
-
+    if not check_ticker(ticker):
+        return "Please input a valid ticker symbol"
+        
     cursor.execute("SELECT rec_date, low FROM nasdaq WHERE ticker=%s ORDER BY low;", (inputTicker, ))
     table = cursor.fetchall()
     return table[0][1], table[0][0]
