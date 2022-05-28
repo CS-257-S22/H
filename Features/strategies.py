@@ -80,7 +80,7 @@ def SP100_yearly_new_method(investment_year, divestment_year, dataframe):
         current_year += 1
 
     # yearly ROI
-    return portfolio_SP100.get_yearly_ROI(divestment_year, write_csv = True)
+    return portfolio_SP100.get_yearly_ROI(divestment_year)
 
 yearly_ROI_df, yearly_ROI_dict = SP100_yearly_new_method(2020, 2022, nasdaq_df)
 
