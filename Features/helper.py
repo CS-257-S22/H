@@ -53,6 +53,7 @@ def get_max(inputTicker):
     Output: 
         1. The maximum recorded value of particular stock and the date it was recorded on
     """
+    
     cursor.execute("SELECT rec_date, high FROM nasdaq WHERE ticker=%s ORDER BY high DESC;", (inputTicker, ))
     table = cursor.fetchall()
     return table[0][1], table[0][0]
