@@ -285,6 +285,7 @@ class portfolio():
 
         OUTPUT SIGNATURE:
             1. Pandas dataframe with 2 columns: year and the corresponding ROI
+            2. yearly_ROI_dict: a dictionary matching year:ROI
         """
 
         # tally all transaction if necessary
@@ -328,12 +329,18 @@ class portfolio():
         data = {"Year":years, "ROI":correspond_ROI}
         yearly_ROI_df = pd.DataFrame(data)
 
+        # write the dictionary
+        yearly_ROI_dict = {}
+        for i in range (len(years)):
+            yearly_ROI_dict[years[i]] = correspond_ROI[i]
+
         # write the csv if requested
         # WARNING, THIS MIGHT OVERRIDE EXISTING CSV FILES WITH THE SAME NAME
         if write_csv == True:
             yearly_ROI_df.to_csv("Internal Data/yearly_ROI_from_portfolio_class.csv", index = False)
 
-        return yearly_ROI_df
+
+        return yearly_ROI_df, yearly_ROI_dict
 
     #------------------------------
 
