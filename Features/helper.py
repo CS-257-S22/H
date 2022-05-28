@@ -53,9 +53,9 @@ def get_max(inputTicker):
     Output: 
         1. The maximum recorded value of particular stock and the date it was recorded on
     """
-    cursor.execute("SELECT high, rec_date FROM nasdaq WHERE ticker=%s AND high=(SELECT MAX(high) FROM nasdaq)", (inputTicker, ))
+    cursor.execute("SELECT rec_date, high FROM nasdaq WHERE ticker=%s ORDER BY high DESC;", (inputTicker, ))
     table = cursor.fetchall()
-    return table
+    return table[0][1], table[0][0]
 
 def get_min(inputTicker):
     """
@@ -67,10 +67,9 @@ def get_min(inputTicker):
         1. The minimum recorded value of particular stock and the date it was recorded on
     """
 
-    cursor.execute("SELECT low, rec_date FROM nasdaq WHERE ticker=%s AND low=(SELECT MIN(low) FROM nasdaq)", (inputTicker, ))
-    
+    cursor.execute("SELECT rec_date, low FROM nasdaq WHERE ticker=%s ORDER BY low;", (inputTicker, ))
     table = cursor.fetchall()
-    return table
+    return table[0][1], table[0][0]
 
 def get_dataframe():
 
