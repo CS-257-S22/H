@@ -2,13 +2,15 @@
 import sys
 sys.dont_write_bytecode = True
 
-import random
+import time
 
 from helper import *
 from portfolio_class import *
 from strategies_helper import *
 
 nasdaq_df = get_dataframe()
+
+start = time.time()
 
 def SP100_yearly_new_method(investment_year, divestment_year, dataframe):
     """
@@ -82,8 +84,12 @@ def SP100_yearly_new_method(investment_year, divestment_year, dataframe):
     # yearly ROI
     return portfolio_SP100.get_yearly_ROI(divestment_year)
 
-yearly_ROI_df, yearly_ROI_dict = SP100_yearly_new_method(2020, 2022, nasdaq_df)
+yearly_ROI_df, yearly_ROI_dict = SP100_yearly_new_method(2012, 2022, nasdaq_df)
 
 print("\n\n\n\nFINAL RESULT:\n")
 
 print(yearly_ROI_dict)
+
+end = time.time()
+
+print("The time of execution of above program is :", end-start)
