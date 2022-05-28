@@ -302,7 +302,7 @@ class portfolio():
         to_this_year_df = self.transaction_df[self.transaction_df["Year"].apply(lambda x: x <= year)]
 
         # DEBUG
-        print("\n\nLength of to_this_year_df after year filter:", len(to_this_year_df))
+        print("\n\n\nLength of to_this_year_df after year filter:", len(to_this_year_df))
 
         # remove all entries in the same year BUT has larger month
         conditioning = to_this_year_df[(to_this_year_df["Year"] == year) & (to_this_year_df["Month"] > month)].index # is basically all the indices that needs to be dropped
