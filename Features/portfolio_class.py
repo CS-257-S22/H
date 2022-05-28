@@ -154,7 +154,7 @@ class portfolio():
 
     #------------------------------
 
-    def get_portfolio_value(self, year, month, query = "Close"):
+    def BACKUP_portfolio_value(self, year, month, query = "Close"):
         """
         DESCRIPTION
             Return the estimated value of the portfolio by supposedly liquidate all assesses at the query price
@@ -181,6 +181,125 @@ class portfolio():
 
         # filter out up-to the year in question
         to_this_year_df = self.transaction_df[self.transaction_df["Year"] <= year]
+
+        # remove all entries in the same year BUT has larger month
+        conditioning = to_this_year_df[(to_this_year_df["Year"] == year) & (to_this_year_df["Month"] > month)].index # is basically all the indices that needs to be dropped
+        to_this_year_df.drop(conditioning, inplace = True)
+
+        # sort the data by Year, then Month
+        to_this_year_df = to_this_year_df.sort_values(by = ["Year", "Month"])
+
+        # loop through the dataframe and calculate the value of the portfolio, the amount of money invested initially, and the amount in cash
+        for row in range(len(to_this_year_df)):
+
+            ticker = to_this_year_df.loc[row, "Ticker"]
+            action = to_this_year_df.loc[row, "Action"]
+            price = to_this_year_df.loc[row, "Price"]
+
+
+            # adjust the record of how much is invested
+            if action == "BOUGHT":
+
+                self.liquid -= price
+                self.invested += price
+
+                # update the internal dictionary storing the holdings and values
+                if ticker in self.holdings:
+                    self.holdings[ticker].append(price) # add a new share and its price
+                else:
+                    self.holdings[ticker] = [price] # create a new list record 1 share
+
+            elif action == "SOLD":
+
+                self.liquid += price
+                self.divested += price
+
+                # update the internal dictionary storing the holdings and values
+                if ticker in self.holdings:
+
+                    # remove the share that has the highest value initially from holdings (to maximize ROI when calculating final_value/invested)
+                    self.holdings[ticker].remove(max(self.holdings[ticker]))
+
+                    # if all shares are sold, then remove the ticker as a key within the dictionary
+                    if len(self.holdings[ticker]) == 0:
+                        del self.holdings[ticker]
+
+                else:
+                    raise Exception("Cannot sell a stock that is not in the portfolio.")
+
+            else:
+                raise Exception("Only 'BOUGHT' or 'SOLD' is accepted for the 'action' parameter.")
+
+        # calculate the value of the portfolio if all holdings are immediately liquidated
+        # loops through all holdings and hypothetically liquidate them
+        for firm in self.holdings:
+
+            # the total amount of shares owned
+            shares = len(self.holdings[firm])
+
+            # DEBUG
+            print("\n\n#------------------------------\n",\
+                "Firm: ", firm,\
+                "\nShares: ", shares)
+
+            if shares == 0:
+                raise Exception("Ticker not removed after selling all shares.")
+
+            closest_record = closest_available_record(firm, [year, month], nasdaq_df)
+
+            # DEBUG
+            print("\nLiquidating: ",\
+                firm,\
+                "\nOn: ", year, "-", month,\
+                "\nat: ", query)
+
+            if closest_record == True:
+                # the total cash equivalent of all owned shares
+                liquitable = inspect(firm, [year, month], query, nasdaq_df) * shares
+
+                self.value += liquitable
+
+            else:
+                # the total cash equivalent of all owned shares
+                liquitable = inspect(firm, closest_record, query, nasdaq_df) * shares
+
+                self.value += liquitable
+
+        # calculate the ROI (in percentage)
+        self.ROI = percentage_difference(self.invested, self.value)
+
+        return self.value, self.liquid, self.invested, self.divested, self.ROI
+
+    #------------------------------
+
+    def get_portfolio_value(self, year, month, query = "Close"):
+        """
+        DESCRIPTION
+            Return the estimated value of the portfolio by supposedly liquidate all assesses at the query price
+            on the last month (in the transaction_df) of the inputted year
+
+        INPUT SIGNATURE:
+            1. year (int): the year to estimate the value
+            2. month (int): the month to estimate the value
+            3. query (string): the price that the portfolio is supposedly liquidated at, default is Close
+
+        OUTPUT SIGNATURE:
+            1. self.value (float): the estimated value of the portfolio
+            2. self.liquid (float): total cash amount in the brokerage account (starts from 0)
+            3. self.invested (float): total money invested
+            4. self.divested (float): total amount of money gained from divestment
+            5. self.ROI (float): the ROI at this year (%)
+        """
+
+        # tally all transaction if necessary
+        if self.latest_transaction_tally_state == False:
+            self.tally()
+        else:
+            pass
+
+        # filter out up-to the year in question
+        # to_this_year_df = self.transaction_df[self.transaction_df["Year"] <= year]
+        to_this_year_df = self.transaction_df[self.transaction_df["Year"].apply(lambda x: x <= year)]
 
         # remove all entries in the same year BUT has larger month
         conditioning = to_this_year_df[(to_this_year_df["Year"] == year) & (to_this_year_df["Month"] > month)].index # is basically all the indices that needs to be dropped
