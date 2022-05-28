@@ -46,33 +46,44 @@ def check_ticker(ticker): #needs to take in filename if using csv
 
 def get_max(inputTicker):
     """
-    Objective: Searches through a dataset (Only data on TSLA is recorded at this time so it is hardcoded) and returns
-    the maximum recorded 'High' price for a particular stock (Only TSLA is acceptable at this time). Also returns the
-    data of the highest recorded stock price.
-    Input: Takes in a ticker symbol which must be recorded in our dataset (Only TSLA is acceptable at this time)
-    Output: The maximum recorded value of particular stock and the date it was recorded on
+    Description: 
+        1. Helper function which locates the highest recorded stock price in the data set of a particular stockand returns the value and date it was recorded on. 
+    Input: 
+        1. Takes in a ticker symbol which must be recorded in our dataset (Only TSLA is acceptable at this time)
+    Output: 
+        1. The maximum recorded value of particular stock and the date it was recorded on
     """
-    if not check_ticker(inputTicker):
+    if not check_ticker(ticker):
         return "Please input a valid ticker symbol"
 
+<<<<<<< HEAD
     cursor.execute("SELECT MAX(high), rec_date FROM nasdaq WHERE ticker=inputTicker GROUP BY rec_date;")
+=======
+    cursor.execute("SELECT rec_date, high FROM nasdaq WHERE ticker=%s ORDER BY high DESC;", (inputTicker, ))
+>>>>>>> 6b83c3075f25e9eff2885875c4e262e8827f1e30
     table = cursor.fetchall()
-    return table[0][0], table[0][1]
+    return table[0][1], table[0][0]
 
 def get_min(inputTicker):
     """
-    Objective: Searches through a dataset (Only data on TSLA is recorded at this time so it is hardcoded) and returns
-    the maximum recorded 'High' price for a particular stock (Only TSLA is acceptable at this time). Also returns the
-    data of the highest recorded stock price.
-    Input: Takes in a ticker symbol which must be recorded in our dataset (Only TSLA is acceptable at this time)
-    Output: The maximum recorded value of particular stock and the date it was recorded on
+    Description: 
+        1. Helper function which locates the lowest recorded stock price in the data set of a particular stock and returns the value and date it was recorded on. 
+    Input: 
+        1. Takes in a ticker symbol which must be recorded in our dataset
+    Output: 
+        1. The minimum recorded value of particular stock and the date it was recorded on
     """
-    if not check_ticker(inputTicker):
+    if not check_ticker(ticker):
         return "Please input a valid ticker symbol"
+<<<<<<< HEAD
 
     cursor.execute("SELECT MIN(low), rec_date FROM nasdaq WHERE ticker=inputTicker GROUP BY rec_date;")
+=======
+        
+    cursor.execute("SELECT rec_date, low FROM nasdaq WHERE ticker=%s ORDER BY low;", (inputTicker, ))
+>>>>>>> 6b83c3075f25e9eff2885875c4e262e8827f1e30
     table = cursor.fetchall()
-    return table[0][0], table[0][1]
+    return table[0][1], table[0][0]
 
 def get_dataframe():
 
