@@ -102,21 +102,18 @@ def get_dataframe():
 
     return nasdaq_df
 
-def all_tickers():
+def all_tickers(stock_df):
 
     """
     DESCRIPTION:
         Find all ticker symbols (without duplicates) in any dataset
 
     INPUT SIGNATURE:
-        1. filePath (string): the path to our dataframe
+        1. stock_df: pass in a pandas dataframe
 
     OUTPUT SIGNATURE
         1. all_tickers_not_duplicate (list): a Python list contains all tickers (unordered)
     """
-
-    # read the data from psql server and rename the columns
-    stock_df = get_dataframe()
 
     # a list to store all tickers
     all_tickers = []
