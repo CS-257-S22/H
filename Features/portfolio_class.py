@@ -297,6 +297,9 @@ class portfolio():
         else:
             pass
 
+        # always tally
+        self.tally()
+
         # filter out up-to the year in question
         # to_this_year_df = self.transaction_df[self.transaction_df["Year"] <= year]
         to_this_year_df = self.transaction_df[self.transaction_df["Year"].apply(lambda x: x <= year)]
