@@ -167,6 +167,10 @@ class portfolio():
 
         OUTPUT SIGNATURE:
             1. self.value (float): the estimated value of the portfolio
+            2. self.liquid (float): total cash amount in the brokerage account (starts from 0)
+            3. self.invested (float): total money invested
+            4. self.divested (float): total amount of money gained from divestment
+            5. self.ROI (float): the ROI at this year (%)
         """
 
         # tally all transaction if necessary
@@ -283,7 +287,76 @@ class portfolio():
             1. Pandas dataframe with 2 columns: year and the corresponding ROI
         """
 
+        # tally all transaction if necessary
+        if self.latest_transaction_tally_state == False:
+            self.tally()
+        else:
+            pass
+
+        earliest_year = self.get_earliest_date()[0]
         
+        latest_month = 12 # this will change if the year reaches 2022, which we only have data until April
+
+        # empty ordered list to store our values
+        years = []
+        correspond_ROI = []
+
+        # loop through each year and get its ROI
+        this_year = earliest_year
+        while this_year != divestment_year:
+            
+            if this_year == 2022:
+                latest_month = 4
+
+            this_year_ROI = self.get_portfolio_value(this_year, latest_month)[-1]
+
+            # record our data
+            years.append(this_year)
+            correspond_ROI.append(this_year_ROI)
+
+            this_year += 1
+
+        # get the last year ROI
+        if divestment_year == 2022:
+            latest_month = 4
+
+        divestment_year_ROI = self.get_portfolio_value(divestment_year, latest_month)[-1]
+        years.append(divestment_year)
+        correspond_ROI.append(divestment_year_ROI)
+
+        # create our Pandas dataframe
+        data = {"Year":years, "ROI":correspond_ROI}
+        yearly_ROI_df = pd.DataFrame(data)
+
+        # write the csv if requested
+        # WARNING, THIS MIGHT OVERRIDE EXISTING CSV FILES WITH THE SAME NAME
+        if write_csv == True:
+            yearly_ROI_df.to_csv("Internal Data/yearly_ROI_from_portfolio_class.csv", index = False)
+
+        return yearly_ROI_df
+
+    #------------------------------
+
+    def get_earliest_date(self):
+        """
+        DESCRIPTION:
+            Because user might add transactions to the portfolio in an unorderly manner, this function will return what is the
+            earliest transaction, or the creation of the portfolio.
+
+        OUTPUT SIGNATURE:
+            1. Earliest date in the format [year, month] (Python list)
+        """ 
+
+        # tally all transaction if necessary
+        if self.latest_transaction_tally_state == False:
+            self.tally()
+        else:
+            pass
+
+        earliest_year = self.transaction_df["Year"].iloc[0]
+        earliest_month = self.transaction_df["Month"].iloc[0]
+
+        return [earliest_year, earliest_month]
 
     #------------------------------
 
