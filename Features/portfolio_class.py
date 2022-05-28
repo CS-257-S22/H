@@ -64,6 +64,9 @@ class portfolio():
 
         self.transaction_df = pd.DataFrame(data)
 
+        # sort the dataframe by time (ascending)
+        self.transaction_df.sort_values(['Year', 'Month'], ascending = [True, True])
+
         self.latest_transaction_tally_state = True
 
         return self.transaction_df
@@ -262,6 +265,25 @@ class portfolio():
         self.ROI = percentage_difference(self.invested, self.value)
 
         return self.value, self.liquid, self.invested, self.divested, self.ROI
+
+    #------------------------------
+
+    def get_yearly_ROI(self, divestment_year, write_csv = False):
+        """
+        WARNING:
+            Potentially HUGE runtime
+
+        DESCRIPTION:
+            Calls get_portfolio_value() for every year until the input divestment_year
+        
+        INPUT SIGNATURE:
+            1. divestment_year (int)
+
+        OUTPUT SIGNATURE:
+            1. Pandas dataframe with 2 columns: year and the corresponding ROI
+        """
+
+        
 
     #------------------------------
 
