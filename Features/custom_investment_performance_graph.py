@@ -21,8 +21,8 @@ def juxtapose_portfolio(portfolio_ROI_df):
     """
 
     # get the SP100 and monkey investment dataframe
-    SP100_df = pd.read_csv("Internal Data/SP100_yearly_ROI.csv")
-    monkey_df = pd.read_csv("Internal Data/monkey_yearly_ROI.csv")
+    SP100_df = pd.read_csv("./Features/Internal Data/SP100_yearly_ROI.csv")
+    monkey_df = pd.read_csv("./Features/Internal Data/monkey_yearly_ROI.csv")
 
     # graph the figure
     fig, custom_portfolio_graph = plt.subplots()
