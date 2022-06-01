@@ -31,15 +31,25 @@
     <div>
     <nav>
     <ul>
+    <li><a href="#mockPortfolio">Mock Portfolio</a></li>
     <li><a href="#basicData">Inspect a stock</a></li>
     <li><a href="#stockROI">Stock ROI</a></li>
-    <li><a href="#mockPortfolio">Mock Portfolio</a></li>
     <li><a href="#data">Data source</a></li>
     <li><a href="#about">About</a></li>
     </ul>
     </nav>
     </div>
     
+    <!-- HTML for Mock Portfolio section -->
+    <div id="mockPortfolio" class="citation">
+        <h2 id="data">Mock Portfolio:</h2>
+        <p>(Description of Mock Portfolio)</p>
+        <!-- Mock Portfolio Menu Button -->
+        <form action="/mock_portfolio">
+            <input class="button" type="submit" value="Go To Mock Porfolio Menu"/>
+        </form>
+    </div>
+
     <!-- HTML for Inspect a Stock section -->
     <div id = "left" class="content">
         <h2 class="subtitle" id="basicData">Inspect a Stock</h2>
@@ -72,7 +82,7 @@
                 } );
                 </script>
     
-    <input type="submit" value="Submit">
+    <input class="button" type="submit" value="Submit">
 </form>
 </div>
 
@@ -111,18 +121,8 @@
                     });
                 } );
                 </script>
-    <input type="submit" value="Submit">
+    <input class="button" type="submit" value="Submit">
 </form>
-</div>
-
-<!-- HTML for Mock Portfolio section -->
-<div id="mockPortfolio" class="citation">
-    <h2 id="data">Mock Portfolio:</h2>
-    <p>(Description of Mock Portfolio)</p>
-    <!-- Mock Portfolio Menu Button -->
-    <form action="/mock_portfolio">
-        <input class="button" type="submit" value="Go To Mock Porfolio Menu"/>
-    </form>
 </div>
 
 <!-- HTML for Stock Market Dataset section -->
