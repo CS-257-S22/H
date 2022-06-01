@@ -155,14 +155,17 @@ def portfolio_menu():
         mock_portfolio = portfolio_class.portfolio()
         new_portfolio = False
     else:
-        action = request.form['action']
-        query = ""
-        if action == "Bought":
-            query = "Low"
-        else:
-            query = "High"
-        
-        mock_portfolio.transaction(request.form['ticker'], action, [int(request.form['year']), int(request.form['month'])], query)
+        try:
+            action = request.form['action']
+            query = ""
+            if action == "Bought":
+                query = "Low"
+            else:
+                query = "High"
+            
+            mock_portfolio.transaction(request.form['ticker'], action, [int(request.form['year']), int(request.form['month'])], query)
+        except Exception:
+            pass
     
     portfolio_df = mock_portfolio.tally()
 
