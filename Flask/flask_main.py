@@ -10,6 +10,7 @@ import inspect_stock
 import basic_stock_stat
 import stock_ROI
 import helper
+import portfolio_class
 
 app = Flask(__name__)
 
@@ -17,6 +18,10 @@ app = Flask(__name__)
 
 # read in pandas dataframe
 nasdaq_df = helper.get_dataframe()
+
+#------------------------------
+
+new_portfolio = True
 
 #------------------------------
 
@@ -33,6 +38,9 @@ def homepage():
     OUTPUT SIGNATURE:
         1. Dynamically generate a homepage based on the given HTML and CSS file
     """
+
+    new_portfolio = True
+
     return render_template('index_mainpage.html', tickers = helper.all_tickers())
 
 #------------------------------
@@ -119,7 +127,7 @@ def graph_stock_ROI():
 
 #------------------------------
 
-@app.route("/mock_portfolio")
+@app.route("/mock_portfolio", methods=['GET', 'POST'])
 def portfolio_menu():
     """
     DESCRIPTION:
@@ -129,7 +137,23 @@ def portfolio_menu():
     OUTPUT SIGNATURE:
         1. Dynamically generate a menu page based on the given HTML and CSS file
     """
-    return render_template("custom_portfolio.html")
+
+    if new_portfolio:
+        mock_portfolio = portfolio_class.portfolio()
+        new_portfolio = False
+    else:
+        action = request.form['action']
+        query = ""
+        if action == "Bought":
+            query = "Low"
+        else:
+            query = "High"
+        
+        mock_portfolio.transaction(request.form['ticker'], action, [request.form['year'], request.form['month']], query)
+    
+    portfolio_df = mock_portfolio.tally()
+
+    return render_template("custom_portfolio.html", tickers = helper.all_tickers(), tables = [portfolio_df.to_html(classes='data')], titles = portfolio_df.columsn.values)
 
 #------------------------------
 

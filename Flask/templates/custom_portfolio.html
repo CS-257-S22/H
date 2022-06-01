@@ -39,5 +39,49 @@
 
     <h2>Custom Portfolio</h2>
 
+    <!-- Form used to input specified stock information -->
+    <form class="inputfield" name="autcomplete_inspect" action="mock_portfolio" method="post">
+        <label for="ticker">Stock Ticker:</label><br>
+        <input type="text" id="ticker1" name="ticker" value="" required><br>
+        
+        <!-- Autocomplete feature for the ticker search bar -->
+        <script>
+            $( function() {
+                var availableTags = [
+                    {% for ticker_symbol in tickers %}
+                    "{{ticker_symbol}}",
+                    {% endfor %}
+                ];
+                $( "#ticker1" ).autocomplete({
+                    source: availableTags
+                });
+            } );
+        </script>
+        <label for="month">Month:</label><br>
+        <input type="text" id="month" name="month" value="" required><br>
+        <label for="year">Year:</label><br>
+        <input type="text" id="year" name="year" value="" required><br>
+        <label for="invest">Invest</label><br>
+        <input type= "radio" id = "invest" name = "action" value = "BOUGHT" required>
+        <input type= "radio" id = "divest" name = "action" value = "SOLD" required>
+
+        <
+
+        <input type="submit" value="Submit">
+
+    </form>
+
+    <h2 class="subtitle">Portfolio</h2>
+
+    {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+    {% endfor %}
+
+    <!-- View Investment Result button -->
+    <form action="">
+        <input class="button" type="submit" value="View Investment Result"/>
+    </form>
+
 
 </body>
