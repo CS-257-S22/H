@@ -5,14 +5,6 @@ sys.path.append(sys.path[0]+'/./Features')
 # UNIVERSAL IMPORT
 from universal_import import *
 
-# import other features
-import helper
-import strategies_helper
-import portfolio_class
-
-# read the database
-nasdaq_df = helper.get_dataframe()
-
 #------------------------------
 
 def juxtapose_portfolio(portfolio_ROI_df):
@@ -33,12 +25,25 @@ def juxtapose_portfolio(portfolio_ROI_df):
     monkey_df = pd.read_csv("Internal Data/monkey_yearly_ROI.csv")
 
     # graph the figure
-    fig, custom_portfolio = plt.subplots()
+    fig, custom_portfolio_graph = plt.subplots()
 
     # overlaying 3 line graphs onto each other
-    custom_portfolio = sns.lineplot(x = 'Year', y = 'ROI', data = SP100_df) # first, the SP100 graph
-    custom_portfolio = sns.lineplot(x = 'Year', y = 'ROI', data = monkey_df) # second, the monkey graph
-    custom_portfolio = sns.lineplot(x = 'Year', y = 'ROI', data = portfolio_ROI_df) # third, the user's portfolio
+    custom_portfolio_graph = sns.lineplot(x = 'Year', y = 'ROI', color = "red", data = SP100_df) # first, the SP100 graph
+    custom_portfolio_graph = sns.lineplot(x = 'Year', y = 'ROI', color = "green", data = monkey_df) # second, the monkey graph
+    custom_portfolio_graph = sns.lineplot(x = 'Year', y = 'ROI', color = "blue", data = portfolio_ROI_df) # third, the user's portfolio
+    plt.legend(labels=["SP100 Portfolio","Monkey Portfolio", "Custom Portfolio"])
+
+    # generate graph's name and path
+    name = "custom_portfolio_figure.png"
+    location = "./Flask/static/photos/graphs/"
+    final_path = location + name
+
+    # export the graph
+    custom_portfolio_graph.figure.savefig(final_path)
+    custom_portfolio_graph.figure.clf()
+
+    # return the name for accessibility from other functions
+    return name
 
 #------------------------------
 
