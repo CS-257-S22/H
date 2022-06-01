@@ -21,6 +21,8 @@ nasdaq_df = helper.get_dataframe()
 
 #------------------------------
 
+global new_portfolio
+global mock_portfolio 
 new_portfolio = True
 
 #------------------------------
@@ -39,7 +41,7 @@ def homepage():
         1. Dynamically generate a homepage based on the given HTML and CSS file
     """
 
-    new_portfolio = True
+    global new_portfolio
 
     return render_template('index_mainpage.html', tickers = helper.all_tickers())
 
@@ -138,6 +140,9 @@ def portfolio_menu():
         1. Dynamically generate a menu page based on the given HTML and CSS file
     """
 
+    global new_portfolio
+    global mock_portfolio 
+
     if new_portfolio:
         mock_portfolio = portfolio_class.portfolio()
         new_portfolio = False
@@ -149,11 +154,11 @@ def portfolio_menu():
         else:
             query = "High"
         
-        mock_portfolio.transaction(request.form['ticker'], action, [request.form['year'], request.form['month']], query)
+        mock_portfolio.transaction(request.form['ticker'], action, [int(request.form['year']), int(request.form['month'])], query)
     
     portfolio_df = mock_portfolio.tally()
 
-    return render_template("custom_portfolio.html", tickers = helper.all_tickers(), tables = [portfolio_df.to_html(classes='data')], titles = portfolio_df.columsn.values)
+    return render_template("custom_portfolio.html", tickers = helper.all_tickers(), tables = [portfolio_df.to_html(classes='data')], titles = portfolio_df.columns.values)
 
 #------------------------------
 
