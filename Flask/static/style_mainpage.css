@@ -82,5 +82,28 @@ li {
 .citation {
     margin:auto;
     /* padding-bottom: 5%; */
-    float:left;
+    float:initial;
+}
+
+/* Sets styling for button which sends you back to the main page */
+.button {
+    background-color: white; /* Green */
+    border: 2px solid navy;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+
+/* Sets styling for when you hover over the button */
+.button:hover {
+    background-color: green; /* Green */
+    color: white;
+}
+
+.content {
+    overflow: auto;
 }
