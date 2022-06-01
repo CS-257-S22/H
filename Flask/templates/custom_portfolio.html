@@ -61,11 +61,10 @@
         <input type="text" id="month" name="month" value="" required><br>
         <label for="year">Year:</label><br>
         <input type="text" id="year" name="year" value="" required><br>
-        <label for="invest">Invest</label><br>
         <input type= "radio" id = "invest" name = "action" value = "BOUGHT" required>
+        <label for="invest">Invest</label><br>
         <input type= "radio" id = "divest" name = "action" value = "SOLD" required>
-
-        <
+        <label for="invest">Divest</label><br><br>
 
         <input type="submit" value="Submit">
 
@@ -77,6 +76,10 @@
             {{titles[loop.index]}}
             {{ table|safe }}
     {% endfor %}
+
+    <form>
+        <input type="submit" name="clear" value="Reset Portfolio">
+    </form>
 
     <!-- View Investment Result button -->
     <form action="">
