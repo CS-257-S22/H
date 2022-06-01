@@ -11,6 +11,7 @@ import basic_stock_stat
 import stock_ROI
 import helper
 import portfolio_class
+import custom_investment_performance_graph
 
 app = Flask(__name__)
 
@@ -23,6 +24,7 @@ nasdaq_df = helper.get_dataframe()
 
 global new_portfolio
 global mock_portfolio 
+
 new_portfolio = True
 
 #------------------------------
@@ -142,7 +144,13 @@ def portfolio_menu():
 
     global new_portfolio
     global mock_portfolio 
-
+    
+    try:
+        if request.form['clear'] == "Reset Portfolio":
+            new_portfolio = True
+    except Exception:
+        pass
+    
     if new_portfolio:
         mock_portfolio = portfolio_class.portfolio()
         new_portfolio = False
@@ -159,6 +167,23 @@ def portfolio_menu():
     portfolio_df = mock_portfolio.tally()
 
     return render_template("custom_portfolio.html", tickers = helper.all_tickers(), tables = [portfolio_df.to_html(classes='data')], titles = portfolio_df.columns.values)
+
+#------------------------------
+
+@app.route("/my_portfolio_performance")
+def mock_portfolio_performance():
+
+    mock_portfolio_ROI_df, mock_portfolio_ROI_dict = mock_portfolio.get_yearly_ROI(2022)
+    
+    # generate the performance graph and get the file's name
+    performance_graph = custom_investment_performance_graph.juxtapose_portfolio(mock_portfolio_ROI_df)
+
+    # get the proper path
+    graph_url = url_for('static', filename = "photos/graphs/" + performance_graph)
+    # graph_location = "../../static/photos/" + graph
+
+    # display the webpage that contains the graph
+    return render_template("mock_portfolio_performance.html", graph_image = graph_url)
 
 #------------------------------
 

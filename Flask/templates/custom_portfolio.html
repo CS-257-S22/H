@@ -77,12 +77,12 @@
             {{ table|safe }}
     {% endfor %}
 
-    <form>
+    <form action="mock_portfolio" method="post">
         <input type="submit" name="clear" value="Reset Portfolio">
     </form>
 
     <!-- View Investment Result button -->
-    <form action="">
+    <form action="/my_portfolio_performance">
         <input class="button" type="submit" value="View Investment Result"/>
     </form>
 
