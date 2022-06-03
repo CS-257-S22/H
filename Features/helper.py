@@ -64,7 +64,7 @@ def get_max(inputTicker):
     maxVal = cursor.fetchall()[0]
     cursor.execute("SELECT high, rec_date FROM nasdaq WHERE ticker = %s AND high = %s;", (inputTicker, maxVal))
     table = cursor.fetchall()
-    return table[0][0], table[0][1]
+    return table[0]
 
 
     # cursor.execute("SELECT high, rec_date FROM nasdaq WHERE ticker = %s AND high = (SELECT MAX(high) FROM nasdaq WHERE ticker = %s);", (inputTicker, ))
@@ -91,7 +91,7 @@ def get_min(inputTicker):
     minVal = cursor.fetchall()[0]
     cursor.execute("SELECT low, rec_date FROM nasdaq WHERE ticker = %s AND low = %s;", (inputTicker, minVal))
     table = cursor.fetchall()
-    return table[0][0], table[0][1]
+    return table[0]
 
     # cursor.execute("SELECT rec_date, low FROM nasdaq WHERE ticker = %s AND low = (SELECT MIN(low) FROM nasdaq WHERE ticker = %s);", (inputTicker, ))
     # table = cursor.fetchall()
