@@ -37,16 +37,16 @@ def juxtapose_portfolio(portfolio_ROI_df):
     current = str(time.time())
 
     # generate graph's name and path
-    name = "custom_portfolio_figure.png"
+    name = "custom_portfolio_figure" + current + ".png"
     location = "./Flask/static/photos/graphs/"
-    final_path = location + name + current
+    final_path = location + name
 
     # export the graph
     custom_portfolio_graph.figure.savefig(final_path)
     custom_portfolio_graph.figure.clf()
 
     # return the name for accessibility from other functions
-    return (name + current)
+    return name
 
 #------------------------------
 
