@@ -1,7 +1,7 @@
 # setting path to the directory with the features
 import sys
 
-from matplotlib.pyplot import title
+from matplotlib.pyplot import text, title
 sys.path.append(sys.path[0]+'/../Features')
 
 # UNIVERSAL IMPORT
@@ -171,7 +171,10 @@ def portfolio_menu():
     
     portfolio_df = mock_portfolio.tally()
 
-    print("DEBUG: ", str(title))
+    text_to_debug = ""
+    for item in title.columns.values:
+        text_to_debug += (item + " ")
+    print("\n\nDEBUG: ", text)
 
     return render_template("custom_portfolio.html", tickers = helper.all_tickers(), tables = [portfolio_df.to_html(classes='data')], titles = portfolio_df.columns.values)
 
