@@ -33,17 +33,20 @@ def juxtapose_portfolio(portfolio_ROI_df):
     custom_portfolio_graph = sns.lineplot(x = 'Year', y = 'ROI', color = "blue", data = portfolio_ROI_df) # third, the user's portfolio
     plt.legend(labels=["SP100 Portfolio","Monkey Portfolio", "Custom Portfolio"])
 
+    # get current time to add to the file name
+    current = str(time.time())
+
     # generate graph's name and path
     name = "custom_portfolio_figure.png"
     location = "./Flask/static/photos/graphs/"
-    final_path = location + name
+    final_path = location + name + current
 
     # export the graph
     custom_portfolio_graph.figure.savefig(final_path)
     custom_portfolio_graph.figure.clf()
 
     # return the name for accessibility from other functions
-    return name
+    return (name + current)
 
 #------------------------------
 
