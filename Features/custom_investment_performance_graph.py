@@ -25,7 +25,7 @@ def juxtapose_portfolio(portfolio_ROI_df):
     monkey_df = pd.read_csv("./Features/Internal Data/monkey_yearly_ROI.csv")
 
     # graph the figure
-    fig, custom_portfolio_graph = plt.subplots()
+    custom_portfolio_graph = plt.subplots()
 
     # overlaying 3 line graphs onto each other
     custom_portfolio_graph = sns.lineplot(x = 'Year', y = 'ROI', color = "red", data = SP100_df) # first, the SP100 graph
