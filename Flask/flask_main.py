@@ -171,7 +171,7 @@ def portfolio_menu():
     
     portfolio_df = mock_portfolio.tally()
 
-    print("DEBUG: ", title)
+    print("DEBUG: ", str(title))
 
     return render_template("custom_portfolio.html", tickers = helper.all_tickers(), tables = [portfolio_df.to_html(classes='data')], titles = portfolio_df.columns.values)
 
