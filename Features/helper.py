@@ -93,8 +93,8 @@ def get_min(inputTicker):
     row_min = ticker_df[['Low']].idxmax()
 
     # get the minimum value and the date it occured of said ticker
-    min_value = str(nasdaq_df.iloc[row_min]["Low"])[3:13]
-    min_value_date = str(nasdaq_df.iloc[row_min]["Date"])[3:8]
+    min_value = str(nasdaq_df.iloc[row_min]["Low"])[3:-5]
+    min_value_date = str(nasdaq_df.iloc[row_min]["Date"])[3:-5]
 
     return min_value, min_value_date
         
