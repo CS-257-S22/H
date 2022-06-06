@@ -75,8 +75,11 @@
     RANDOM TEXT
     {% for table in tables %}
             {{titles[loop.index]}}
+            RANDOM 2
             {{ table|safe }}
     {% endfor %}
+
+    RANDOM 3
 
     <form action="mock_portfolio" method="post">
         <input type="submit" name="clear" value="Reset Portfolio">
