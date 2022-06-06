@@ -82,10 +82,25 @@ def get_min(inputTicker):
     """
     if not check_ticker(inputTicker):
         return "Please input a valid ticker symbol"
+
+    # get the dataframe from SQL server
+    nasdaq_df = get_dataframe()
+
+    # filter out only the ticker in question
+    ticker_df = nasdaq_df[nasdaq_df["Ticker Symbol"] == inputTicker]
+
+    # get the row with the minimum value of said ticker
+    row_min = ticker_df[['Low']].idxmax()
+
+    # get the minimum value and the date it occured of said ticker
+    min_value = nasdaq_df.iloc[row_min]["Low"]
+    min_value_date = nasdaq_df.iloc[row_min]["Date"]
+
+    return min_value, min_value_date
         
-    cursor.execute("SELECT rec_date, low FROM nasdaq WHERE ticker=%s ORDER BY low;", (inputTicker, ))
-    table = cursor.fetchall()
-    return table[0][1], table[0][0]
+    # cursor.execute("SELECT rec_date, low FROM nasdaq WHERE ticker=%s ORDER BY low;", (inputTicker, ))
+    # table = cursor.fetchall()
+    # return table[0][1], table[0][0]
 
     # cursor.execute("SELECT MIN(low) FROM nasdaq WHERE ticker = %s", (inputTicker, ))
     # minVal = cursor.fetchall()[0]
