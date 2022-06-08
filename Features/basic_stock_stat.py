@@ -1,19 +1,14 @@
-# Pycache are evil, don't produce them
+# setting path to the directory with the features
 import sys
-sys.dont_write_bytecode = True
+sys.path.append(sys.path[0]+'/./Features')
 
-import path
-# current directory
-directory = path.Path(__file__).abspath()
-# setting path to the directory with the feature
-sys.path.append(directory.parent.parent)
+# UNIVERSAL IMPORT
+from universal_import import *
 
-from fileinput import filename
-import sys
-import csv
-import pandas as pd
-from helper import check_ticker, get_dataframe
-from Features import helper
+# import other features
+import helper
+import inspect_stock
+import stock_ROI
 
 def get_dates_input():
     """
@@ -30,13 +25,12 @@ def get_dates_input():
             - Another list contains the earliest and the latest date of the stock
     """
     ticker = str(sys.argv[2])
-    fileName = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
-    output = get_dates(ticker, fileName)
+    output = get_dates(ticker)
     return output
 
 #------------------------------
 
-def get_dates(ticker, fileName):
+def get_dates(ticker):
     """
     Description:
         Read through our data file and find the earliest and latest 
@@ -53,10 +47,10 @@ def get_dates(ticker, fileName):
     """
 
     # sets variable to dataframe by calling helper function to avoid layer of abstraction
-    nasdaq_df = get_dataframe(fileName)
+    nasdaq_df = helper.get_dataframe()
 
     # calls helper function to check if ticker is in dataset
-    if not check_ticker(ticker, fileName):
+    if not helper.check_ticker(ticker):
         return "Ticker not found in dataset"
    
     # outputs the list of earliest and latest dates and prints and returns it
@@ -118,7 +112,13 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
             (dataframe["Year"] == earliest_year)]\
             ["Month"].min()
 
-        return [earliest_year, earliest_month]
+        # find the earliest day in record
+        earliest_day = dataframe.loc[(dataframe["Ticker Symbol"] == ticker) &\
+            (dataframe["Year"] == earliest_year) &\
+            (dataframe["Month"] == earliest_month)]\
+            ["Day"].min()
+
+        return [earliest_year, earliest_month, earliest_day]
 
 
     elif method == "latest":
@@ -132,7 +132,13 @@ def find_earliest_or_latest_record(ticker, method, dataframe):
             (dataframe["Year"] == latest_year)]\
             ["Month"].max()
 
-        return [latest_year, latest_month]
+        # find the earliest day in record
+        latest_day = dataframe.loc[(dataframe["Ticker Symbol"] == ticker) &\
+            (dataframe["Year"] == latest_year) &\
+            (dataframe["Month"] == latest_month)]\
+            ["Day"].max()
+
+        return [latest_year, latest_month, latest_day]
 
 if __name__ == '__main__':
     get_dates_input()

@@ -1,18 +1,15 @@
+# setting path to the directory with the features
 import sys
-sys.dont_write_bytecode = True
+sys.path.append(sys.path[0]+'/../Features')
 
-import unittest
-import pandas as pd
-import sys
+# UNIVERSAL IMPORT
+from universal_import import *
 
-# sys.path.append('../Features')
-import path
-# current directory
-directory = path.Path(__file__).abspath()
-# setting path to the directory with the feature
-sys.path.append(directory.parent.parent)
-sys.path.append("Features")
-from inspect_stock import check_date, check_num_args, find_query
+# import other features
+import basic_stock_stat
+import inspect_stock
+import helper
+import stock_ROI
 
 class Tests(unittest.TestCase):
 
@@ -24,7 +21,7 @@ class Tests(unittest.TestCase):
         function calls, including inspect() and check_query() among others.
         """
         nasdaq_df = self.get_file()
-        self.assertEqual(find_query(6, "GENE", 2017, 11, "Open", "Tests/DataForTesting/test_data_sample.csv", nasdaq_df), 3.200000047683716)
+        self.assertEqual(inspect_stock.find_query(6, "GENE", 2017, 11, "Open", nasdaq_df), 3.200000048)
 
     def test_check_num_args_true(self):
         """
@@ -33,7 +30,7 @@ class Tests(unittest.TestCase):
         it is testing if the function will output True when the number of arguments are the
         right number.
         """
-        self.assertTrue(check_num_args(6))
+        self.assertTrue(inspect_stock.check_num_args(6))
 
     def test_check_num_args_false(self):
         """
@@ -41,7 +38,7 @@ class Tests(unittest.TestCase):
         if the function will output False when the number of arguments are the
         wrong number. 
         """
-        self.assertFalse(check_num_args(4))
+        self.assertFalse(inspect_stock.check_num_args(4))
 
     def test_check_date_standard(self):
         """
@@ -50,15 +47,15 @@ class Tests(unittest.TestCase):
         or not. This unit test checks if the function returns True when inputing a
         date for a stock that is in our dummy dataset.
         """
-        self.assertTrue(check_date("AMD", 2017, 3, "Tests/DataForTesting/test_data_sample.csv"))
+        self.assertTrue(inspect_stock.check_date("AMD", 2017, 3))
 
     def test_check_date_edge(self):
         """
         This is a unit test for the check_date function, and is an edge test case. It checks 
-        the earliest date in the dataset and checks if the functino will still include that as a 
+        the earliest date in the dataset and checks if the function will still include that as a 
         valid date. 
         """
-        self.assertTrue(check_date("RGS", 2011, 6, "Tests/DataForTesting/test_data_sample.csv"))
+        self.assertTrue(inspect_stock.check_date("RGS", 2012, 1))
 
 
     def test_check_date_wrong_input(self):
@@ -68,7 +65,7 @@ class Tests(unittest.TestCase):
         line arguments. This unit test checks if the function returns False when there is an
         inputting error where the year and month parameters are switched on the command line.
         """
-        self.assertFalse(check_date("AMD", 3, 2017, "Tests/DataForTesting/test_data_sample.csv"))
+        self.assertFalse(inspect_stock.check_date("AMD", 3, 2017))
 
 
     def get_file(self):

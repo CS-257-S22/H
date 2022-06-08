@@ -2,3 +2,6 @@ __pycache__
 *.pyc
 .DS_Store
 Flask_App_Miles
+psqlConfig.py
+psqlConfig.pyc
+.vscode

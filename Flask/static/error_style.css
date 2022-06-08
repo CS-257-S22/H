@@ -1,0 +1,41 @@
+/*General Page Body*/
+body {
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+    background-color: #d7dccc;
+}
+
+/*Head Banner*/
+h1 {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #2f4540;
+    color: #FEFEFF;
+    text-align: center;
+    font-family: 'Italiana', serif;
+    font-size: 40px;
+}
+
+/*Bulk Body Adjustment*/
+h2, h3, p {
+    font-family: 'Verdana', serif;
+    font-size: 20px;
+}
+
+.button {
+    background-color: white; /* Green */
+    border: 2px solid navy;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+
+  .button:hover {
+    background-color: green; /* Green */
+    color: white;
+}

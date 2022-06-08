@@ -1,23 +1,14 @@
-# Pycache are evil, don't produce them
+# setting path to the directory with the features
 import sys
-sys.dont_write_bytecode = True
+sys.path.append(sys.path[0]+'/./Features')
 
-import path
-# current directory
-directory = path.Path(__file__).abspath()
-# setting path to the directory with the feature
-sys.path.append(directory.parent.parent)
+# UNIVERSAL IMPORT
+from universal_import import *
 
-from fileinput import filename
-import sys
-import csv
-import pandas as pd
-import datetime
-#from Features import helper
-import sys
-sys.path.append('./Features')
-from helper import *
-from helper import check_ticker, get_dataframe
+# import other features
+import basic_stock_stat
+import helper
+import stock_ROI
 
 def find_query_input():
     """
@@ -37,9 +28,7 @@ def find_query_input():
     """
 
     # calls a helper method for reading file so ensures there is only 1 level of abstraction
-    fileName = "./Data/Polished/NO_NULL_nasdaq_2010_mid_separate_year_month_day.csv"
-    nasdaq_df = get_dataframe(fileName)
-
+    nasdaq_df = helper.get_dataframe()
 
     num_of_args = len(sys.argv)
     # assigns command line arguments to variables with correct types by casting
@@ -52,11 +41,11 @@ def find_query_input():
     query = str(sys.argv[5])
 
     # calls find_query function to get the actual statistic and print and return the result
-    output = find_query(num_of_args, ticker, year, month, query, fileName, nasdaq_df)
+    output = find_query(num_of_args, ticker, year, month, query, nasdaq_df)
     # print(output)
     return output
 
-def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
+def find_query(num_of_args, ticker, year, month, query, dataframe):
     """
     Description:
         This function runs helper functions to check for the correct user input, including the 
@@ -81,11 +70,14 @@ def find_query(num_of_args, ticker, year, month, query, fileName, dataframe):
         return "There needs to be 4 arguments; TickerSymbol, Year, Month, Query"
 
     # checks if ticker symbol is in the dataset and returns error statement if not found
-    if not check_ticker(ticker, fileName):
+    if not helper.check_ticker(ticker):
         return "Ticker not found in dataset"
 
     # checks if the inputted date is in dataset and returns error statement if not found
-    if not check_date(ticker, year, month, fileName):
+    if not check_date(ticker, year, month):
+        print(ticker)
+        print(year)
+        print(month)
         return "Invalid Date"
 
     # checks if the inputted query is offered
@@ -113,9 +105,8 @@ def check_num_args(num_of_args):
     if num_of_args != 6:
         return False
     return True
-    
 
-def check_date(ticker, year, month, fileName):
+def check_date(ticker, year, month): #might need to take in fileName if reading a csv
     """
     Description:
         This helper method checks to make sure that the specified date (year and month) is located within the dataset 
@@ -130,21 +121,19 @@ def check_date(ticker, year, month, fileName):
     Output:
         1. A boolean representing whether or not the particular data point is located within the requested dataset
     """
-    f = open(fileName, 'r', encoding = "UTF-8")
-    with f as rFile:
-        spamreader = csv.reader(rFile, delimiter=',')
-        next(spamreader)
-        for row in spamreader:
-            if row[10] == ticker and row[3] == str(year) and row[2] == str(month):
-                f.close
-                return True
-    f.close
+    cursor = teamh.database.cursor()
+    cursor.execute("SELECT ticker, rec_year, rec_month FROM nasdaq")
+    table = cursor.fetchall()
+
+    for row in table:
+        if row[0] == str(ticker) and row[1] == float(year) and row[2] == float(month):
+            return True
     return False
 
 def check_query(query):
     """
     Description:
-        This helper method checks whether the parameter query is valid and contained in our dataset. 
+        This helper method checks whether the parameter query is valid and contained in our dataset.
         Returns true if valid and false if invalid.
 
     Input:
@@ -169,7 +158,7 @@ def inspect(ticker, date, query_stat, dataframe):
         1. ticker symbol of stock (string)
         2. year of investment (int64)
         3. month of investment (int64)
-        4. query_stat (string, "Low", "Open", "Volume" "High", "Close", "Adjusted Close")
+        4. query_stat (string, "Low", "Open", "Volume" "High", "Close")
 
     Output Signature
         1. The relevant metric (query_stat) of a stock (ticker symbol) at a certain point in time (month and year of investment)
