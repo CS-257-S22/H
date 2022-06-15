@@ -25,7 +25,7 @@ def check_basicTicker(ticker):
 
 #------------------------------
 
-def check_ticker(ticker): #needs to take in filename if using csv
+def check_ticker(ticker):
     """
     Description:
         1. Ensure that the ticker parameter is located within our dataset and is thus a valid ticker symbol
