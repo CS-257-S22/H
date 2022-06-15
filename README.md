@@ -4,6 +4,9 @@ team-project-team-h created by GitHub Classroom
 # TEAM MEMBERS
 Nguyen, Miles, Geoffrey, Jack
 
+# QUICK RUN
+python3 Flask/flask_main.py
+
 # FILE STRUCTURES
 
 ## Flask/flask_main.py
