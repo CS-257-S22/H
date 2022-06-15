@@ -35,47 +35,6 @@ from logging import raiseExceptions
 from flask import render_template, Flask, request, url_for
 
 #------------------------------
-# DATABASE IMPORT
-
-import psycopg2
-import psqlConfig as config
-
-# a class to read from the psql database
-class DataSource():
-        
-    #------------------------------
-
-    def __init__(self):
-        """
-        Establish the first instance by connecting to the database
-        """
-
-        self.database = self.connect()
-
-    #------------------------------
-
-    def connect(self):
-        """
-        Connect to the team's database using the given credentials on perlman
-        """
-
-
-        try:
-            connection = psycopg2.connect(database=config.database, user=config.user, password=config.password, host = "localhost")
-        
-        except Exception as e:
-            print("Connection error: ", e)
-            exit()
-
-        return connection
-
-#------------------------------
-
-# CREATE THE TEAM'S DATABASE OBJECT
-teamh = DataSource()
-cursor = teamh.database.cursor()
-
-#------------------------------
 # IMPORT FEATURES
 
 # We do NOT import all features in the universal import file because we don't want a feature to call itself.
