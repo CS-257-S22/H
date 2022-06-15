@@ -110,7 +110,7 @@ def get_dataframe():
     """
 
     # read the database from psql server to pandas
-    nasdaq_df = pd.read_csv("../Data/Polished/randomized_day_market.csv")
+    nasdaq_df = pd.read_csv("./Data/Polished/randomized_day_market.csv")
 
     return nasdaq_df
 
