@@ -106,7 +106,7 @@ def check_num_args(num_of_args):
         return False
     return True
 
-def check_date(ticker, year, month): #might need to take in fileName if reading a csv
+def check_date(ticker, year, month):
     """
     Description:
         This helper method checks to make sure that the specified date (year and month) is located within the dataset 
@@ -121,14 +121,27 @@ def check_date(ticker, year, month): #might need to take in fileName if reading 
     Output:
         1. A boolean representing whether or not the particular data point is located within the requested dataset
     """
-    cursor = teamh.database.cursor()
-    cursor.execute("SELECT ticker, rec_year, rec_month FROM nasdaq")
-    table = cursor.fetchall()
 
-    for row in table:
-        if row[0] == str(ticker) and row[1] == float(year) and row[2] == float(month):
+    # read the dataframe
+    nasdaq_df = helper.get_dataframe()
+    
+    # filter the dataframe to the specific ticker
+    one_ticker_df = nasdaq_df[nasdaq_df["Ticker Symbol"].apply(lambda x: x == ticker)]
+
+    # check if the year exists
+    if year in one_ticker_df["Year"].unique():
+        
+        # check if the month exists
+        if month in one_ticker_df["Month"].unique():
             return True
-    return False
+
+        # if not, the date is not within the dataframe
+        else:
+            return False
+
+    # if not, the date is not within the dataframe
+    else:
+        return False
 
 def check_query(query):
     """
