@@ -153,25 +153,6 @@ def all_tickers():
 
     return all_tickers_not_duplicate
 
-def rename_database_friendly(dataframe):
-    """
-    DESCRIPTION:
-        Due to technical issue, columns name have been changed when creating our team database.
-        This method aim to rename all columns to the original ones in the .csv file (in pandas only).
-
-    INPUT SIGNATURE:
-        1. dataframe (Pandas dataframe): the Pandas dataframe read from the sql server
-
-    OUTPUT SIGNATURE:
-        1. dataframe (Pandas dataframe): the renamed dataframe
-    """
-
-    dataframe.rename(columns = {'rec_date':'Date', 'rec_day':'Day','rec_month':'Month', 'rec_year':'Year',\
-        'low':'Low', 'rec_open':'Open', 'volume':'Volume', 'high':'High', 'rec_close':'Close',\
-        'ticker':'Ticker Symbol'}, inplace = True)
-
-    return dataframe
-
 #------------------------------
 
 def closest_available_record(ticker, date, dataframe):
