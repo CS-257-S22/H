@@ -73,8 +73,6 @@ def basicData():
     reformatedDates = str(int(dates[0][0])) + "-" + str(int(dates[0][1])) + "-" + str(int(dates[0][2])), str(int(dates[1][0])) + "-" + str(int(dates[1][1])) + "-" + str(int(dates[1][2]))
     max = helper.get_max(ticker)
     min = helper.get_min(ticker)
-    # max = str(int(extDates[0][0])) + "-" + str(int(extDates[0][1])) + "-" + str(int(extDates[0][2]))
-    # min = str(int(extDates[1][0])) + "-" + str(int(extDates[1][1])) + "-" + str(int(extDates[1][2]))
 
     earliestData = inspect_stock.inspect(ticker, dates[0], "Low", nasdaq_df),\
         inspect_stock.inspect(ticker, dates[0], "High", nasdaq_df),\
@@ -137,7 +135,7 @@ def graph_stock_ROI():
 def portfolio_menu():
     """
     DESCRIPTION:
-        This is the men for the mock stock portfolio feature.
+        This is the menu for the mock stock portfolio feature.
     INPUT SIGNATURE:
         1. None
     OUTPUT SIGNATURE:
