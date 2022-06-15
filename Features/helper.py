@@ -112,15 +112,7 @@ def get_dataframe():
     """
 
     # read the database from psql server to pandas
-    nasdaq_df = pd.read_sql_query("select * from nasdaq;", teamh.database)
-
-    # convert columns' type
-    nasdaq_df["rec_year"].astype(int)
-    nasdaq_df["rec_month"].astype(int)
-    nasdaq_df["rec_day"].astype(int)
-
-    # rename the columns
-    nasdaq_df = rename_database_friendly(nasdaq_df)
+    nasdaq_df = pd.read_csv("../Data/Polished/randomized_day_market.csv")
 
     return nasdaq_df
 
