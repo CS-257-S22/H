@@ -23,6 +23,8 @@ def check_basicTicker(ticker):
     """
     return check_ticker(ticker)
 
+#------------------------------
+
 def check_ticker(ticker): #needs to take in filename if using csv
     """
     Description:
@@ -36,13 +38,9 @@ def check_ticker(ticker): #needs to take in filename if using csv
         1. A boolean representing whether or not the requested ticker symbol is found within the reference dataset   
     """
 
-    cursor.execute("SELECT ticker FROM nasdaq")
-    table = cursor.fetchall()
+    nasdaq_df = get_dataframe()
 
-    for row in table:
-        if row[0] == str(ticker):
-            return True
-    return False
+    return ticker in nasdaq_df["Ticker Symbol"].unique()
 
 def get_max(inputTicker):
     """
